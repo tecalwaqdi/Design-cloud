@@ -1,0 +1,4 @@
+output/*.wav
+output/hulk_ad_video_only.mp4
+remotion/public/
+remotion/node_modules
