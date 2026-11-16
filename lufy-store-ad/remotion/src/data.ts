@@ -28,4 +28,5 @@ export const SNAP = {
   name: 'اشتراك سناب لوفي بلس – سنة (لأول اشتراك فقط)',
   price: 49,
   page: 'store/products/snap_plus_page.png',
+  image: 'store/products/snap_plus.jpg', // store's own product image (added to the product on 2026-11-16)
 };

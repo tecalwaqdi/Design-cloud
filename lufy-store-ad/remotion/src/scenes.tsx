@@ -47,38 +47,16 @@ const Grade: React.FC<{ amount?: number }> = ({ amount = 1 }) => (
 /* ------------------------------------------------------------------ S1: in the heat of the moment (0–150) */
 const stadiumCenter = (t: number) => interpolate(t, [0, 1, 2, 3, 4, 5], [700, 820, 1050, 1300, 1500, 1580], clamp);
 
-// TV screen corners tracked on livingroom.mp4: t=0 -> (578,216)-(1405,684); t=4.9 -> (518,182)-(1462,708).
-const tvRect = (t: number) => {
-  const k = Math.min(1, t / 4.9);
-  return { x0: 578 - 60 * k, y0: 216 - 34 * k, x1: 1405 + 57 * k, y1: 684 + 24 * k };
-};
-
-const LivingRoomShot: React.FC = () => {
-  const lf = useCurrentFrame();
-  const t = lf / FPS;
-  const r = tvRect(t);
-  return (
-    <VCrop src="video/livingroom.mp4" startFrom={0} center={(f) => interpolate(f, [0, 54], [640, 800], { ...clamp, easing: easeInOut })} zoom={(f) => interpolate(f, [0, 54], [1.0, 1.07], clamp)}>
-      {/* screen replacement: clean fictional match (no AI-garbled broadcast graphics) */}
-      <div
-        style={{
-          position: 'absolute',
-          left: `${(r.x0 / 1920) * 100}%`,
-          top: `${(r.y0 / 1080) * 100}%`,
-          width: `${((r.x1 - r.x0) / 1920) * 100}%`,
-          height: `${((r.y1 - r.y0) / 1080) * 100}%`,
-          overflow: 'hidden',
-          borderRadius: 2,
-          boxShadow: '0 0 6px 2px rgba(10,6,16,0.9)',
-        }}
-      >
-        <OffthreadVideo muted src={staticFile('video/stadium.mp4')} startFrom={0} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        <AbsoluteFill style={{ background: 'linear-gradient(125deg, rgba(255,255,255,0.10), rgba(255,255,255,0) 35%)' }} />
-        <AbsoluteFill style={{ background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.08) 0 1px, transparent 1px 3px)' }} />
-      </div>
-    </VCrop>
-  );
-};
+// Living room: locked-off shot (livingroom_clean.mp4 = AI broadcast graphics removed by scripts/clean_tv.py).
+// The original TV picture is kept, so the match is always ON the TV, in front of the viewer.
+const LivingRoomShot: React.FC = () => (
+  <VCrop
+    src="video/livingroom_clean.mp4"
+    startFrom={0}
+    center={(f) => interpolate(f, [0, 54], [985, 965], { ...clamp, easing: easeInOut })}
+    zoom={(f) => interpolate(f, [0, 54], [1.0, 1.06], clamp)}
+  />
+);
 
 export const S1Opening: React.FC = () => {
   const f = useCurrentFrame();
@@ -196,7 +174,7 @@ export const S3Enter: React.FC = () => {
         >
           <Phone
             width={520}
-            screen={{ kind: 'video', src: 'rec/mobile_browse.mp4', startFrom: lf < 138 ? 0 : 27 }}
+            screen={{ kind: 'video', src: 'rec/mobile_browse_hq.mp4', startFrom: 0 }}
           />
         </div>
       </AbsoluteFill>
@@ -276,7 +254,7 @@ export const S4Hulk: React.FC = () => {
             filter: `blur(${phoneOut * 8}px)`,
           }}
         >
-          <Phone width={520} screen={{ kind: 'video', src: 'rec/mobile_browse.mp4', startFrom: Math.round(7.0 * FPS) }} />
+          <Phone width={520} screen={{ kind: 'video', src: 'rec/mobile_browse_hq.mp4', startFrom: Math.round(6.0 * FPS) }} />
         </div>
       </AbsoluteFill>
       {lf >= 40 && <Particles progress={lerp(lf, 40, 90, 0, 1)} count={70} cy={1100} seed="s4" spread={700} size={0.8} />}
@@ -380,8 +358,12 @@ export const S6Snap: React.FC<{ pageH: number; scrollTo: number }> = ({ pageH, s
       <LuxBg hue={8} />
       <AbsoluteFill style={{ transform: `translateX(${whip * 900}px)`, filter: `blur(${whip * 20}px)` }}>
         <AbsoluteFill style={{ perspective: 1600 }}>
-          <div style={{ position: 'absolute', left: 540 - 250, top: 560, transform: `rotateY(${6 - lf * 0.05}deg) rotateX(3deg)` }}>
-            <Phone width={480} screen={{ kind: 'scroll', src: SNAP.page, imgW: 1290, imgH: pageH, from: 0, to: scrollTo, at: [20, 90] }} />
+          <div style={{ position: 'absolute', left: 540 - 245, top: 470, transform: `rotateY(${6 - lf * 0.06}deg) rotateX(3deg) scale(${0.94 + lerp(lf, 4, 40, 0, 1) * 0.06})` }}>
+            <div style={{ position: 'relative', width: 490, height: 870, borderRadius: 34, overflow: 'hidden', border: `2px solid ${C.neon}aa`, boxShadow: `0 0 70px rgba(124,58,237,0.6), 0 40px 90px rgba(0,0,0,0.7)` }}>
+              <Img src={staticFile('store/products/snap_plus.jpg')} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <AbsoluteFill style={{ background: `linear-gradient(115deg, rgba(255,255,255,0.16), rgba(255,255,255,0) 35%)` }} />
+              <div style={{ position: 'absolute', top: 0, bottom: 0, width: 120, left: `${-30 + lerp(lf, 30, 70, 0, 1) * 130}%`, background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)', transform: 'skewX(-18deg)' }} />
+            </div>
           </div>
         </AbsoluteFill>
         <AbsoluteFill style={{ alignItems: 'center', paddingTop: 150 }}>
@@ -427,7 +409,7 @@ export const S7Browse: React.FC = () => {
   const push = interpolate(lf, [190, 240], [0, 1], { ...clamp, easing: easeInOut });
   const steps = ['ادخل المتجر', 'شوف الباقات', 'قارن التفاصيل'];
   const stepAt = [46, 78, 111];
-  const callout = lerp(lf, 214, 226, 0, 1);
+  const callout = lerp(lf, 196, 208, 0, 1);
   return (
     <AbsoluteFill>
       <LuxBg intensity={0.9} />
@@ -439,9 +421,9 @@ export const S7Browse: React.FC = () => {
           </div>
           {/* phone: real mobile browsing (HULK category -> 12-month product -> details -> order button location) */}
           <div style={{ position: 'absolute', left: 520, top: 760, transform: `translateZ(120px) translateY(${(1 - intro) * 900}px) rotateY(-10deg)` }}>
-            <Phone width={430} screen={{ kind: 'video', src: 'rec/mobile_browse.mp4', startFrom: Math.round(14.0 * FPS), rate: 1.72 }}>
+            <Phone width={430} screen={{ kind: 'video', src: 'rec/mobile_browse_hq.mp4', startFrom: Math.round(8.0 * FPS), rate: 1.42 }}>
               {callout > 0 && (
-                <div style={{ position: 'absolute', left: 0, right: 0, bottom: 20, height: 100, border: `4px solid ${C.gold}`, borderRadius: 20, opacity: callout, boxShadow: `0 0 30px ${C.gold}` }} />
+                <div style={{ position: 'absolute', left: 6, right: 6, bottom: 8, height: 64, border: `4px solid ${C.gold}`, borderRadius: 20, opacity: callout, boxShadow: `0 0 30px ${C.gold}` }} />
               )}
             </Phone>
           </div>
@@ -480,7 +462,7 @@ const MONTAGE: { src: string; kind: 'img' | 'page'; y?: number }[] = [
   { src: 'store/home_mobile_full.png', kind: 'page', y: 0 },
   { src: 'store/products/hulk_12.jpg', kind: 'img' },
   { src: 'store/products/alqadi_15.jpg', kind: 'img' },
-  { src: 'store/products/snap_plus_page.png', kind: 'page', y: 1600 },
+  { src: 'store/products/snap_plus.jpg', kind: 'img' },
   { src: 'store/products/hulk_12_page.png', kind: 'page', y: 1650 },
   { src: 'store/products/alqadi_2dev.jpg', kind: 'img' },
   { src: 'store/hulk_mobile_full.png', kind: 'page', y: 250 },

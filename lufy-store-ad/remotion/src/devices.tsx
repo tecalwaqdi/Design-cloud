@@ -28,7 +28,7 @@ const ScreenContent: React.FC<{ s: ScreenSrc; w: number; h: number }> = ({ s, w,
   return <Img src={staticFile(s.src)} style={{ width: w, height: s.imgH * scale, transform: `translateY(${-y * scale}px)` }} />;
 };
 
-/** Premium phone (generic design, no third-party branding). Screen ratio = 430x932 (recording viewport). */
+/** Premium phone (generic design, no third-party branding). Screen 430x932 pt = 48 pt status bar + 430x884 page area (= HQ recording viewport). */
 export const Phone: React.FC<{ width: number; screen: ScreenSrc; glow?: number; children?: React.ReactNode; style?: React.CSSProperties }> = ({
   width,
   screen,
@@ -40,6 +40,7 @@ export const Phone: React.FC<{ width: number; screen: ScreenSrc; glow?: number; 
   const sh = (sw * 932) / 430;
   const bezel = sw * 0.035;
   const R = sw * 0.14;
+  const statusH = (sw * 48) / 430;
   return (
     <div
       style={{
@@ -54,7 +55,19 @@ export const Phone: React.FC<{ width: number; screen: ScreenSrc; glow?: number; 
       }}
     >
       <div style={{ position: 'relative', width: sw, height: sh, borderRadius: R, overflow: 'hidden', background: '#000' }}>
-        <ScreenContent s={screen} w={sw} h={sh} />
+        {/* status bar (48 of 932 pt) + page area at the recording's exact aspect (430x884) -> no side cropping */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: sw, height: statusH, background: '#1b1b1d', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', padding: `0 ${sw * 0.085}px ${statusH * 0.12}px`, boxSizing: 'border-box', fontFamily: EN, fontWeight: 700, fontSize: statusH * 0.36, color: '#fff' }}>
+          <span>9:41</span>
+          <span style={{ display: 'flex', gap: sw * 0.012, alignItems: 'center' }}>
+            <span style={{ letterSpacing: -1 }}>▂▄▆█</span>
+            <span style={{ display: 'inline-block', width: statusH * 0.55, height: statusH * 0.26, border: '2px solid #fff', borderRadius: 4, position: 'relative' }}>
+              <span style={{ position: 'absolute', inset: 2, background: '#fff', borderRadius: 2 }} />
+            </span>
+          </span>
+        </div>
+        <div style={{ position: 'absolute', top: statusH, left: 0, width: sw, height: sh - statusH, overflow: 'hidden' }}>
+          <ScreenContent s={screen} w={sw} h={sh - statusH} />
+        </div>
         {/* dynamic-island style pill */}
         <div style={{ position: 'absolute', top: sw * 0.025, left: '50%', width: sw * 0.28, height: sw * 0.075, marginLeft: -sw * 0.14, borderRadius: 99, background: '#000' }} />
         {/* glass reflection */}

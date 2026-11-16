@@ -54,7 +54,7 @@ CUES = [
     (os.path.join(SFX, 'whoosh_big.wav'), 8.15, -6, 0.0, None),
     # S3 enter store
     (os.path.join(SFX, 'whoosh_2.wav'), 8.95, -7, 0.0, None),
-    (os.path.join(SFX, 'ui_click.wav'), 13.10, -6, 0.0, None),
+    (os.path.join(SFX, 'ui_click.wav'), 12.20, -6, 0.0, None),
     # S4 HULK cards
     (os.path.join(SFX, 'whoosh_3.wav'), 16.30, -9, 0.0, None),
     (os.path.join(SFX, 'soft_pop.wav'), 16.55, -6, 0.0, None),
@@ -75,13 +75,13 @@ CUES = [
     (os.path.join(SFX, 'whoosh_big.wav'), 32.75, -5, 0.0, None),
     # S7 real browsing — taps in the recordings + step chips + order-button callout
     (os.path.join(SFX, 'whoosh_4.wav'), 37.85, -8, 0.0, None),
-    (os.path.join(SFX, 'ui_click.wav'), 38.87, -8, 0.0, None),
+    (os.path.join(SFX, 'ui_click.wav'), 40.10, -8, 0.0, None),
     (os.path.join(SFX, 'soft_pop.wav'), 39.53, -8, 0.0, None),
     (os.path.join(SFX, 'ui_click.wav'), 39.74, -8, 0.0, None),
     (os.path.join(SFX, 'soft_pop.wav'), 40.60, -8, 0.0, None),
     (os.path.join(SFX, 'soft_pop.wav'), 41.70, -8, 0.0, None),
     (os.path.join(SFX, 'ui_click.wav'), 42.78, -8, 0.0, None),
-    (os.path.join(SFX, 'gold_pop.wav'), 45.13, -6, 0.0, None),
+    (os.path.join(SFX, 'gold_pop.wav'), 44.53, -6, 0.0, None),
     # S8 montage — a whoosh per cut, punches on the three words
 ] + [
     (os.path.join(SFX, f'whoosh_{(k % 6) + 1}.wav'), 46.0 + k * 11 / 30 - 0.25, -9, 0.0, None) for k in range(8)
