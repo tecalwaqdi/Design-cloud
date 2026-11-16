@@ -1,2 +1,9 @@
 node_modules/
-lufy-store-ad/output/*.mp4
+# Remotion public/ is a copy of lufy-store-ad/assets (rebuild with scripts/prepare_public.sh)
+lufy-store-ad/remotion/public/
+# raw screencast frames (the assembled MP4 recordings are kept)
+lufy-store-ad/recordings/*_frames/
+# intermediate render / mix stems (rebuild with remotion render + scripts/mix.py)
+lufy-store-ad/output/lufy_store_ad_video_only.mp4
+lufy-store-ad/output/*.wav
+lufy-store-ad/remotion/out/

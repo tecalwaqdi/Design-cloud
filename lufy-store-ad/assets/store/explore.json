@@ -1,58 +1,869 @@
 {
   "home": {
-    "title": "",
-    "links": [],
-    "imgs": [],
-    "metas": {},
-    "text": "",
+    "title": "لوفي ستور | LUFY STORE - اشتراكات وخدمات رقمية",
+    "links": [
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-12-months/p813641723",
+        "text": "12 شهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-12-months/p813641723",
+        "text": "اشتراك هولك HULK – 12 شهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-6-months/p347464185",
+        "text": "6 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-6-months/p347464185",
+        "text": "اشتراك هولك HULK – 6 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-3-months/p548302095",
+        "text": "3 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-3-months/p548302095",
+        "text": "اشتراك هولك HULK – 3 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-%D9%84%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%D9%86-%D8%A8%D8%AC%D9%88%D8%AF%D8%A9-%D9%81%D8%A7%D8%A6%D9%82%D8%A9/p179684525",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-%D9%84%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%D9%86-%D8%A8%D8%AC%D9%88%D8%AF%D8%A9-%D9%81%D8%A7%D8%A6%D9%82%D8%A9/p179684525",
+        "text": "اشتراك القاضي ALQadi 4K - سنة لجهازين بجودة فائقة"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-6-%D8%A3%D8%B4%D9%87%D8%B1/p954770860",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-6-%D8%A3%D8%B4%D9%87%D8%B1/p954770860",
+        "text": "اشتراك القاضي ALQadi 4K – 6 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-3-%D8%A3%D8%B4%D9%87%D8%B1-15-%D8%B4%D9%87%D8%B1%D9%8B%D8%A7/p1862502051",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-3-%D8%A3%D8%B4%D9%87%D8%B1-15-%D8%B4%D9%87%D8%B1%D9%8B%D8%A7/p1862502051",
+        "text": "اشتراك القاضي ALQadi 4K – سنة + 3 أشهر (15 شهرًا)"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A7%D9%84%D8%AC%D9%88%D8%A7%D9%84-android-%D9%88ios/p1952184902",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A7%D9%84%D8%AC%D9%88%D8%A7%D9%84-android-%D9%88ios/p1952184902",
+        "text": "تصميم وبرمجة تطبيقات الجوال | Android وiOS"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9-%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D9%85%D9%88%D8%A7%D9%82%D8%B9-%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A7%D8%AA-%D9%88%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/p269301824",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%82%D8%B9-%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D9%85%D9%88%D8%A7%D9%82%D8%B9-%D8%A7%D9%84%D8%B4%D8%B1%D9%83%D8%A7%D8%AA-%D9%88%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/p269301824",
+        "text": "تصميم وبرمجة المواقع الإلكترونية | مواقع الشركات والخدمات"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%85%D9%84%D9%81-%D8%AA%D8%B9%D8%B1%D9%8A%D9%81%D9%8A-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%84%D9%84%D8%B4%D8%B1%D9%83%D8%A7%D8%AA-company-profile/p1844070209",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%85%D9%84%D9%81-%D8%AA%D8%B9%D8%B1%D9%8A%D9%81%D9%8A-%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81%D9%8A-%D9%84%D9%84%D8%B4%D8%B1%D9%83%D8%A7%D8%AA-company-profile/p1844070209",
+        "text": "تصميم ملف تعريفي احترافي للشركات | Company Profile"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AC%D8%B1-%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D8%B3%D9%84%D8%A9-%D9%88%D8%B2%D8%AF-%D9%88rmz/p1068983874",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B5%D9%85%D9%8A%D9%85-%D9%88%D8%AA%D8%B7%D9%88%D9%8A%D8%B1-%D8%A7%D9%84%D9%85%D8%AA%D8%A7%D8%AC%D8%B1-%D8%A7%D9%84%D8%A5%D9%84%D9%83%D8%AA%D8%B1%D9%88%D9%86%D9%8A%D8%A9-%D8%B3%D9%84%D8%A9-%D9%88%D8%B2%D8%AF-%D9%88rmz/p1068983874",
+        "text": "تصميم وتطوير المتاجر الإلكترونية | سلة وزد وRMZ"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%A7%D9%84%D8%A3%D9%86%D8%B8%D9%85%D8%A9-%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9-%D9%88%D9%84%D9%88%D8%AD%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D8%AD%D9%83%D9%85-%D8%A3%D9%86%D8%B8%D9%85%D8%A9-%D9%85%D8%AE%D8%B5%D8%B5%D8%A9/p161318211",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A8%D8%B1%D9%85%D8%AC%D8%A9-%D8%A7%D9%84%D8%A3%D9%86%D8%B8%D9%85%D8%A9-%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D9%8A%D8%A9-%D9%88%D9%84%D9%88%D8%AD%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D8%AD%D9%83%D9%85-%D8%A3%D9%86%D8%B8%D9%85%D8%A9-%D9%85%D8%AE%D8%B5%D8%B5%D8%A9/p161318211",
+        "text": "برمجة الأنظمة الإدارية ولوحات التحكم | أنظمة مخصصة"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      }
+    ],
+    "imgs": [
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+        "alt": "لوفي ستور | LUFY STORE logo",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/8d3280a4-7854-4689-bc34-fc092f19b20d-original.jpeg",
+        "alt": "",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/5f55cd1c-ee9f-4064-91b2-5e1e99740da1-original.jpeg",
+        "alt": "",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/2e95b9dd-23dc-4ebd-8185-b801acc11241-original.jpeg",
+        "alt": "",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/656870cb-7190-41a6-8aa7-fd5071734f46-original.jpeg",
+        "alt": "",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/9bbfb529-0caa-4cd8-8d72-4d1f47215679-original.jpeg",
+        "alt": "اشتراك هولك HULK – 12 شهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/bbcb8ee1-4f4b-4b17-b11a-fb0baa7a0514-original.jpeg",
+        "alt": "اشتراك هولك HULK – 6 أشهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/46cd11ad-36ef-45ee-84d4-4e2b8f389733-original.jpeg",
+        "alt": "اشتراك هولك HULK – 3 أشهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/d4357acb-a2dd-40a9-833a-872ef75d0feb-original.jpeg",
+        "alt": "اشتراك القاضي ALQadi 4K - سنة لجهازين بجودة فائقة",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/51f86289-e75f-4faa-b24a-da94956f4576-original.jpeg",
+        "alt": "اشتراك القاضي ALQadi 4K – 6 أشهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/b939566d-fbc9-481a-b540-4d873f97aa2b-500x383.86524822695-HWi14Qjeb598abfU4AsOl8oXPIffyYLiSVHEImul.jpg",
+        "alt": "اشتراك القاضي ALQadi 4K – سنة + 3 أشهر (15 شهرًا)",
+        "w": 499,
+        "h": 383
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/3bebbff9-28fc-4164-9897-807d53fbd36c-333.51862145636x500-Yh86ZGLjNYjQ2uXM5FpSvFybCfOXwGFJS1060G4l.jpg",
+        "alt": "تصميم وبرمجة تطبيقات الجوال | Android وiOS",
+        "w": 333,
+        "h": 500
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/3644bb99-d893-471f-ab11-3f44d2702b3e-500x332.91666666667-djA7FCAP7M7rbWyEToyDzd2jDzEDjXRYYGHeI04N.jpg",
+        "alt": "تصميم وبرمجة المواقع الإلكترونية | مواقع الشركات والخدمات",
+        "w": 500,
+        "h": 332
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/2d5b1609-8293-4483-a022-e75091ed964e-500x333.33333333333-bny79yXdPyxPwArnuF0grfQmLMp70p6bTvZbbDfx.png",
+        "alt": "تصميم ملف تعريفي احترافي للشركات | Company Profile",
+        "w": 500,
+        "h": 333
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/9e992fc2-4a27-4666-9247-e39adcbf1c73-500x333.75-Z3vYGktxGglxJ7CxXIQ0LScP5JzT1dAqSsQdSHTv.jpg",
+        "alt": "تصميم وتطوير المتاجر الإلكترونية | سلة وزد وRMZ",
+        "w": 500,
+        "h": 333
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/ed31004d-c543-459d-b9a0-c72a6ffc0863-500x356.25-RKLZGozanSMSWnacKZlcWAtRYyRc4sNKFgJXeioj.jpg",
+        "alt": "برمجة الأنظمة الإدارية ولوحات التحكم | أنظمة مخصصة",
+        "w": 500,
+        "h": 356
+      },
+      {
+        "src": "https://cdn.salla.network/images/freelance-white.png",
+        "alt": "وثيقة العمل الحر",
+        "w": 160,
+        "h": 72
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/mada_mini.png",
+        "alt": "mada",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/credit_card_mini.png",
+        "alt": "credit_card",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/stc_pay_mini.png",
+        "alt": "stc_pay",
+        "w": 58,
+        "h": 14
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/apple_pay_mini.png",
+        "alt": "apple_pay",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/8d3280a4-7854-4689-bc34-fc092f19b20d-original.jpeg",
+        "alt": "اشتراكات هولك HULK",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/5f55cd1c-ee9f-4064-91b2-5e1e99740da1-original.jpeg",
+        "alt": "اشتراكات  القاضي  ALqadi 4K",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/656870cb-7190-41a6-8aa7-fd5071734f46-original.jpeg",
+        "alt": "سناب لوفي بلس",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/2e95b9dd-23dc-4ebd-8185-b801acc11241-original.jpeg",
+        "alt": "تطبيقات بلس",
+        "w": 900,
+        "h": 900
+      }
+    ],
+    "metas": {
+      "viewport": "width=device-width, initial-scale=1.0",
+      "msapplication-navbutton-color": "#7C3AED",
+      "apple-mobile-web-app-status-bar-style": "#7C3AED",
+      "msapplication-TileColor": "#ffffff",
+      "msapplication-TileImage": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "_token": "1WtYbhNqWB4Oxb6nj6O7dDhxSulyOh5gvmkPu4ou",
+      "description": "لوفي ستور LUFY STORE متجر للاشتراكات الرقمية في السعودية. اكتشف الاشتراكات وقارن الباقات والأسعار واختر المدة المناسبة لك.",
+      "store:published_time": "2026-10-28T17:27:37+03:00",
+      "og:description": "لوفي ستور LUFY STORE متجر للاشتراكات الرقمية في السعودية. اكتشف الاشتراكات وقارن الباقات والأسعار واختر المدة المناسبة لك.",
+      "og:title": "لوفي ستور | LUFY STORE - اشتراكات وخدمات رقمية",
+      "og:type": "store",
+      "og:locale": "ar_AR",
+      "og:url": "https://lufy.store/ar",
+      "og:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "og:image:width": "600",
+      "og:image:height": "300",
+      "twitter:description": "لوفي ستور LUFY STORE متجر للاشتراكات الرقمية في السعودية. اكتشف الاشتراكات وقارن الباقات والأسعار واختر المدة المناسبة لك.",
+      "twitter:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "twitter:card": "summary_large_image",
+      "twitter:title": "لوفي ستور | LUFY STORE - اشتراكات وخدمات رقمية",
+      "twitter:url": "https://lufy.store/ar",
+      "og:locale:alternate": "en_US"
+    },
+    "text": "العربية\n|\nلوفي ستور | LUFY STORE\n0\n\n0 \n\nتصفح الأقسام\nاشتراكات هولك HULK\nاشتراكات القاضي ALqadi 4K\nتطبيقات بلس\nسناب لوفي بلس\nاشتراكات هولك\nعرض الكل\n12 شهر\nاشتراك هولك HULK – 12 شهر\n\nأفضل قيمة لمدة أطول\n\n196 \n أضف إلى السلة\n6 أشهر\nاشتراك هولك HULK – 6 أشهر\n\nتوازن ممتاز بين المدة والقيمة\n\n149 \n أضف إلى السلة\n3 أشهر\nاشتراك هولك HULK – 3 أشهر\n98 \n أضف إلى السلة\nاشتراكات القاضي\nعرض الكل\nاشتراك القاضي ALQadi 4K - سنة لجهازين بجودة فائقة\n136 \n أضف إلى السلة\nاشتراك القاضي ALQadi 4K – 6 أشهر\n69 \n أضف إلى السلة\nاشتراك القاضي ALQadi 4K – سنة + 3 أشهر (15 شهرًا)\n99 \n أضف إلى السلة\nالأسئلة الشائعة\n\nكل ما تحتاج معرفته قبل الشراء.\n\nكيف أختار الاشتراك المناسب؟\n\nراجع مدة الباقة وسعرها وتوافقها مع جهازك قبل الدفع، ويمكنك الاستفسار من الدعم عبر واتساب.\n\nكيف أستلم الاشتراك؟\n\nيتم تجهيز الاشتراك وتسليمه يدويًا بواسطة فريق لوفي ستور بعد تأكيد الدفع، وفق المدة الموضحة في المنتج. إذا تأخر التسليم تواصل مع الدعم برقم الطلب.\n\nكيف أتواصل مع الدعم؟\n\nعبر واتساب 0577118808 للاستفسار عن الطلبات والتوافق والتفعيل، مع تزويدنا برقم الطلب عند الحاجة.\n\nالخدمات التقنية | LUFY TECH\nتصميم وبرمجة تطبيقات الجوال | Android وiOS\n\nمن فكرتك إلى تطبيق احترافي — اطلب عرض سعر مجانًا\n\n أضف إلى السلة\nتصميم وبرمجة المواقع الإلكترونية | مواقع الشركات والخدمات\n\nمواقع عصرية وسريعة ومتجاوبة — اطلب عرض سعر مجانًا\n\n أضف إلى السلة\nتصميم ملف تعريفي احترافي للشركات | Company Profile\n\nهوية تعرض أعمالك بوضوح وفخامة — اطلب عرض سعر مجانًا\n\n أضف إلى السلة\nتصميم وتطوير المتاجر الإلكترونية | سلة وزد وRMZ\n\nمتجر متكامل بهوية مميزة — اطلب عرض سعر مجانًا\n\n أضف إلى السلة\nبرمجة الأنظمة الإدارية ولوحات التحكم | أنظمة مخصصة\n\nحوّل الإجراءات اليدوية إلى نظام واضح — اطلب عرض سعر مجانًا\n\n أضف إلى السلة\nلوفي ستور | LUFY STORE\n\nلوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.\n\nوثيقة العمل الحر\n\nFL-862729378\nروابط مهمة\nمن نحن\nسياسة الاسترجاع والاستبدال\nتواصل معنا\nسياسة الخصوصية والاستخدام\nالشروط والاحكام\nتواصل معنا\n+966577118808\n+966577118808\n\nصنع بإتقان على | 2026 منصة سلة",
     "themeColors": {
-      "--color-primary": "",
-      "--color-primary-dark": "",
-      "--color-primary-light": "",
-      "--color-primary-reverse": "",
-      "--font-main": ""
+      "--color-primary": "#7C3AED",
+      "--color-primary-dark": "#5614c7",
+      "--color-primary-light": "#a260ff",
+      "--color-primary-reverse": "#ffffff",
+      "--font-main": "'PingARLT'"
     }
   },
   "hulk": {
-    "title": "",
-    "links": [],
-    "imgs": [],
-    "metas": {},
-    "text": "",
+    "title": "اشتراكات هولك HULK | لوفي ستور | LUFY STORE",
+    "links": [
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672#mobile-menu",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-12-months/p813641723",
+        "text": "12 شهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-12-months/p813641723",
+        "text": "اشتراك هولك HULK – 12 شهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-6-months/p347464185",
+        "text": "6 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-6-months/p347464185",
+        "text": "اشتراك هولك HULK – 6 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-3-months/p548302095",
+        "text": "3 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/hulk-3-months/p548302095",
+        "text": "اشتراك هولك HULK – 3 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      }
+    ],
+    "imgs": [
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+        "alt": "لوفي ستور | LUFY STORE logo",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/9bbfb529-0caa-4cd8-8d72-4d1f47215679-original.jpeg",
+        "alt": "اشتراك هولك HULK – 12 شهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/bbcb8ee1-4f4b-4b17-b11a-fb0baa7a0514-original.jpeg",
+        "alt": "اشتراك هولك HULK – 6 أشهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/46cd11ad-36ef-45ee-84d4-4e2b8f389733-original.jpeg",
+        "alt": "اشتراك هولك HULK – 3 أشهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.salla.network/images/freelance-white.png",
+        "alt": "وثيقة العمل الحر",
+        "w": 160,
+        "h": 72
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/mada_mini.png",
+        "alt": "mada",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/credit_card_mini.png",
+        "alt": "credit_card",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/stc_pay_mini.png",
+        "alt": "stc_pay",
+        "w": 58,
+        "h": 14
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/apple_pay_mini.png",
+        "alt": "apple_pay",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/8d3280a4-7854-4689-bc34-fc092f19b20d-original.jpeg",
+        "alt": "اشتراكات هولك HULK",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/5f55cd1c-ee9f-4064-91b2-5e1e99740da1-original.jpeg",
+        "alt": "اشتراكات  القاضي  ALqadi 4K",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/656870cb-7190-41a6-8aa7-fd5071734f46-original.jpeg",
+        "alt": "سناب لوفي بلس",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/2e95b9dd-23dc-4ebd-8185-b801acc11241-original.jpeg",
+        "alt": "تطبيقات بلس",
+        "w": 900,
+        "h": 900
+      }
+    ],
+    "metas": {
+      "viewport": "width=device-width, initial-scale=1.0",
+      "msapplication-navbutton-color": "#7C3AED",
+      "apple-mobile-web-app-status-bar-style": "#7C3AED",
+      "msapplication-TileColor": "#ffffff",
+      "msapplication-TileImage": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "_token": "1WtYbhNqWB4Oxb6nj6O7dDhxSulyOh5gvmkPu4ou",
+      "description": "لوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.",
+      "store:published_time": "2026-10-28T17:27:37+03:00",
+      "og:description": "لوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.",
+      "og:title": "اشتراكات هولك HULK | لوفي ستور | LUFY STORE",
+      "og:type": "store",
+      "og:locale": "ar_AR",
+      "og:url": "https://lufy.store/ar/اشتراكات-هولك-hulk/c576095672",
+      "og:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "og:image:width": "600",
+      "og:image:height": "300",
+      "twitter:description": "لوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.",
+      "twitter:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "twitter:card": "summary_large_image",
+      "twitter:title": "اشتراكات هولك HULK | لوفي ستور | LUFY STORE",
+      "twitter:url": "https://lufy.store/ar/اشتراكات-هولك-hulk/c576095672",
+      "og:locale:alternate": "en_US"
+    },
+    "text": "العربية\n|\nلوفي ستور | LUFY STORE\n0\n\n0 \n\nالرئيسية\nاشتراكات هولك HULK\nاشتراكات هولك HULK - 3 منتجات\nمقترحاتنا\nالأكثر مبيعًا\nالأعلى تقييمًا\nالسعر: من الأعلى إلى الأقل\nالسعر: من الأقل إلى الأعلى\n12 شهر\nاشتراك هولك HULK – 12 شهر\n\nأفضل قيمة لمدة أطول\n\n196 \n أضف إلى السلة\n6 أشهر\nاشتراك هولك HULK – 6 أشهر\n\nتوازن ممتاز بين المدة والقيمة\n\n149 \n أضف إلى السلة\n3 أشهر\nاشتراك هولك HULK – 3 أشهر\n98 \n أضف إلى السلة\n\nلا يوجد المزيد لعرضه\n\nلوفي ستور | LUFY STORE\n\nلوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.\n\nوثيقة العمل الحر\n\nFL-862729378\nروابط مهمة\nمن نحن\nسياسة الاسترجاع والاستبدال\nتواصل معنا\nسياسة الخصوصية والاستخدام\nالشروط والاحكام\nتواصل معنا\n+966577118808\n+966577118808\n\nصنع بإتقان على | 2026 منصة سلة",
     "themeColors": {
-      "--color-primary": "",
-      "--color-primary-dark": "",
-      "--color-primary-light": "",
-      "--color-primary-reverse": "",
-      "--font-main": ""
+      "--color-primary": "#7C3AED",
+      "--color-primary-dark": "#5614c7",
+      "--color-primary-light": "#a260ff",
+      "--color-primary-reverse": "#ffffff",
+      "--font-main": "'PingARLT'"
     }
   },
   "alqadi": {
-    "title": "",
-    "links": [],
-    "imgs": [],
-    "metas": {},
-    "text": "",
+    "title": "اشتراكات القاضي ALqadi 4K | لوفي ستور | LUFY STORE",
+    "links": [
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289#mobile-menu",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-%D9%84%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%D9%86-%D8%A8%D8%AC%D9%88%D8%AF%D8%A9-%D9%81%D8%A7%D8%A6%D9%82%D8%A9/p179684525",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-%D9%84%D8%AC%D9%87%D8%A7%D8%B2%D9%8A%D9%86-%D8%A8%D8%AC%D9%88%D8%AF%D8%A9-%D9%81%D8%A7%D8%A6%D9%82%D8%A9/p179684525",
+        "text": "اشتراك القاضي ALQadi 4K - سنة لجهازين بجودة فائقة"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-6-%D8%A3%D8%B4%D9%87%D8%B1/p954770860",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-6-%D8%A3%D8%B4%D9%87%D8%B1/p954770860",
+        "text": "اشتراك القاضي ALQadi 4K – 6 أشهر"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-3-%D8%A3%D8%B4%D9%87%D8%B1-15-%D8%B4%D9%87%D8%B1%D9%8B%D8%A7/p1862502051",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k-%D8%B3%D9%86%D8%A9-3-%D8%A3%D8%B4%D9%87%D8%B1-15-%D8%B4%D9%87%D8%B1%D9%8B%D8%A7/p1862502051",
+        "text": "اشتراك القاضي ALQadi 4K – سنة + 3 أشهر (15 شهرًا)"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      }
+    ],
+    "imgs": [
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+        "alt": "لوفي ستور | LUFY STORE logo",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/d4357acb-a2dd-40a9-833a-872ef75d0feb-original.jpeg",
+        "alt": "اشتراك القاضي ALQadi 4K - سنة لجهازين بجودة فائقة",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/products/596141193/51f86289-e75f-4faa-b24a-da94956f4576-original.jpeg",
+        "alt": "اشتراك القاضي ALQadi 4K – 6 أشهر",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.salla.sa/ABzpQp/b939566d-fbc9-481a-b540-4d873f97aa2b-500x383.86524822695-HWi14Qjeb598abfU4AsOl8oXPIffyYLiSVHEImul.jpg",
+        "alt": "اشتراك القاضي ALQadi 4K – سنة + 3 أشهر (15 شهرًا)",
+        "w": 499,
+        "h": 383
+      },
+      {
+        "src": "https://cdn.salla.network/images/freelance-white.png",
+        "alt": "وثيقة العمل الحر",
+        "w": 160,
+        "h": 72
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/mada_mini.png",
+        "alt": "mada",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/credit_card_mini.png",
+        "alt": "credit_card",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/stc_pay_mini.png",
+        "alt": "stc_pay",
+        "w": 58,
+        "h": 14
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/apple_pay_mini.png",
+        "alt": "apple_pay",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/8d3280a4-7854-4689-bc34-fc092f19b20d-original.jpeg",
+        "alt": "اشتراكات هولك HULK",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/5f55cd1c-ee9f-4064-91b2-5e1e99740da1-original.jpeg",
+        "alt": "اشتراكات  القاضي  ALqadi 4K",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/656870cb-7190-41a6-8aa7-fd5071734f46-original.jpeg",
+        "alt": "سناب لوفي بلس",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/2e95b9dd-23dc-4ebd-8185-b801acc11241-original.jpeg",
+        "alt": "تطبيقات بلس",
+        "w": 900,
+        "h": 900
+      }
+    ],
+    "metas": {
+      "viewport": "width=device-width, initial-scale=1.0",
+      "msapplication-navbutton-color": "#7C3AED",
+      "apple-mobile-web-app-status-bar-style": "#7C3AED",
+      "msapplication-TileColor": "#ffffff",
+      "msapplication-TileImage": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "_token": "1WtYbhNqWB4Oxb6nj6O7dDhxSulyOh5gvmkPu4ou",
+      "description": "لوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.",
+      "store:published_time": "2026-10-28T17:27:37+03:00",
+      "og:description": "لوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.",
+      "og:title": "اشتراكات  القاضي  ALqadi 4K | لوفي ستور | LUFY STORE",
+      "og:type": "store",
+      "og:locale": "ar_AR",
+      "og:url": "https://lufy.store/ar/اشتراكات-القاضي-alqadi-4k/c2083759289",
+      "og:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "og:image:width": "600",
+      "og:image:height": "300",
+      "twitter:description": "لوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.",
+      "twitter:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "twitter:card": "summary_large_image",
+      "twitter:title": "اشتراكات  القاضي  ALqadi 4K | لوفي ستور | LUFY STORE",
+      "twitter:url": "https://lufy.store/ar/اشتراكات-القاضي-alqadi-4k/c2083759289",
+      "og:locale:alternate": "en_US"
+    },
+    "text": "العربية\n|\nلوفي ستور | LUFY STORE\n0\n\n0 \n\nالرئيسية\nاشتراكات القاضي ALqadi 4K\nاشتراكات القاضي ALqadi 4K - 3 منتجات\nمقترحاتنا\nالأكثر مبيعًا\nالأعلى تقييمًا\nالسعر: من الأعلى إلى الأقل\nالسعر: من الأقل إلى الأعلى\nاشتراك القاضي ALQadi 4K - سنة لجهازين بجودة فائقة\n136 \n أضف إلى السلة\nاشتراك القاضي ALQadi 4K – 6 أشهر\n69 \n أضف إلى السلة\nاشتراك القاضي ALQadi 4K – سنة + 3 أشهر (15 شهرًا)\n99 \n أضف إلى السلة\n\nلا يوجد المزيد لعرضه\n\nلوفي ستور | LUFY STORE\n\nلوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.\n\nوثيقة العمل الحر\n\nFL-862729378\nروابط مهمة\nمن نحن\nسياسة الاسترجاع والاستبدال\nتواصل معنا\nسياسة الخصوصية والاستخدام\nالشروط والاحكام\nتواصل معنا\n+966577118808\n+966577118808\n\nصنع بإتقان على | 2026 منصة سلة",
     "themeColors": {
-      "--color-primary": "",
-      "--color-primary-dark": "",
-      "--color-primary-light": "",
-      "--color-primary-reverse": "",
-      "--font-main": ""
+      "--color-primary": "#7C3AED",
+      "--color-primary-dark": "#5614c7",
+      "--color-primary-light": "#a260ff",
+      "--color-primary-reverse": "#ffffff",
+      "--font-main": "'PingARLT'"
     }
   },
   "snap": {
-    "title": "",
-    "links": [],
-    "imgs": [],
-    "metas": {},
-    "text": "",
+    "title": "اشتراك سناب لوفي بلس سنة 49 ريال | أول اشتراك فقط | لوفي ستور | LUFY STORE",
+    "links": [
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3-%D8%B3%D9%86%D8%A9-49-%D8%B1%D9%8A%D8%A7%D9%84-%D8%A3%D9%88%D9%84-%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83-%D9%81%D9%82%D8%B7/p293713253#mobile-menu",
+        "text": ""
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D8%AA%D9%82%D9%86%D9%8A%D8%A9-lufy-tech/c2079984017",
+        "text": "الخدمات التقنية | LUFY TECH"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D9%87%D9%88%D9%84%D9%83-hulk/c576095672",
+        "text": "اشتراكات هولك HULK"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D8%A7%D8%AA-%D8%A7%D9%84%D9%82%D8%A7%D8%B6%D9%8A-alqadi-4k/c2083759289",
+        "text": "اشتراكات القاضي ALqadi 4K"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%B3%D9%86%D8%A7%D8%A8-%D9%84%D9%88%D9%81%D9%8A-%D8%A8%D9%84%D8%B3/c835029062",
+        "text": "سناب لوفي بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      },
+      {
+        "href": "https://lufy.store/ar/%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%D8%A7%D8%AA-%D8%A8%D9%84%D8%B3/c478408057",
+        "text": "تطبيقات بلس"
+      }
+    ],
+    "imgs": [
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+        "alt": "لوفي ستور | LUFY STORE logo",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.assets.salla.network/prod/stores/themes/default/assets/images/placeholder.png",
+        "alt": "اشتراك سناب لوفي بلس – سنة (لأول اشتراك فقط)",
+        "w": 280,
+        "h": 230
+      },
+      {
+        "src": "https://cdn.salla.network/images/freelance-white.png",
+        "alt": "وثيقة العمل الحر",
+        "w": 160,
+        "h": 72
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/mada_mini.png",
+        "alt": "mada",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/credit_card_mini.png",
+        "alt": "credit_card",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/stc_pay_mini.png",
+        "alt": "stc_pay",
+        "w": 58,
+        "h": 14
+      },
+      {
+        "src": "https://cdn.salla.network/cdn-cgi/image/fit=scale-down,width=58,height=58,onerror=redirect,format=auto/images/payment/apple_pay_mini.png",
+        "alt": "apple_pay",
+        "w": 58,
+        "h": 38
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/8d3280a4-7854-4689-bc34-fc092f19b20d-original.jpeg",
+        "alt": "اشتراكات هولك HULK",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/5f55cd1c-ee9f-4064-91b2-5e1e99740da1-original.jpeg",
+        "alt": "اشتراكات  القاضي  ALqadi 4K",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/656870cb-7190-41a6-8aa7-fd5071734f46-original.jpeg",
+        "alt": "سناب لوفي بلس",
+        "w": 900,
+        "h": 900
+      },
+      {
+        "src": "https://cdn.files.salla.network/other/596141193/2e95b9dd-23dc-4ebd-8185-b801acc11241-original.jpeg",
+        "alt": "تطبيقات بلس",
+        "w": 900,
+        "h": 900
+      }
+    ],
+    "metas": {
+      "viewport": "width=device-width, initial-scale=1.0",
+      "msapplication-navbutton-color": "#7C3AED",
+      "apple-mobile-web-app-status-bar-style": "#7C3AED",
+      "msapplication-TileColor": "#ffffff",
+      "msapplication-TileImage": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "_token": "1WtYbhNqWB4Oxb6nj6O7dDhxSulyOh5gvmkPu4ou",
+      "description": "اشتراك سناب لوفي بلس لمدة سنة بسعر 49 ريالًا، للحسابات التي لم تشترك من قبل أو تستخدم تجربة مجانية. تحقق من أهلية حسابك قبل الدفع.",
+      "store:published_time": "2026-10-28T17:27:37+03:00",
+      "og:description": "اشتراك سناب لوفي بلس لمدة سنة بسعر 49 ريالًا، للحسابات التي لم تشترك من قبل أو تستخدم تجربة مجانية. تحقق من أهلية حسابك قبل الدفع.",
+      "og:title": "اشتراك سناب لوفي بلس سنة 49 ريال | أول اشتراك فقط | لوفي ستور | LUFY STORE",
+      "og:type": "product",
+      "og:locale": "ar_AR",
+      "og:url": "https://lufy.store/ar/اشتراك-سناب-لوفي-بلس-سنة-لأول-اشتراك-فقط/p293713253",
+      "og:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "og:image:width": "600",
+      "og:image:height": "300",
+      "product:pretax_price:amount": "49",
+      "product:pretax_price:currency": "SAR",
+      "product:price:amount": "49",
+      "product:price:currency": "SAR",
+      "product:sale_price:amount": "49",
+      "product:sale_price:currency": "SAR",
+      "product:brand": "لوفي ستور | LUFY STORE",
+      "product:availability": "in stock",
+      "product:condition": "new",
+      "product:retailer_item_id": "293713253",
+      "product:category": "سناب لوفي بلس",
+      "twitter:description": "اشتراك سناب لوفي بلس لمدة سنة بسعر 49 ريالًا، للحسابات التي لم تشترك من قبل أو تستخدم تجربة مجانية. تحقق من أهلية حسابك قبل الدفع.",
+      "twitter:card": "summary_large_image",
+      "twitter:title": "اشتراك سناب لوفي بلس سنة 49 ريال | أول اشتراك فقط | لوفي ستور | LUFY STORE",
+      "twitter:url": "https://lufy.store/ar/اشتراك-سناب-لوفي-بلس-سنة-لأول-اشتراك-فقط/p293713253",
+      "twitter:image": "https://cdn.files.salla.network/other/596141193/ffc289ca-b45f-4893-b85e-5ff6a3ebb581-original.jpeg",
+      "og:locale:alternate": "en_US"
+    },
+    "text": "العربية\n|\nلوفي ستور | LUFY STORE\n0\n\n0 \n\nالرئيسية\nسناب لوفي بلس\nاشتراك سناب لوفي بلس – سنة (لأول اشتراك فقط)\nاشتراك سناب لوفي بلس – سنة (لأول اشتراك فقط)\nسنة بـ49 ريالًا — للمشتركين لأول مرة فقط\n\n49 \n\nاشتراك سناب لوفي بلس لمدة سنة — 49 ريالًا\n\nشرط أساسي: هذا الاشتراك مخصص للحسابات التي لم يسبق لها الاشتراك في Snapchat+ أو استخدام تجربة مجانية.\n\nقبل الدفع: تأكد أن هذا أول اشتراك سناب بلس على حسابك. إذا سبق لك الاشتراك أو لم تكن متأكدًا، لا تُكمل الطلب وتواصل مع الدعم أولًا.\n\nإقرار العميل المطلوب: أؤكد أن هذه أول مرة أشترك فيها في Snapchat+ على هذا الحساب، ولم أستخدم تجربة مجانية من قبل.\n\nملاحظة: الإقرار وحده لا يثبت أهلية الحساب تقنيًا؛ يُرجى التحقق من الأهلية قبل التفعيل.\n\nيد أهلية الاشتراك *\nبأن هذا أول اشتراك لي في Snapchat+ على هذا الحساب، ولم يسبق لي الاشتراك أو استخدام تجربة مجانية، وأؤكد صحة هذه المعلومات قبل إتمام ال\nبأن هذا أول اشتراك لي في Snapchat+ على هذا الحساب، ولم يسبق لي الاشتراك أو استخدام تجربة مجانية، وأؤكد صحة هذه المعلومات قبل إتمام ال\nالسعر\n49 \nأضف إلى السلة\nاشترِ الآن\nمنتجات قد تعجبك\nلوفي ستور | LUFY STORE\n\nلوفي ستور LUFY STORE متجر للاشتراكات والخدمات الرقمية. اكتشف باقات هولك HULK والقاضي ALQadi 4K، وقارن الأسعار والتفاصيل واطلب بسهولة.\n\nوثيقة العمل الحر\n\nFL-862729378\nروابط مهمة\nمن نحن\nسياسة الاسترجاع والاستبدال\nتواصل معنا\nسياسة الخصوصية والاستخدام\nالشروط والاحكام\nتواصل معنا\n+966577118808\n+966577118808\n\nصنع بإتقان على | 2026 منصة سلة",
     "themeColors": {
-      "--color-primary": "",
-      "--color-primary-dark": "",
-      "--color-primary-light": "",
-      "--color-primary-reverse": "",
-      "--font-main": ""
+      "--color-primary": "#7C3AED",
+      "--color-primary-dark": "#5614c7",
+      "--color-primary-light": "#a260ff",
+      "--color-primary-reverse": "#ffffff",
+      "--font-main": "'PingARLT'"
     }
   }
 }
