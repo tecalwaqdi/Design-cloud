@@ -1,0 +1,58 @@
+{
+  "home": {
+    "title": "",
+    "links": [],
+    "imgs": [],
+    "metas": {},
+    "text": "",
+    "themeColors": {
+      "--color-primary": "",
+      "--color-primary-dark": "",
+      "--color-primary-light": "",
+      "--color-primary-reverse": "",
+      "--font-main": ""
+    }
+  },
+  "hulk": {
+    "title": "",
+    "links": [],
+    "imgs": [],
+    "metas": {},
+    "text": "",
+    "themeColors": {
+      "--color-primary": "",
+      "--color-primary-dark": "",
+      "--color-primary-light": "",
+      "--color-primary-reverse": "",
+      "--font-main": ""
+    }
+  },
+  "alqadi": {
+    "title": "",
+    "links": [],
+    "imgs": [],
+    "metas": {},
+    "text": "",
+    "themeColors": {
+      "--color-primary": "",
+      "--color-primary-dark": "",
+      "--color-primary-light": "",
+      "--color-primary-reverse": "",
+      "--font-main": ""
+    }
+  },
+  "snap": {
+    "title": "",
+    "links": [],
+    "imgs": [],
+    "metas": {},
+    "text": "",
+    "themeColors": {
+      "--color-primary": "",
+      "--color-primary-dark": "",
+      "--color-primary-light": "",
+      "--color-primary-reverse": "",
+      "--font-main": ""
+    }
+  }
+}
