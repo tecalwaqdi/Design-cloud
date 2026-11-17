@@ -44,13 +44,15 @@ node scripts/export_logo.cjs                                        # -> brand_e
 
 | الملف | الوصف |
 |---|---|
-| `output/v3/AbuKayan_v3A_60s_1080x1920_NO_VO.mp4` | الفيديو كامل مع الموسيقى والمؤثرات، وكلام التعليق مكتوب على الشاشة. ينقصه صوت رائد |
+| `output/v3/AbuKayan_v3A_60s_1080x1920.mp4` | **النسخة النهائية:** بصوت رائد العتيبي مع الموسيقى والمؤثرات |
+| `output/v3/AbuKayan_v3A_60s_1080x1920_NO_VO.mp4` | نفس الفيديو بدون تعليق صوتي (الكلام مكتوب على الشاشة) |
+| `assets/audio/v3/vo_raed_a.mp3`, `vo_raed_b.mp3` | تسجيلا التعليق (eleven_v4، صوت RAED ALOTAIBI). المستخدم في الإعلان هو A، وقسّمته على السطور بالتفريغ النصي |
 | `output/v3/AbuKayan_v3A_preview_lowres.mp4` | معاينة خفيفة للجوال |
 | `v3/VO_PROMPT_A_v2.txt` | نص التعليق لصوت RAED ALOTAIBI مع التوقيت المطلوب لكل سطر |
 | `remotion/src/V3A.tsx` | المونتاج (Composition: `AbuKayanV3A`) |
 | `scripts/mix_v3a.py` | المكساج: إشعارات واهتزاز مولّدة، والموسيقى تنقطع عند لحظة الصمت (15–19 ث) |
 
-**لإضافة صوت رائد:** ولّد النص من `v3/VO_PROMPT_A_v2.txt` واحفظه في `assets/audio/v3/vo_raed.mp3`، واملأ `VO_LINES` في `scripts/mix_v3a.py`، وبعدها:
+**إعادة البناء:** (لو تغيّر التعليق، عدّل `VO` و`VO_LINES` في `scripts/mix_v3a.py`)
 ```bash
 scripts/prepare_public.sh
 cd remotion && npx remotion render src/index.ts AbuKayanV3A ../output/v3/abu_kayan_v3a_video_only.mp4 --codec=h264 --crf=16 --muted

@@ -17,11 +17,32 @@ SFX = os.path.abspath(os.path.join(ROOT, '..', 'lufy-store-ad', 'assets', 'audio
 OUT = os.path.join(ROOT, 'output', 'v3')
 DUR = 60.0
 MUSIC = os.path.join(A, 'music2_a.mp3')
-VO = os.path.join(A3, 'vo_raed.mp3')
+VO = os.path.join(A3, 'vo_raed_a.mp3')  # RAED ALOTAIBI, eleven_v4, take A (38.3 s)
 SR = 48000
 
 # (vo_in, vo_out, ad_time) — fill after generating the VO; empty = no VO track
-VO_LINES: list[tuple[float, float, float]] = []
+VO_LINES: list[tuple[float, float, float]] = [
+    (0.00, 2.62, 0.30),    # من أول ما قلت إنك تدوّر شقة في جدة…
+    (2.91, 4.09, 2.95),    # جوالك ما سكت!
+    (4.36, 5.53, 5.30),    # الكل يرسل عروض…
+    (5.80, 6.83, 8.30),    # الكل مستعجل…
+    (7.04, 8.27, 11.60),   # والكل عنده "لقطة".
+    (8.55, 10.60, 15.45),  # بس… ولا واحد فيهم سألك:
+    (10.99, 12.20, 17.40), # أنت… وش تبي؟
+    (12.70, 13.61, 21.30), # إلا واحد.
+    (14.02, 15.45, 24.30), # أبو كيان ما يبدأ بعرض…
+    (15.88, 17.19, 26.40), # يبدأ بطلبك أنت.
+    (17.52, 18.72, 28.70), # وش الحي اللي في بالك؟
+    (19.04, 19.92, 30.70), # كم ميزانيتك؟
+    (20.21, 21.57, 32.70), # ووش أهم شي عندك؟
+    (21.85, 23.91, 36.20), # وبعدها يجيك العرض مفصّل:
+    (24.22, 26.61, 40.60), # المدارس كم تبعد، الخدمات وين…
+    (26.92, 30.34, 44.30), # والأوراق والسعر واضحة، قبل ما تطلع أي مشوار.
+    (30.74, 32.23, 51.00), # الكل يبي يبيعك شقة…
+    (32.54, 34.74, 52.65), # وأبو كيان يبيك تلقى بيتك.
+    (35.06, 36.78, 56.40), # أرسل طلبك لأبو كيان الحين…
+    (37.06, 38.12, 58.30), # وبتلاقي طلبك.
+]
 
 
 def synth():
@@ -90,7 +111,7 @@ CUES += [(L('sfx_stamp_cut.wav'), ab + 16.6 + 0.95 * 4 + 0.1, -10, None)]  # dee
 CUES += [(V('ping.wav'), ab + 23.2, -10, None)]
 # 7 split + line
 CUES += [(S('whoosh_big.wav'), 49.6, -11, None), (S('whoosh_3.wav'), 50.45, -15, None),
-         (S('bass_impact.wav'), 53.6, -12, 1.4), (S('gold_pop.wav'), 53.9, -11, None)]
+         (S('bass_impact.wav'), 52.65, -12, 1.4), (S('gold_pop.wav'), 52.95, -11, None)]
 # 8 CTA
 CUES += [(S('whoosh_big.wav'), 54.6, -11, None), (L('sfx_logo.mp3'), 56.25, -6, None), (S('logo_reveal.wav'), 56.3, -13, None),
          (S('ui_click.wav'), 56.7, -12, None), (S('gold_pop.wav'), 57.25, -11, None)]

@@ -605,14 +605,14 @@ const Split: React.FC = () => {
       </div>
       {/* the line */}
       <div style={{ position: 'absolute', top: 1280, left: 40, right: 40, textAlign: 'center', direction: 'rtl', fontFamily: DIN }}>
-        {f >= s(2.2) && <div style={{ fontSize: 74, fontWeight: 700, color: B.cream, opacity: pIn(f, s(2.2), 12) }}>الكل يبي يبيعك شقة.</div>}
-        {f >= s(3.6) && (
-          <div style={{ fontSize: 86, fontWeight: 900, marginTop: 24, background: COPPER_GRAD, WebkitBackgroundClip: 'text', color: 'transparent', opacity: pIn(f, s(3.6), 12), transform: `scale(${1.1 - 0.1 * pIn(f, s(3.6), 14)})` }}>
+        {f >= s(1.0) && <div style={{ fontSize: 74, fontWeight: 700, color: B.cream, opacity: pIn(f, s(1.0), 12) }}>الكل يبي يبيعك شقة.</div>}
+        {f >= s(2.65) && (
+          <div style={{ fontSize: 86, fontWeight: 900, marginTop: 24, background: COPPER_GRAD, WebkitBackgroundClip: 'text', color: 'transparent', opacity: pIn(f, s(2.65), 12), transform: `scale(${1.1 - 0.1 * pIn(f, s(2.65), 14)})` }}>
             أبو كيان يبيك تلقى بيتك.
           </div>
         )}
       </div>
-      <Glint at={s(3.9)} x={880} y={1440} size={150} />
+      <Glint at={s(2.95)} x={880} y={1440} size={150} />
     </AbsoluteFill>
   );
 };
@@ -640,7 +640,7 @@ const CTA: React.FC = () => {
           أرسل طلبك الآن
         </div>
       </div>
-      {f >= 80 && <div style={{ position: 'absolute', top: 1520, width: '100%', textAlign: 'center', fontFamily: DIN, fontWeight: 700, fontSize: 46, color: B.cream, opacity: pIn(f, 80, 12), direction: 'rtl' }}>…وبتلاقي طلبك 🌿</div>}
+      {f >= 98 && <div style={{ position: 'absolute', top: 1520, width: '100%', textAlign: 'center', fontFamily: DIN, fontWeight: 700, fontSize: 46, color: B.cream, opacity: pIn(f, 98, 12), direction: 'rtl' }}>…وبتلاقي طلبك 🌿</div>}
     </AbsoluteFill>
   );
 };
@@ -666,7 +666,7 @@ export const AbuKayanV3A: React.FC = () => {
         <Phone shake={hookShake} scale={phoneIn}>
           <LockScreen />
         </Phone>
-        <Caption lines={[{ at: 6, text: <>من أول ما قلت إنك تدوّر شقة في <Cu>جدة</Cu>…</> }, { at: s(2.6), text: <>جوالك ما سكت!</> }]} />
+        <Caption lines={[{ at: 6, text: <>من أول ما قلت إنك تدوّر شقة في <Cu>جدة</Cu>…</> }, { at: s(2.9), text: <>جوالك ما سكت!</> }]} />
       </Seg>
 
       {/* 2 flood */}
