@@ -285,7 +285,7 @@ const Value: React.FC = () => {
       <LuxBg hue={-8} />
       {!mathIn && (
         <>
-          <AbsoluteFill style={{ alignItems: 'center', paddingTop: 170, opacity: cardIn }}>
+          <AbsoluteFill style={{ alignItems: 'center', paddingTop: 215, opacity: cardIn }}>
             <Headline size={110} weight={800}>السنة كاملة</Headline>
             <div style={{ fontFamily: AR_HEAD, fontWeight: 700, fontSize: 48, color: C.gold, marginTop: 6, direction: 'rtl' }}>اشتراك هولك HULK – 12 شهر</div>
           </AbsoluteFill>
@@ -356,8 +356,8 @@ const Trust: React.FC = () => {
           <Sequence from={555} layout="none"><Phone width={460} screen={{ kind: 'video', src: 'store/mobile_browse_hq.mp4', startFrom: Math.round(11.4 * 30), rate: 1.15 }} /></Sequence>
         </div>
       </AbsoluteFill>
-      {chip('دعم مباشر عبر واتساب', 563, 170, <div style={{ width: 64, height: 64, borderRadius: 32, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36 }}>💬</div>)}
-      {chip('نتواصل معك بعد الطلب بتفاصيل التفعيل', 640, 320, <div style={{ width: 64, height: 64, borderRadius: 32, background: C.gold, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: EN, fontWeight: 800, fontSize: 40, color: '#2a1600' }}>✓</div>)}
+      {chip('دعم مباشر عبر واتساب', 563, 215, <div style={{ width: 64, height: 64, borderRadius: 32, background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36 }}>💬</div>)}
+      {chip('نتواصل معك بعد الطلب بتفاصيل التفعيل', 640, 365, <div style={{ width: 64, height: 64, borderRadius: 32, background: C.gold, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: EN, fontWeight: 800, fontSize: 40, color: '#2a1600' }}>✓</div>)}
       <Vignette />
       <Grain />
     </AbsoluteFill>
@@ -434,6 +434,16 @@ const CTA: React.FC = () => {
   );
 };
 
+/** Always-on disclosure (TikTok AIGC policy): the narration is AI-generated; this is an ad. */
+const Disclosure: React.FC = () => (
+  <AbsoluteFill style={{ alignItems: 'center', pointerEvents: 'none' }}>
+    <div style={{ marginTop: 118, display: 'flex', alignItems: 'center', gap: 14, direction: 'rtl', padding: '8px 26px 12px', borderRadius: 99, background: 'rgba(0,0,0,0.62)', border: '1.5px solid rgba(255,255,255,0.35)', fontFamily: AR_HEAD, fontWeight: 700, fontSize: 30, color: '#ffffff' }}>
+      <span style={{ fontFamily: EN, fontWeight: 800, fontSize: 24, padding: '2px 10px', borderRadius: 8, background: '#ffffff', color: '#111' }}>AI</span>
+      التعليق الصوتي مولّد بالذكاء الاصطناعي · إعلان
+    </div>
+  </AbsoluteFill>
+);
+
 /** Shows children only inside [from, from+dur) WITHOUT resetting the frame counter (all timings are absolute). */
 const Range: React.FC<{ from: number; dur: number; children: React.ReactNode }> = ({ from, dur, children }) => {
   const f = useCurrentFrame();
@@ -448,5 +458,6 @@ export const HulkAd: React.FC = () => (
     <Range from={380} dur={175}><Value /></Range>
     <Range from={555} dur={150}><Trust /></Range>
     <Range from={705} dur={195}><CTA /></Range>
+    <Disclosure />
   </AbsoluteFill>
 );
