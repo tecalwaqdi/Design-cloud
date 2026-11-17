@@ -1,4 +1,4 @@
-"""Audio mix for the Abu Kayan ad (45.0 s). Writes output/mix_full.wav and output/mix_no_vo.wav.
+"""Audio mix for the Abu Kayan ad v2 (45.0 s, navy/copper brand edit). Writes output/mix_full.wav and output/mix_no_vo.wav.
 VO line splits were measured with silencedetect on vo_a.mp3 and checked against the transcript.
 """
 import os
@@ -9,68 +9,66 @@ A = os.path.join(ROOT, 'assets', 'audio')
 SFX = os.path.abspath(os.path.join(ROOT, '..', 'lufy-store-ad', 'assets', 'audio', 'sfx'))  # shared procedural SFX
 OUT = os.path.join(ROOT, 'output')
 DUR = 45.0
-VO = os.path.join(A, 'vo_a.mp3')
-MUSIC = os.path.join(A, 'music_a.mp3')
+VO = os.path.join(A, 'vo2_a.mp3')
+MUSIC = os.path.join(A, 'music2_a.mp3')
 MUSIC_OFFSET = 0.0
 
-# (vo_in, vo_out, ad_time)
+# (vo_in, vo_out, ad_time) — splits measured with silencedetect on vo2_a.mp3, checked against the transcript
 VO_LINES = [
-    (0.00, 1.34, 0.15),    # تدوّر شقة من شهور…
-    (1.77, 3.62, 1.55),    # وكل ما تروح تشوف، تنصدم؟
-    (4.01, 7.79, 3.85),    # إعلانات كثيرة، صور غير الواقع، أسعار كل يوم بحال…
-    (8.22, 9.75, 7.95),    # وأنت تلف من مكان لمكان.
-    (10.19, 11.53, 10.20), # إحنا ما نرمي عليك عروض…
-    (11.95, 13.01, 11.95), # إحنا نختار لك.
-    (13.29, 15.92, 15.15), # شقق مختارة بعناية، تستاهل وقتك.
-    (16.21, 19.88, 17.95), # نعرض لك اللي يناسب ميزانيتك واحتياجك، بدون مشاوير زايدة.
-    (20.17, 23.49, 21.85), # كل عقار موثّق، وكل تفصيل واضح قبل لا توقّع.
-    (23.73, 27.84, 25.45), # سعر عادل، وتعامل بشفافية من أول زيارة لين الاستلام.
-    (28.22, 31.82, 30.50), # لأن البيت قرار عمر… ويستاهل أحد يدلّك عليه صح.
-    (32.07, 35.01, 38.30), # تدوّر عقارك؟ قل لنا وش تبي… ونجيبه لك.
-    (35.31, 37.26, 41.55), # أبو كيان للتسويق العقاري.
+    (0.00, 1.07, 0.20),    # كم شقة زرت…
+    (1.32, 3.16, 1.50),    # وما حسّيت إن وحدة منها بيتك؟
+    (3.48, 7.60, 4.00),    # صور مفلترة، أسعار ما لها سقف، ومواعيد تاكل يومك…
+    (7.92, 9.92, 8.50),    # والنتيجة؟ تعب بلا فايدة.
+    (10.30, 13.56, 11.60), # في أبو كيان… نسمعك أول، وبعدين ندوّر لك.
+    (13.79, 17.41, 16.20), # ننقّي لك الشقق اللي تستاهل زيارتك، مو أي إعلان وبس.
+    (17.62, 20.22, 20.10), # على قد ميزانيتك، وفي الحي اللي يناسبك.
+    (20.45, 23.64, 23.20), # أوراق نظامية ومراجعة كاملة… قبل ما توقّع.
+    (23.88, 26.66, 26.80), # وسعر واضح من البداية، بدون مفاجآت.
+    (26.92, 30.22, 30.80), # لأن المفتاح اللي بتستلمه… بداية حكاية عيلتك.
+    (30.48, 32.57, 38.00), # قل لنا وش تدوّر… والباقي علينا.
+    (32.90, 35.20, 40.50), # أبو كيان للخدمات العقارية.
 ]
 
 S = lambda n: os.path.join(SFX, n)
 L = lambda n: os.path.join(A, n)
 # (file, ad_time, gain_db, trim_len or None)
 CUES = [
-    # 1. hook
-    (S('whoosh_big.wav'), 0.02, -8, None),
-    (S('soft_pop.wav'), 1.53, -6, None),
-    (L('sfx_glitch.mp3'), 3.05, -6, 0.9),
-    # 2. struggle
-    (S('bass_impact.wav'), 3.60, -9, 1.4),
-    (L('sfx_glitch.mp3'), 5.05, -10, 0.35),
-    (S('ui_click.wav'), 5.45, -5, None),
-    (L('sfx_glitch.mp3'), 6.45, -10, 0.35),
-    (S('soft_pop.wav'), 7.95, -6, None),
-    (S('soft_pop.wav'), 8.40, -8, None),
-    (S('soft_pop.wav'), 8.85, -8, None),
-    (S('whoosh_5.wav'), 9.40, -6, None),
-    (S('bass_impact.wav'), 9.92, -6, 1.6),
-    # 3. the shift
-    (L('sfx_chime.mp3'), 10.45, -7, None),
-    (S('riser.wav'), 11.90, -14, 1.5),
-    (L('sfx_chime.mp3'), 13.25, -4, None),
-    (S('logo_reveal.wav'), 13.35, -3, None),
-    # 4. why us (whip pans + checks)
-    (S('ui_click.wav'), 15.25, -8, None),
-    (S('whoosh_2.wav'), 17.62, -7, None), (S('ui_click.wav'), 18.00, -8, None),
-    (S('soft_pop.wav'), 18.85, -8, None), (S('soft_pop.wav'), 19.45, -8, None),
-    (S('gold_pop.wav'), 20.90, -9, None),
-    (S('whoosh_3.wav'), 21.52, -7, None), (S('ui_click.wav'), 21.90, -8, None),
-    (S('bass_impact.wav'), 22.78, -8, 1.0),
-    (S('whoosh_4.wav'), 25.12, -7, None), (S('ui_click.wav'), 25.50, -8, None),
-    # 5. the moment
-    (L('sfx_chime.mp3'), 31.15, -8, None),
-    (L('sfx_chime.mp3'), 33.55, -4, None),
-    (S('soft_pop.wav'), 34.40, -8, None), (S('soft_pop.wav'), 34.80, -8, None), (S('soft_pop.wav'), 35.20, -8, None),
-    (S('whoosh_big.wav'), 37.45, -9, None),
+    # 1. hook — arch rises, photos flick past
+    (S('whoosh_big.wav'), 0.05, -12, None),
+    *[(S('ui_click.wav'), 0.27 + k * 0.1667, -20 + (k % 2) * -2, None) for k in range(0, 18, 2)],
+    # arch wipe into pain
+    (S('whoosh_4.wav'), 3.62, -10, None),
+    (S('bass_impact.wav'), 4.00, -14, 1.2),
+    # 2. pain — copper strikes
+    (S('whoosh_1.wav'), 4.80, -16, None),
+    (S('whoosh_2.wav'), 5.80, -16, None),
+    (S('whoosh_3.wav'), 7.13, -16, None),
+    (S('bass_impact.wav'), 9.47, -11, 1.4),
+    # 3. turn — doorway wipe, logo build
+    (S('whoosh_big.wav'), 10.60, -10, None),
+    (S('riser.wav'), 10.80, -18, 1.2),
+    (L('sfx_logo.mp3'), 12.40, -5, None),
+    (S('logo_reveal.wav'), 12.45, -12, None),
+    (S('soft_pop.wav'), 13.60, -14, None),
+    # 4. pillars — doorway wipe + copper sweeps
+    (S('whoosh_big.wav'), 15.60, -11, None),
+    (S('whoosh_5.wav'), 19.85, -12, None),
+    (S('soft_pop.wav'), 20.83, -10, None),     # map pin lands
+    (S('whoosh_6.wav'), 22.95, -12, None),
+    (L('sfx_stamp_cut.wav'), 24.08, -3, None),      # review seal
+    (S('whoosh_5.wav'), 26.55, -12, None),
+    (S('soft_pop.wav'), 27.40, -12, None),
+    # 5. moment — keys
+    (S('whoosh_big.wav'), 29.60, -11, None),
+    (L('sfx_keys.mp3'), 31.25, -6, None),
+    (S('gold_pop.wav'), 31.35, -14, None),
+    (S('gold_pop.wav'), 33.95, -16, None),
     # 6. CTA
-    (S('logo_reveal.wav'), 38.02, -6, None),
-    (S('ui_click.wav'), 39.20, -8, None), (S('ui_click.wav'), 39.40, -8, None),
-    (S('gold_pop.wav'), 40.42, -4, None),
-    (L('sfx_chime.mp3'), 43.40, -7, None),
+    (S('whoosh_big.wav'), 37.10, -11, None),
+    (L('sfx_logo.mp3'), 40.55, -6, None),
+    (S('ui_click.wav'), 40.85, -12, None),
+    (S('ui_click.wav'), 41.10, -12, None),
+    (S('gold_pop.wav'), 41.65, -10, None),
 ]
 
 
@@ -87,7 +85,7 @@ def build(with_vo, out_wav):
 
     mi = add(MUSIC)
     chains.append(f'[{mi}:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim={MUSIC_OFFSET}:{MUSIC_OFFSET + DUR},asetpts=PTS-STARTPTS,'
-                  f'volume=-7dB,afade=t=out:st={DUR - 1.2}:d=1.2[music]')
+                  f'volume=-6dB,afade=t=out:st={DUR - 1.5}:d=1.5[music]')
     for k, (path, at, gain, tlen) in enumerate(CUES):
         i = add(path)
         trim = f'atrim=0:{tlen},afade=t=out:st={max(0, tlen - 0.08)}:d=0.08,' if tlen else ''

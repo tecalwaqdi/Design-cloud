@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 720" width="780" height="720">
+  <g fill="none" stroke="#C7926D" stroke-width="46" stroke-linejoin="miter" stroke-linecap="butt">
+    <path d="M85,690 L85,368 L264,288"/>
+    <path d="M264,690 L264,180 L536,76 L536,690"/>
+    <path d="M536,296 L698,368 L698,690"/>
+    <path d="M264,528 L536,338"/>
+    <path d="M322,498 L522,660"/>
+  </g>
+  <g fill="#C7926D">
+    <path d="M108,662 L136,690 L108,690 Z"/>
+    <path d="M241,662 L212,690 L241,690 Z"/>
+    <path d="M559,662 L588,690 L559,690 Z"/>
+    <path d="M675,662 L647,690 L675,690 Z"/>
+  </g>
+</svg>

@@ -1,656 +1,455 @@
 import React from 'react';
-import { AbsoluteFill, Img, Sequence, interpolate, random, staticFile, useCurrentFrame } from 'remotion';
-import '@fontsource/cairo/600.css';
-import '@fontsource/cairo/800.css';
-import '@fontsource/cairo/900.css';
-import '@fontsource/tajawal/500.css';
-import '@fontsource/tajawal/700.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/inter/800.css';
-import {
-  AR,
-  AR_BODY,
-  Bleed,
-  Butterfly,
-  C,
-  Card,
-  Chip,
-  EN,
-  Glitch,
-  Grain,
-  NeonGrid,
-  NeonText,
-  Sparkles,
-  Vignette,
-  clamp,
-  ease,
-  easeIn,
-  easeInOut,
-  glow,
-  s,
-} from './fx';
+import { AbsoluteFill, Img, Sequence, interpolate, staticFile, useCurrentFrame } from 'remotion';
+import { ArchWipe, B, BrandBg, COPPER_GRAD, DIN, Glint, Lockup, Mark, PLEX, Reveal, Rule, clamp, ease, easeInOut, s } from './brand';
 
 export const DURATION = s(45); // 1350
 
-/* ---------------- shared bits ---------------- */
-const Flash: React.FC<{ at: number; dur?: number; color?: string; max?: number }> = ({ at, dur = 8, color = '#fff', max = 0.8 }) => {
-  const f = useCurrentFrame();
-  return <AbsoluteFill style={{ background: color, opacity: interpolate(f, [at, at + 1, at + dur], [0, max, 0], clamp), mixBlendMode: 'screen', pointerEvents: 'none' }} />;
-};
+/* scene boundaries (frames) — timed to the voice-over, see scripts/mix.py */
+const T = { pain: s(4.0), turn: s(11.0), pillars: s(16.0), moment: s(30.0), cta: s(37.5) };
 
-/** Caption for the voice-over line (local frames). */
-const Caption: React.FC<{ text: string; from: number; to: number; y: number; size?: number }> = ({ text, from, to, y, size = 50 }) => {
+/* ---------- shared ---------- */
+const Photo: React.FC<{ src: string; dur: number; zoom?: [number, number]; origin?: string; filter?: string }> = ({ src, dur, zoom = [1.0, 1.08], origin = '50% 50%', filter }) => {
   const f = useCurrentFrame();
-  if (f < from - 2 || f > to + 8) return null;
-  const o = interpolate(f, [from, from + 6, to, to + 8], [0, 1, 1, 0], clamp);
+  const z = interpolate(f, [0, dur], zoom, clamp);
   return (
-    <div style={{ position: 'absolute', left: 70, right: 70, top: y, textAlign: 'center', direction: 'rtl', opacity: o, transform: `translateY(${(1 - o) * 14}px)` }}>
-      <span
-        style={{
-          fontFamily: AR_BODY,
-          fontWeight: 700,
-          fontSize: size,
-          lineHeight: 1.55,
-          color: C.white,
-          background: 'rgba(18,15,51,0.72)',
-          padding: '6px 26px 12px',
-          borderRadius: 18,
-          boxDecorationBreak: 'clone',
-          WebkitBoxDecorationBreak: 'clone',
-          boxShadow: `0 0 0 2px ${C.purple}55`,
-        }}
-      >
-        {text}
-      </span>
-    </div>
+    <AbsoluteFill style={{ overflow: 'hidden' }}>
+      <Img src={staticFile(src)} style={{ width: '100%', height: '100%', objectFit: 'cover', transform: `scale(${z})`, transformOrigin: origin, filter }} />
+    </AbsoluteFill>
   );
 };
+const H: React.FC<{ children: React.ReactNode; size: number; color?: string; weight?: number; y: number; align?: 'right' | 'center'; font?: string; left?: number }> = ({
+  children,
+  size,
+  color = B.cream,
+  weight = 700,
+  y,
+  align = 'right',
+  font = DIN,
+  left = 80,
+}) => (
+  <div style={{ position: 'absolute', left, right: 80, top: y, textAlign: align, direction: 'rtl', fontFamily: font, fontWeight: weight, fontSize: size, color, lineHeight: 1.25 }}>{children}</div>
+);
+const Cu: React.FC<{ children: React.ReactNode }> = ({ children }) => <span style={{ color: B.copper }}>{children}</span>;
 
-/** Wordmark: neon roof line + butterfly + name. */
-const Logo: React.FC<{ p: number; scale?: number; y: number }> = ({ p, scale = 1, y }) => {
-  const f = useCurrentFrame();
-  const draw = interpolate(p, [0, 0.55], [1, 0], clamp);
-  const t = interpolate(p, [0.25, 0.75], [0, 1], { ...clamp, easing: ease });
-  const sub = interpolate(p, [0.55, 1], [0, 1], { ...clamp, easing: ease });
-  const shine = interpolate(f % 90, [0, 30], [-0.3, 1.3], clamp);
+/* ---------- 1. HOOK  0 – 4.0 s : «كم شقة زرت… وما حسّيت إن وحدة منها بيتك؟» ---------- */
+const HOOK_IMGS = ['img/living_b.jpg', 'img/v1_kitchen_1.jpg', 'img/kitchen_b.jpg', 'img/v1_living_2.jpg', 'img/hood_b.jpg', 'img/v1_living_1.jpg', 'img/living_a.jpg', 'img/v1_struggle_2.jpg'];
+const Hook: React.FC = () => {
+  const f = useCurrentFrame(); // 0..120
+  const step = Math.min(HOOK_IMGS.length * 2 - 1, Math.max(0, Math.floor((f - 8) / 5)));
+  const img = HOOK_IMGS[step % HOOK_IMGS.length];
+  const settle = interpolate(f, [92, 112], [0, 1], clamp);
+  const archIn = interpolate(f, [0, 16], [0, 1], { ...clamp, easing: ease });
+  const visits = 3 + step;
   return (
-    <div style={{ position: 'absolute', left: 0, right: 0, top: y, height: 560, transform: `scale(${scale})`, transformOrigin: '50% 0%' }}>
-      <svg width={1080} height={260} style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
-        <path
-          d="M300,230 L300,150 L540,40 L780,150 L780,230"
-          fill="none"
-          stroke={C.purple}
-          strokeWidth={12}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          pathLength={1}
-          strokeDasharray={1}
-          strokeDashoffset={draw}
-          style={{ filter: `drop-shadow(0 0 10px ${C.purple}) drop-shadow(0 0 30px ${C.purple})` }}
-        />
-        <rect x={505} y={150} width={70} height={80} rx={10} fill="none" stroke={C.cyan} strokeWidth={8} opacity={t} style={{ filter: `drop-shadow(0 0 10px ${C.cyan})` }} />
-      </svg>
-      <div style={{ position: 'absolute', left: 0, right: 0, top: 70, opacity: t }}>
-        <Butterfly x={540} y={40} size={90 * t + 1} />
-      </div>
+    <AbsoluteFill>
+      <BrandBg />
+      <H y={130} size={104} weight={700}>
+        <Reveal at={4}>كم شقة زرت…</Reveal>
+      </H>
+      <H y={272} size={66} weight={500}>
+        <Reveal at={44}>
+          وما حسّيت إن وحدة منها <span style={{ fontWeight: 700, color: B.copper }}>بيتك؟</span>
+        </Reveal>
+      </H>
+      {/* arch window */}
       <div
         style={{
           position: 'absolute',
-          left: 0,
-          right: 0,
-          top: 230,
-          textAlign: 'center',
-          fontFamily: AR,
-          fontWeight: 900,
-          fontSize: 170,
-          lineHeight: 1.1,
-          direction: 'rtl',
-          color: '#fff',
-          opacity: t,
-          transform: `scale(${0.85 + 0.15 * t})`,
-          textShadow: glow(C.purple, 1.2),
-          WebkitTextStroke: `3px ${C.purple}`,
-          backgroundImage: `linear-gradient(100deg, #fff 0%, #fff ${shine * 100 - 8}%, ${C.cyan} ${shine * 100}%, #fff ${shine * 100 + 8}%, #fff 100%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          left: 130,
+          top: 520,
+          width: 820,
+          height: 1180,
+          borderRadius: '410px 410px 10px 10px',
+          overflow: 'hidden',
+          border: `4px solid ${B.copper}`,
+          transform: `translateY(${(1 - archIn) * 120}px)`,
+          opacity: archIn,
+          boxShadow: '0 40px 90px rgba(0,0,0,0.55)',
         }}
       >
-        أبو كيان
+        <Img
+          src={staticFile(img)}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', filter: `saturate(${0.9 - settle * 0.7}) sepia(0.15) brightness(${1 - settle * 0.3})`, transform: `scale(${1.12 - (f % 5) * 0.012})` }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${B.navyDeep}cc, transparent 40%)` }} />
+        <div style={{ position: 'absolute', left: 0, right: 0, bottom: 46, textAlign: 'center', direction: 'rtl', fontFamily: DIN, fontWeight: 500, fontSize: 40, color: B.cream }}>
+          الزيارة رقم <span style={{ fontWeight: 700, fontSize: 64, color: B.copper, display: 'inline-block', minWidth: 80 }}>{visits}</span>
+        </div>
       </div>
-      <div style={{ position: 'absolute', left: 0, right: 0, top: 440, textAlign: 'center', fontFamily: AR, fontWeight: 700, fontSize: 64, direction: 'rtl', color: C.cyan, opacity: sub, letterSpacing: 2, textShadow: glow(C.cyan, 0.6), transform: `translateY(${(1 - sub) * 20}px)` }}>
-        للتسويق العقاري
-      </div>
-    </div>
+      <div style={{ position: 'absolute', left: 108, top: 498, width: 864, height: 1224, borderRadius: '432px 432px 14px 14px', border: `1.5px solid ${B.copper}`, opacity: 0.45 * archIn }} />
+    </AbsoluteFill>
   );
 };
 
-/* ---------------- 1. HOOK (0 – 3.6 s) ---------------- */
-const LISTINGS = [
-  { img: 'img/living_2.png', title: 'شقة فاخرة للبيع', price: '٨٥٠,٠٠٠' },
-  { img: 'img/kitchen_1.png', title: 'شقة جديدة ٤ غرف', price: '٧٢٠,٠٠٠' },
-  { img: 'img/struggle_2.png', title: 'شقة لقطة!! 🔥', price: '٥٩٠,٠٠٠' },
-  { img: 'img/living_1.png', title: 'شقة للبيع بسعر مغري', price: '٩٤٠,٠٠٠' },
+/* ---------- 2. PAIN  4.0 – 11.0 s ---------- */
+const PAINS = [
+  { t: 'صور مفلترة', at: 8 },
+  { t: 'أسعار ما لها سقف', at: 38 },
+  { t: 'مواعيد تاكل يومك', at: 78 },
 ];
-const ListingCard: React.FC<{ i: number }> = ({ i }) => {
-  const L = LISTINGS[i % LISTINGS.length];
+const Pain: React.FC = () => {
+  const f = useCurrentFrame(); // 0..210
+  const listOut = interpolate(f, [128, 140], [1, 0], clamp);
   return (
-    <div style={{ height: 470, margin: '0 18px 22px', borderRadius: 26, background: '#fff', overflow: 'hidden', boxShadow: '0 6px 18px rgba(0,0,0,0.25)' }}>
-      <div style={{ height: 300, position: 'relative', overflow: 'hidden' }}>
-        <Img src={staticFile(L.img)} style={{ height: '100%', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }} />
-        <div style={{ position: 'absolute', top: 14, right: 14, background: C.red, color: '#fff', fontFamily: AR, fontWeight: 800, fontSize: 24, padding: '2px 16px 6px', borderRadius: 10 }}>إعلان مميز</div>
+    <AbsoluteFill>
+      <Photo src="img/struggle_a.jpg" dur={210} zoom={[1.1, 1.0]} origin="40% 30%" filter="saturate(0.55) brightness(0.85) contrast(1.05)" />
+      <AbsoluteFill style={{ background: `linear-gradient(to bottom, ${B.navyDeep}55 0%, transparent 30%, ${B.navy}e6 58%, ${B.navyDeep} 100%)` }} />
+      <div style={{ opacity: listOut }}>
+        {PAINS.map((p, i) => {
+          const y = 1170 + i * 140;
+          const strike = interpolate(f, [p.at + 16, p.at + 28], [0, 1], { ...clamp, easing: easeInOut });
+          return (
+            <React.Fragment key={i}>
+              <Reveal at={p.at} style={{ position: 'absolute', right: 90, top: y, direction: 'rtl', display: 'flex', alignItems: 'baseline', gap: 26 }}>
+                <span style={{ fontFamily: DIN, fontWeight: 300, fontSize: 44, color: B.copper }}>0{i + 1}</span>
+                <span style={{ fontFamily: DIN, fontWeight: 500, fontSize: 70, color: B.cream, opacity: 1 - strike * 0.45 }}>{p.t}</span>
+              </Reveal>
+              {f >= p.at + 16 && <div style={{ position: 'absolute', right: 80, top: y + 58, width: 760 * strike, height: 4, background: COPPER_GRAD, transformOrigin: 'right' }} />}
+            </React.Fragment>
+          );
+        })}
       </div>
-      <div style={{ direction: 'rtl', padding: '16px 24px', fontFamily: AR, color: '#1b1b2e' }}>
-        <div style={{ fontWeight: 800, fontSize: 36 }}>{L.title}</div>
-        <div style={{ fontWeight: 800, fontSize: 40, color: '#5b2bd1' }}>
-          {L.price} <span style={{ fontSize: 26 }}>ر.س</span>
-        </div>
-      </div>
-    </div>
-  );
-};
-const Hook: React.FC = () => {
-  const f = useCurrentFrame();
-  // scrolling accelerates
-  const scroll = interpolate(f, [0, 40, 108], [0, 500, 3600], { ...clamp, easing: easeIn });
-  const phoneIn = interpolate(f, [0, 10], [0, 1], { ...clamp, easing: ease });
-  const shake = f > 47 && f < 60 ? (random(`hk${f}`) - 0.5) * 18 : 0;
-  const gk = interpolate(f, [92, 108], [0, 1], clamp);
-  return (
-    <AbsoluteFill style={{ background: C.bg }}>
-      <NeonGrid opacity={0.35} speed={2} />
-      <AbsoluteFill style={{ transform: `translateX(${shake}px)` }}>
-        {/* phone */}
-        <div
-          style={{
-            position: 'absolute',
-            left: 540 - 300,
-            top: 640,
-            width: 600,
-            height: 1220,
-            borderRadius: 70,
-            background: '#0b0a1f',
-            border: '14px solid #26224d',
-            boxShadow: `${glow(C.purple, 1.3)}, 0 40px 120px rgba(0,0,0,0.7)`,
-            overflow: 'hidden',
-            transform: `translateY(${(1 - phoneIn) * 300}px) rotate(${-4 + 4 * phoneIn}deg)`,
-          }}
-        >
-          <div style={{ position: 'absolute', inset: 0, background: '#ecebf5' }}>
-            <div style={{ transform: `translateY(${-(scroll % (492 * 4))}px)`, paddingTop: 110, filter: `blur(${interpolate(f, [40, 100], [0, 5], clamp)}px)` }}>
-              {new Array(12).fill(0).map((_, i) => (
-                <ListingCard key={i} i={i} />
-              ))}
-            </div>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 100, background: '#fff', direction: 'rtl', fontFamily: AR, fontWeight: 800, fontSize: 34, color: '#1b1b2e', padding: '44px 30px 0', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-              🔍 شقق للبيع · ٢٬٣٤٨ إعلان
-            </div>
-          </div>
-        </div>
-</AbsoluteFill>
-      <NeonText text="تدوّر شقة من شهور…" at={4} y={150} size={92} color={C.purple} />
-      <NeonText text="وكل ما تروح تشوف… تنصدم؟" at={46} y={300} size={84} color={C.white} hi={['تنصدم؟']} />
-      <Flash at={46} color={C.purple} max={0.35} />
-      <Glitch k={gk} />
+      <H y={1250} size={58} weight={500} align="center">
+        <Reveal at={136} style={{ textAlign: 'center' }}>
+          <Cu>والنتيجة؟</Cu>
+        </Reveal>
+      </H>
+      <H y={1340} size={124} weight={900} align="center">
+        <Reveal at={164} style={{ textAlign: 'center' }}>
+          تعب بلا فايدة.
+        </Reveal>
+      </H>
+      <Rule at={172} x={340} y={1530} w={400} />
     </AbsoluteFill>
   );
 };
 
-/* ---------------- 2. STRUGGLE (3.6 – 10 s) ---------------- */
-const PRICES = ['٧٥٠ ألف', '٨٢٠ ألف', '٩٤٠ ألف', '١٫١ مليون'];
-const Struggle: React.FC = () => {
-  const f = useCurrentFrame(); // local, 0..192
-  const D = 192;
-  const at = (sec: number) => s(sec - 3.6);
-  const glitchIn = interpolate(f, [0, 10], [1, 0], clamp);
-  const implode = interpolate(f, [at(9.45), at(10)], [0, 1], { ...clamp, easing: easeIn });
-  const shake = (random(`st${Math.floor(f / 2)}`) - 0.5) * 6;
-  const priceIdx = Math.min(PRICES.length - 1, Math.max(0, Math.floor((f - at(6.45)) / 9)));
-  const car = interpolate(f, [at(7.95), at(9.4)], [0, 1], clamp);
-  const pinX = (t: number) => 160 + t * 760;
-  const pinY = (t: number) => 1560 + Math.sin(t * Math.PI * 3) * 90;
-  return (
-    <AbsoluteFill style={{ background: C.bg }}>
-      <Bleed src="img/struggle_1.png" cx={0.25} dur={D} zoom={[1.12, 1.0]} filter="saturate(0.55) contrast(1.1) brightness(0.78) hue-rotate(-8deg)" />
-      <AbsoluteFill style={{ background: `linear-gradient(to bottom, ${C.bg}ee 0%, transparent 35%, transparent 55%, ${C.bg}f2 100%)` }} />
-      <AbsoluteFill style={{ transform: `scale(${1 - implode}) rotate(${implode * 25}deg)`, opacity: 1 - implode * 0.6, transformOrigin: '50% 50%' }}>
-        {/* "in the photos" card */}
-        {f >= at(5.0) && (
-          <div
-            style={{
-              position: 'absolute',
-              right: 60,
-              top: 560,
-              width: 430,
-              borderRadius: 22,
-              overflow: 'hidden',
-              border: `4px solid ${C.purple}`,
-              boxShadow: glow(C.purple, 0.8),
-              transform: `translate(${shake}px, 0) rotate(5deg) scale(${interpolate(f, [at(5.0), at(5.0) + 8], [0.4, 1], { ...clamp, easing: ease })})`,
-            }}
-          >
-            <Img src={staticFile('img/living_2.png')} style={{ width: 430, display: 'block' }} />
-            <div style={{ position: 'absolute', top: 10, right: 10, background: C.purple, color: '#fff', fontFamily: AR, fontWeight: 800, fontSize: 32, padding: '0 16px 6px', borderRadius: 10 }}>بالإعلان</div>
-            <svg width={430} height={242} style={{ position: 'absolute', left: 0, top: 0 }}>
-              {(() => {
-                const p = interpolate(f, [at(5.4), at(5.4) + 8], [0, 1], clamp);
-                return (
-                  <g stroke={C.red} strokeWidth={16} strokeLinecap="round" style={{ filter: `drop-shadow(0 0 8px ${C.red})` }}>
-                    <line x1={90} y1={40} x2={90 + 250 * p} y2={40 + 160 * p} />
-                    <line x1={340} y1={40} x2={340 - 250 * p} y2={40 + 160 * p} />
-                  </g>
-                );
-              })()}
-            </svg>
-          </div>
-        )}
-        {f >= at(5.0) && (
-          <div style={{ position: 'absolute', left: 80, top: 900, fontFamily: AR, fontWeight: 800, fontSize: 44, color: C.white, background: 'rgba(0,0,0,0.55)', padding: '0 20px 8px', borderRadius: 12, direction: 'rtl', opacity: interpolate(f, [at(5.3), at(5.3) + 6], [0, 1], clamp) }}>
-            … وبالواقع 😶
-          </div>
-        )}
-        {/* price ticker */}
-        {f >= at(6.45) && (
-          <div style={{ position: 'absolute', left: 70, top: 1080, direction: 'rtl', fontFamily: AR, transform: `translateX(${shake}px)` }}>
-            <div style={{ fontWeight: 700, fontSize: 36, color: C.white, opacity: 0.85 }}>السعر اليوم</div>
-            <div style={{ fontWeight: 900, fontSize: 92, color: '#fff', textShadow: glow(C.red, 1), WebkitTextStroke: `2px ${C.red}` }}>
-              {PRICES[priceIdx]} <span style={{ fontSize: 70 }}>↑</span>
-            </div>
-          </div>
-        )}
-        {/* pins + wandering path */}
-        {f >= at(7.95) && (
-          <svg width={1080} height={1920} style={{ position: 'absolute', left: 0, top: 0 }}>
-            <path
-              d={new Array(41)
-                .fill(0)
-                .map((_, i) => `${i ? 'L' : 'M'}${pinX(i / 40)},${pinY(i / 40)}`)
-                .join(' ')}
-              stroke={C.white}
-              strokeWidth={6}
-              strokeDasharray="16 16"
-              fill="none"
-              opacity={0.75}
-            />
-            {[0, 0.33, 0.66, 1].map((t, i) => (
-              <g key={i} transform={`translate(${pinX(t)},${pinY(t) - 20})`} opacity={car >= t - 0.05 ? 1 : 0.35}>
-                <path d="M0,0 C-26,-30 -26,-64 0,-64 C26,-64 26,-30 0,0 Z" fill={C.red} style={{ filter: `drop-shadow(0 0 8px ${C.red})` }} />
-                <circle cx={0} cy={-42} r={9} fill="#fff" />
-              </g>
-            ))}
-            <g transform={`translate(${pinX(car)},${pinY(car)})`}>
-              <text fontSize={64} textAnchor="middle" y={22}>🚗</text>
-            </g>
-          </svg>
-        )}
-      </AbsoluteFill>
-      <Chip text="صور مضللة" at={at(5.05)} x={540} y={250} rot={-3} icon="✕" />
-      <Chip text="أسعار مبالغة" at={at(6.45)} x={560} y={380} rot={2} icon="✕" />
-      <Chip text="مشاوير بلا فايدة" at={at(7.95)} x={530} y={510} rot={-2} icon="✕" />
-      <Caption text="إعلانات كثيرة، صور غير الواقع، أسعار كل يوم بحال… وأنت تلف من مكان لمكان." from={at(3.85)} to={at(9.5)} y={1740} size={40} />
-      <Vignette k={0.8} />
-      <Glitch k={glitchIn + (f > at(5.0) && f < at(5.0) + 4 ? 0.6 : 0) + (f > at(6.45) && f < at(6.45) + 4 ? 0.5 : 0)} />
-      <Flash at={at(9.9)} color={C.purple} max={0.7} dur={6} />
-    </AbsoluteFill>
-  );
-};
-
-/* ---------------- 3. THE SHIFT (10 – 15 s) ---------------- */
-const Shift: React.FC = () => {
+/* ---------- 3. TURN  11.0 – 16.0 s : logo build + «نسمعك أول… وبعدين ندوّر لك» ---------- */
+const Turn: React.FC = () => {
   const f = useCurrentFrame(); // 0..150
-  const at = (sec: number) => s(sec - 10);
-  const fly = interpolate(f, [0, at(12.6)], [0, 1], { ...clamp, easing: easeInOut });
-  const path = (t: number): [number, number] => [140 + 400 * t + Math.sin(t * Math.PI * 2) * 160, 1720 - 820 * t - Math.sin(t * Math.PI) * 120];
-  const [bx, by0] = path(fly);
-  const by = by0 + (fly >= 1 ? Math.sin(f / 6) * 14 : 0);
-  const morph = interpolate(f, [at(13.05), at(13.5)], [0, 1], { ...clamp, easing: easeIn });
-  const logoP = interpolate(f, [at(13.3), at(14.9)], [0, 1], clamp);
-  const gridOrder = interpolate(f, [0, 40], [0, 1], { ...clamp, easing: ease });
+  const p = interpolate(f, [4, 60], [0, 1], clamp);
+  const up = interpolate(f, [62, 84], [0, 1], { ...clamp, easing: easeInOut });
+  const shine = interpolate(f, [40, 70], [-0.2, 1.2], clamp);
   return (
-    <AbsoluteFill style={{ background: C.bg }}>
-      <AbsoluteFill style={{ transform: `scale(${1.4 - 0.4 * gridOrder}) rotate(${(1 - gridOrder) * 8}deg)`, opacity: gridOrder }}>
-        <NeonGrid speed={0.6} />
-      </AbsoluteFill>
-      <NeonText text="إحنا ما نرمي عليك عروض…" at={at(10.2)} y={250} size={72} color={C.white} out={at(13.0)} />
-      <NeonText text="إحنا نختار لك." at={at(11.95)} y={380} size={120} color={C.purple} hi={['نختار']} out={at(13.0)} />
-      {morph < 1 && (
-        <>
-          <Sparkles path={(t) => path(Math.min(1, t))} t={fly} />
-          <Butterfly x={bx} y={by} size={170 + morph * 500} opacity={1 - morph} rot={interpolate(fly, [0, 1], [30, 0])} />
-        </>
-      )}
-      <Flash at={at(13.35)} color={C.purple} max={0.85} dur={12} />
-      {logoP > 0 && <Logo p={logoP} y={620} />}
+    <AbsoluteFill>
+      <BrandBg />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: interpolate(up, [0, 1], [560, 170]), display: 'flex', justifyContent: 'center', transform: `scale(${1 - 0.3 * up})`, transformOrigin: '50% 0%' }}>
+        <Lockup markW={360} p={p} shine={shine} nameSize={80} id="turn" />
+      </div>
+      <H y={1010} size={112} weight={700} align="center">
+        <Reveal at={78} style={{ textAlign: 'center' }}>
+          نسمعك أوّل…
+        </Reveal>
+      </H>
+      <Rule at={88} x={390} y={1180} w={300} />
+      <H y={1210} size={112} weight={700} align="center">
+        <Reveal at={94} style={{ textAlign: 'center' }}>
+          <Cu>وبعدين ندوّر لك.</Cu>
+        </Reveal>
+      </H>
     </AbsoluteFill>
   );
 };
 
-/* ---------------- 4. WHY US (15 – 30 s) ---------------- */
-const FEATURES = ['مختار', 'مناسب', 'موثّق', 'شفاف'];
-const Progress: React.FC<{ active: number }> = ({ active }) => (
-  <div style={{ position: 'absolute', left: 0, right: 0, top: 1650, display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', gap: 18 }}>
-    {FEATURES.map((w, i) => {
-      const on = i <= active;
-      return (
-        <div
-          key={w}
-          style={{
-            fontFamily: AR,
-            fontWeight: 800,
-            fontSize: 44,
-            color: on ? '#fff' : '#ffffff66',
-            border: `3px solid ${on ? C.cyan : '#ffffff33'}`,
-            boxShadow: on ? glow(C.cyan, 0.6) : undefined,
-            background: on ? 'rgba(62,230,230,0.12)' : 'rgba(18,15,51,0.6)',
-            padding: '4px 26px 10px',
-            borderRadius: 999,
-          }}
-        >
-          {on ? '✓ ' : ''}
-          {w}
-        </div>
-      );
-    })}
-  </div>
-);
-/** whip-pan wrapper: slides in from right, out to left, with motion blur */
-const Whip: React.FC<{ dur: number; children: React.ReactNode; first?: boolean; last?: boolean }> = ({ dur, children, first, last }) => {
-  const f = useCurrentFrame();
-  const inX = first ? 0 : interpolate(f, [0, 7], [1080, 0], { ...clamp, easing: ease });
-  const outX = last ? 0 : interpolate(f, [dur - 7, dur], [0, -1080], { ...clamp, easing: easeIn });
-  const x = inX + outX;
-  const blur = Math.min(40, Math.abs(x) / 18);
-  return <AbsoluteFill style={{ transform: `translateX(${x}px)`, filter: blur > 0.5 ? `blur(${blur}px)` : undefined }}>{children}</AbsoluteFill>;
-};
-const Label: React.FC<{ word: string; sub: string }> = ({ word, sub }) => {
-  const f = useCurrentFrame();
-  const p = interpolate(f, [4, 14], [0, 1], { ...clamp, easing: ease });
-  return (
-    <div style={{ position: 'absolute', left: 0, right: 0, top: 120, textAlign: 'center', direction: 'rtl' }}>
-      <div style={{ fontFamily: AR, fontWeight: 900, fontSize: 150, color: '#fff', WebkitTextStroke: `3px ${C.cyan}`, textShadow: glow(C.cyan, 1.1), opacity: p, transform: `scale(${0.8 + 0.2 * p})`, lineHeight: 1.2 }}>{word}</div>
-      <div style={{ fontFamily: AR, fontWeight: 700, fontSize: 46, color: C.purple, textShadow: glow(C.purple, 0.5), opacity: p, marginTop: -6 }}>{sub}</div>
-    </div>
-  );
-};
-const MapRoute: React.FC<{ dur: number }> = ({ dur }) => {
-  const f = useCurrentFrame();
-  const draw = interpolate(f, [8, dur - 30], [1, 0], { ...clamp, easing: easeInOut });
-  const arrive = interpolate(f, [dur - 34, dur - 22], [0, 1], { ...clamp, easing: ease });
-  const route = 'M180,1180 L180,1020 L420,1020 L420,880 L700,880 L700,740 L880,740';
-  return (
-    <AbsoluteFill style={{ background: C.bg }}>
-      <svg width={1080} height={1920} style={{ position: 'absolute', inset: 0 }}>
-        {/* streets */}
-        {new Array(14).fill(0).map((_, i) => (
-          <line key={`h${i}`} x1={0} x2={1080} y1={420 + i * 70 + (i % 3) * 8} y2={420 + i * 70 + (i % 3) * 8} stroke="#ffffff" strokeOpacity={i % 4 === 0 ? 0.22 : 0.08} strokeWidth={i % 4 === 0 ? 10 : 4} />
-        ))}
-        {new Array(12).fill(0).map((_, i) => (
-          <line key={`v${i}`} y1={380} y2={1400} x1={60 + i * 90} x2={60 + i * 90 + (i % 2) * 30} stroke="#ffffff" strokeOpacity={i % 3 === 0 ? 0.2 : 0.07} strokeWidth={i % 3 === 0 ? 10 : 4} />
-        ))}
-        {/* dim alternative pins */}
-        {[
-          [300, 500],
-          [820, 1100],
-          [560, 1280],
-          [960, 860],
-          [120, 700],
-        ].map(([x, y], i) => (
-          <g key={i} transform={`translate(${x},${y})`} opacity={0.3}>
-            <path d="M0,0 C-20,-24 -20,-50 0,-50 C20,-50 20,-24 0,0 Z" fill="#888" />
-          </g>
-        ))}
-        <path d={route} stroke={C.cyan} strokeWidth={14} fill="none" strokeLinejoin="round" strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={draw} style={{ filter: `drop-shadow(0 0 10px ${C.cyan}) drop-shadow(0 0 26px ${C.cyan})` }} />
-        <g transform="translate(180,1200)">
-          <circle r={26} fill={C.purple} style={{ filter: `drop-shadow(0 0 12px ${C.purple})` }} />
-          <text y={80} fill="#fff" fontFamily={AR} fontWeight={800} fontSize={40} textAnchor="middle">أنت</text>
-        </g>
-        <g transform={`translate(880,740) scale(${0.6 + 0.4 * arrive})`} opacity={0.3 + 0.7 * arrive}>
-          <path d="M0,0 C-36,-40 -36,-90 0,-90 C36,-90 36,-40 0,0 Z" fill={C.cyan} style={{ filter: `drop-shadow(0 0 14px ${C.cyan})` }} />
-          <text y={-38} fontSize={40} textAnchor="middle">🏠</text>
-        </g>
-      </svg>
-      <Chip text="ميزانيتك" icon="✓" at={s(1.0)} x={330} y={1300} color={C.cyan} size={46} />
-      <Chip text="احتياجك" icon="✓" at={s(1.6)} x={740} y={1300} color={C.cyan} size={46} />
-      {arrive > 0 && (
-        <div style={{ position: 'absolute', left: 580, top: 400, width: 360, borderRadius: 20, overflow: 'hidden', border: `3px solid ${C.cyan}`, boxShadow: glow(C.cyan, 0.7), opacity: arrive, transform: `scale(${0.7 + 0.3 * arrive})`, transformOrigin: '80% 100%' }}>
-          <Img src={staticFile('img/kitchen_2.png')} style={{ width: 360, display: 'block' }} />
-        </div>
-      )}
-    </AbsoluteFill>
-  );
-};
-const SEG = [
-  { from: s(15), to: s(17.85) },
-  { from: s(17.85), to: s(21.75) },
-  { from: s(21.75), to: s(25.35) },
-  { from: s(25.35), to: s(30) },
+/* ---------- 4. PILLARS  16.0 – 30.0 s ---------- */
+const PILLARS = [
+  { from: s(16.0), to: s(19.9), title: 'ننقّي لك بعناية', sub: 'شقق تستاهل زيارتك… مو أي إعلان', img: 'img/living_a.jpg', tag: 'انتقاء', origin: '50% 60%' },
+  { from: s(19.9), to: s(23.0), title: 'على قد ميزانيتك', sub: 'وفي الحي اللي يناسبك', img: 'img/hood_a.jpg', tag: 'ميزانية', origin: '50% 55%' },
+  { from: s(23.0), to: s(26.6), title: 'أوراق نظامية', sub: 'ومراجعة كاملة قبل ما توقّع', img: 'img/docs_a.jpg', tag: 'نظامية', origin: '60% 70%' },
+  { from: s(26.6), to: s(30.0), title: 'سعر واضح', sub: 'من البداية… بدون مفاجآت', img: 'img/hand_a.jpg', tag: 'وضوح', origin: '50% 45%' },
 ];
-const Features: React.FC = () => {
-  const f = useCurrentFrame() + s(15); // absolute
-  const active = SEG.findIndex((g) => f >= g.from && f < g.to);
-  const rel = (sec: number) => s(sec) - s(15);
-  return (
-    <AbsoluteFill style={{ background: C.bg }}>
-      <Sequence from={SEG[0].from - s(15)} durationInFrames={SEG[0].to - SEG[0].from}>
-        <Whip dur={SEG[0].to - SEG[0].from} first>
-          <Card src="img/living_1.png" dur={SEG[0].to - SEG[0].from} />
-          <Label word="مختار" sub="بعناية… يستاهل وقتك" />
-        </Whip>
-      </Sequence>
-      <Sequence from={SEG[1].from - s(15)} durationInFrames={SEG[1].to - SEG[1].from}>
-        <Whip dur={SEG[1].to - SEG[1].from}>
-          <MapRoute dur={SEG[1].to - SEG[1].from} />
-          <Label word="مناسب" sub="لميزانيتك واحتياجك" />
-        </Whip>
-      </Sequence>
-      <Sequence from={SEG[2].from - s(15)} durationInFrames={SEG[2].to - SEG[2].from}>
-        <Whip dur={SEG[2].to - SEG[2].from}>
-          <Card src="img/docs_1.png" dur={SEG[2].to - SEG[2].from} color={C.cyan} />
-          <Label word="موثّق" sub="كل تفصيل واضح" />
-          <Stamp at={s(1.0)} />
-        </Whip>
-      </Sequence>
-      <Sequence from={SEG[3].from - s(15)} durationInFrames={SEG[3].to - SEG[3].from}>
-        <Whip dur={SEG[3].to - SEG[3].from} last>
-          <Card src="img/hand_2.png" dur={SEG[3].to - SEG[3].from} />
-          <Label word="شفاف" sub="سعر عادل من أول زيارة لين الاستلام" />
-        </Whip>
-      </Sequence>
-      <Progress active={active} />
-      <Caption text="شقق مختارة بعناية، تستاهل وقتك." from={rel(15.15)} to={rel(17.75)} y={1480} size={44} />
-      <Caption text="نعرض لك اللي يناسب ميزانيتك واحتياجك، بدون مشاوير زايدة." from={rel(17.95)} to={rel(21.6)} y={1450} size={42} />
-      <Caption text="كل عقار موثّق، وكل تفصيل واضح قبل لا توقّع." from={rel(21.85)} to={rel(25.15)} y={1480} size={44} />
-      <Caption text="سعر عادل، وتعامل بشفافية من أول زيارة لين الاستلام." from={rel(25.45)} to={rel(29.6)} y={1450} size={42} />
-      <Grain amount={0.05} />
-    </AbsoluteFill>
-  );
-};
-const Stamp: React.FC<{ at: number }> = ({ at }) => {
+const PinDrop: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => {
   const f = useCurrentFrame();
   if (f < at) return null;
-  const p = interpolate(f, [at, at + 5, at + 9], [2.4, 0.92, 1], clamp);
+  const drop = interpolate(f, [at, at + 10], [-160, 0], { ...clamp, easing: ease });
+  const ring = ((f - at - 8) % 30) / 30;
+  return (
+    <>
+      {f > at + 8 && <div style={{ position: 'absolute', left: x - 90 * ring, top: y - 34 * ring, width: 180 * ring, height: 68 * ring, borderRadius: '50%', border: `3px solid ${B.copper}`, opacity: 1 - ring }} />}
+      <svg width={90} height={120} viewBox="-45 -110 90 120" style={{ position: 'absolute', left: x - 45, top: y - 110 + drop, overflow: 'visible', filter: 'drop-shadow(0 10px 14px rgba(0,0,0,0.5))' }}>
+        <path d="M0,0 C-40,-46 -40,-104 0,-104 C40,-104 40,-46 0,0 Z" fill={B.copper} stroke={B.copperLight} strokeWidth={3} />
+        <g transform="translate(0,-64) scale(0.07)" fill="none" stroke={B.navy} strokeWidth={60}>
+          <path d="M-305,300 L-305,0 L-120,-90 L-120,300 M-120,300 L-120,-250 L150,-350 L150,300 M150,-90 L300,0 L300,300" />
+        </g>
+      </svg>
+    </>
+  );
+};
+const Seal: React.FC<{ at: number; x: number; y: number }> = ({ at, x, y }) => {
+  const f = useCurrentFrame();
+  if (f < at) return null;
+  const p = interpolate(f, [at, at + 5, at + 9], [2.2, 0.94, 1], clamp);
   return (
     <div
       style={{
         position: 'absolute',
-        left: 640,
-        top: 1000,
+        left: x - 150,
+        top: y - 150,
         width: 300,
         height: 300,
         borderRadius: '50%',
-        border: `10px solid ${C.cyan}`,
-        boxShadow: glow(C.cyan, 1),
-        transform: `translate(-50%,-50%) rotate(-14deg) scale(${p})`,
+        background: `${B.navy}e6`,
+        border: `5px solid ${B.copper}`,
+        boxShadow: `0 0 0 10px ${B.navy}99, 0 0 0 12px ${B.copper}88, 0 20px 50px rgba(0,0,0,0.5)`,
+        transform: `rotate(-10deg) scale(${p})`,
         display: 'flex',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'column',
-        background: 'rgba(18,15,51,0.55)',
-        fontFamily: AR,
-        color: '#fff',
         direction: 'rtl',
       }}
     >
-      <div style={{ fontSize: 110, lineHeight: 1, color: C.cyan, textShadow: glow(C.cyan, 0.6) }}>✓</div>
-      <div style={{ fontWeight: 900, fontSize: 52 }}>موثّق</div>
+      <svg width={90} height={70} viewBox="0 0 90 70">
+        <path d="M8,36 L34,60 L82,10" fill="none" stroke={B.copper} strokeWidth={10} strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <div style={{ fontFamily: DIN, fontWeight: 700, fontSize: 46, color: B.cream, marginTop: 6 }}>تمت المراجعة</div>
     </div>
   );
 };
-
-/* ---------------- 5. THE MOMENT (30 – 38 s) ---------------- */
-const Moment: React.FC = () => {
-  const f = useCurrentFrame(); // 0..240
-  const D = 240;
-  const at = (sec: number) => s(sec - 30);
-  const zoomA = 1.0;
-  const zoomB = 1.12;
-  const cx = 0.42;
-  const z = interpolate(f, [0, D], [zoomA, zoomB], clamp);
-  const W = 1920 * z * (1280 / 720);
-  const H = 1920 * z;
-  const handX = 540 + (0.305 - cx) * W;
-  const handY = (1920 - H) / 2 + 0.5 * H;
-  const fly = interpolate(f, [at(31.2), at(33.6)], [0, 1], { ...clamp, easing: easeInOut });
-  const sx = 1000;
-  const sy = 260;
-  const bx = sx + (handX - sx) * fly + Math.sin(fly * Math.PI * 2) * 90 * (1 - fly);
-  const by = sy + (handY - 40 - sy) * fly - Math.sin(fly * Math.PI) * 160;
-  const landed = fly >= 1;
-  const fadeIn = interpolate(f, [0, 10], [0, 1], clamp);
-  const endGlow = interpolate(f, [at(37.4), at(38)], [0, 1], clamp);
+const Pill: React.FC<{ at: number; x: number; y: number; text: string }> = ({ at, x, y, text }) => {
+  const f = useCurrentFrame();
+  if (f < at) return null;
+  const p = interpolate(f, [at, at + 10], [0, 1], { ...clamp, easing: ease });
   return (
-    <AbsoluteFill style={{ background: C.bg, opacity: fadeIn }}>
-      <Bleed src="img/family_1.png" cx={cx} dur={D} zoom={[zoomA, zoomB]} filter="saturate(1.1) brightness(0.95)" />
-      <AbsoluteFill style={{ background: `linear-gradient(to bottom, ${C.bg}dd 0%, transparent 28%, transparent 62%, ${C.bg}ee 100%)` }} />
-      {f > at(31.0) && (
-        <>
-          <Sparkles path={(t) => [sx + (handX - sx) * t + Math.sin(t * Math.PI * 2) * 90 * (1 - t), sy + (handY - 40 - sy) * t - Math.sin(t * Math.PI) * 160]} t={fly} />
-          <Butterfly x={bx} y={by} size={landed ? 110 : 130} flap={landed ? 0.35 : 1} rot={landed ? -10 : -25} />
-        </>
-      )}
-      {landed && (
-        <div style={{ position: 'absolute', left: handX - 120, top: handY - 160, width: 240, height: 240, borderRadius: '50%', background: `radial-gradient(circle, ${C.cyan}55, transparent 70%)`, opacity: interpolate(f, [at(33.6), at(34.2)], [1, 0.4], clamp) }} />
-      )}
-      <Caption text="لأن البيت قرار عمر… ويستاهل أحد يدلّك عليه صح." from={at(30.5)} to={at(34.1)} y={170} size={50} />
-      {f >= at(34.4) && (
-        <div style={{ position: 'absolute', left: 0, right: 0, top: 1500, display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', gap: 26, direction: 'rtl' }}>
-          {['ثقة', '·', 'ذوق', '·', 'احتراف'].map((w, i) => {
-            const t = at(34.4) + i * 6;
-            const p = interpolate(f, [t, t + 10], [0, 1], { ...clamp, easing: ease });
-            return (
-              <span key={i} style={{ fontFamily: AR, fontWeight: 900, fontSize: w === '·' ? 80 : 110, color: '#fff', WebkitTextStroke: `3px ${C.cyan}`, textShadow: glow(C.cyan, 1.1), opacity: p, transform: `translateY(${(1 - p) * 40}px)`, display: 'inline-block' }}>
-                {w}
-              </span>
-            );
-          })}
-        </div>
-      )}
-      <Vignette k={0.55} />
-      <AbsoluteFill style={{ background: `radial-gradient(circle, #ffffff, ${C.purple})`, opacity: endGlow * 0.9, mixBlendMode: 'screen' }} />
+    <div style={{ position: 'absolute', left: x, top: y, transform: `translate(-50%,-50%) translateY(${(1 - p) * 30}px)`, opacity: p, direction: 'rtl', display: 'flex', alignItems: 'center', gap: 14, background: `${B.navy}ee`, border: `2px solid ${B.copper}`, borderRadius: 14, padding: '10px 30px 16px', fontFamily: DIN, fontWeight: 700, fontSize: 46, color: B.cream, whiteSpace: 'nowrap', boxShadow: '0 16px 40px rgba(0,0,0,0.45)' }}>
+      <svg width={36} height={30} viewBox="0 0 90 70">
+        <path d="M8,36 L34,60 L82,10" fill="none" stroke={B.copper} strokeWidth={12} strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      {text}
+    </div>
+  );
+};
+const PillarScene: React.FC<{ i: number }> = ({ i }) => {
+  const f = useCurrentFrame();
+  const P = PILLARS[i];
+  const dur = P.to - P.from;
+  const rv = i === 0 ? 1 : interpolate(f, [0, 12], [0, 1], { ...clamp, easing: easeInOut });
+  const frameIn = interpolate(f, [0, 18], [0, 1], { ...clamp, easing: ease });
+  return (
+    <AbsoluteFill style={{ clipPath: `inset(0 0 0 ${(1 - rv) * 100}%)` }}>
+      <BrandBg />
+      {/* big outlined number */}
+      <div style={{ position: 'absolute', left: 70, top: 110, fontFamily: DIN, fontWeight: 300, fontSize: 190, lineHeight: 1, color: 'transparent', WebkitTextStroke: `2.5px ${B.copper}`, opacity: frameIn }}>
+        0{i + 1}
+        <span style={{ fontSize: 44, WebkitTextStroke: '0', color: B.slate, marginLeft: 6 }}>/04</span>
+      </div>
+      <H y={130} size={88} weight={700} left={340}>
+        <Reveal at={6}>{P.title}</Reveal>
+      </H>
+      <H y={262} size={44} weight={400} font={DIN} left={340}>
+        <Reveal at={14}>
+          <span style={{ color: B.copperLight }}>{P.sub}</span>
+        </Reveal>
+      </H>
+      {/* arch photo frame */}
+      <div style={{ position: 'absolute', left: 90, top: 450, width: 900, height: 1200, borderRadius: '450px 450px 8px 8px', overflow: 'hidden', border: `4px solid ${B.copper}`, boxShadow: '0 40px 90px rgba(0,0,0,0.55)', transform: `translateY(${(1 - frameIn) * 60}px)` }}>
+        <Photo src={P.img} dur={dur} zoom={[1.0, 1.1]} origin={P.origin} />
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${B.navyDeep}aa, transparent 35%)` }} />
+        {i === 1 && <PinDrop at={18} x={470} y={760} />}
+      </div>
+      <div style={{ position: 'absolute', left: 68, top: 428, width: 944, height: 1244, borderRadius: '472px 472px 12px 12px', border: `1.5px solid ${B.copper}`, opacity: 0.45 }} />
+      {i === 1 && <Pill at={30} x={540} y={1560} text="ميزانيتك محفوظة" />}
+      {i === 2 && <Seal at={34} x={700} y={1380} />}
+      {i === 3 && <Pill at={24} x={540} y={1560} text="بدون مفاجآت" />}
+    </AbsoluteFill>
+  );
+};
+const PillarProgress: React.FC = () => {
+  const f = useCurrentFrame() + T.pillars;
+  return (
+    <div style={{ position: 'absolute', left: 90, right: 90, top: 1730, display: 'flex', flexDirection: 'row-reverse', gap: 22 }}>
+      {PILLARS.map((P, i) => {
+        const fill = interpolate(f, [P.from, P.to], [0, 1], clamp);
+        const active = f >= P.from;
+        return (
+          <div key={i} style={{ flex: 1 }}>
+            <div style={{ height: 4, background: `${B.slate}44`, position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: `${fill * 100}%`, background: COPPER_GRAD }} />
+            </div>
+            <div style={{ marginTop: 14, textAlign: 'center', fontFamily: DIN, fontWeight: active ? 700 : 400, fontSize: 36, color: active ? B.cream : `${B.slate}aa`, direction: 'rtl' }}>{P.tag}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+const Pillars: React.FC = () => (
+  <AbsoluteFill>
+    {PILLARS.map((P, i) => (
+      <Sequence key={i} from={P.from - T.pillars} durationInFrames={(PILLARS[i + 1]?.from ?? T.moment) - P.from + (i < 3 ? 12 : 0)}>
+        <PillarScene i={i} />
+      </Sequence>
+    ))}
+    {/* copper sweep line on each pillar change */}
+    {PILLARS.slice(1).map((P, k) => (
+      <Sequence key={`l${k}`} from={P.from - T.pillars} durationInFrames={13}>
+        <SweepLine />
+      </Sequence>
+    ))}
+    <PillarProgress />
+  </AbsoluteFill>
+);
+const SweepLine: React.FC = () => {
+  const f = useCurrentFrame();
+  const p = interpolate(f, [0, 12], [0, 1], { ...clamp, easing: easeInOut });
+  const x = 1080 * (1 - p);
+  return (
+    <>
+      <div style={{ position: 'absolute', left: x - 2, top: 0, width: 4, height: 1920, background: `linear-gradient(${B.copperDark}, ${B.copperLight}, ${B.copperDark})` }} />
+      <div style={{ position: 'absolute', left: x - 60, top: 0, width: 120, height: 1920, background: `radial-gradient(ellipse at center, ${B.copper}55, transparent 70%)` }} />
+    </>
+  );
+};
+
+/* ---------- 5. MOMENT  30.0 – 37.5 s ---------- */
+const Moment: React.FC = () => {
+  const f = useCurrentFrame(); // 0..225
+  return (
+    <AbsoluteFill>
+      <Photo src="img/family_b.jpg" dur={225} zoom={[1.0, 1.12]} origin="26% 50%" filter="saturate(1.05)" />
+      <AbsoluteFill style={{ background: `linear-gradient(to bottom, ${B.navyDeep}88 0%, transparent 18%, transparent 55%, ${B.navy}ee 80%, ${B.navyDeep} 100%)` }} />
+      <Glint at={40} x={290} y={975} />
+      <Glint at={118} x={300} y={985} size={90} />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 90, display: 'flex', justifyContent: 'center', opacity: interpolate(f, [10, 30], [0, 0.9], clamp) }}>
+        <Mark width={92} id="mo" />
+      </div>
+      <H y={1430} size={68} weight={500} align="center">
+        <Reveal at={24} style={{ textAlign: 'center' }}>
+          لأن المفتاح اللي بتستلمه…
+        </Reveal>
+      </H>
+      <H y={1530} size={104} weight={700} align="center">
+        <Reveal at={84} style={{ textAlign: 'center' }}>
+          <Cu>بداية حكاية عيلتك.</Cu>
+        </Reveal>
+      </H>
+      <Rule at={96} x={390} y={1700} w={300} />
     </AbsoluteFill>
   );
 };
 
-/* ---------------- 6. CTA (38 – 45 s) ---------------- */
+/* ---------- 6. CTA  37.5 – 45 s ---------- */
+const Icon: React.FC<{ kind: 'phone' | 'mail' }> = ({ kind }) => (
+  <svg width={54} height={54} viewBox="0 0 24 24" fill="none" stroke={B.copper} strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+    {kind === 'phone' ? (
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+    ) : (
+      <>
+        <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+        <path d="M3 6l9 7 9-7" />
+      </>
+    )}
+  </svg>
+);
 const CTA: React.FC = () => {
-  const f = useCurrentFrame(); // 0..210
-  const at = (sec: number) => s(sec - 38);
-  const inP = interpolate(f, [0, 12], [0, 1], clamp);
-  const info = (k: number) => interpolate(f, [at(39.2) + k * 6, at(39.2) + k * 6 + 10], [0, 1], { ...clamp, easing: ease });
-  const pulse = 1 + 0.04 * Math.sin(f / 4);
-  const btn = interpolate(f, [at(40.4), at(40.8)], [0, 1], { ...clamp, easing: ease });
-  // butterfly circles logo, then exits
-  const orbit = f / 18;
-  const exit = interpolate(f, [at(43.4), at(44.5)], [0, 1], { ...clamp, easing: easeIn });
-  const bx = 540 + Math.cos(orbit) * 330 + exit * 900;
-  const by = 330 + Math.sin(orbit) * 90 - exit * 700;
-  const fadeOut = interpolate(f, [at(44.3), at(45)], [0, 1], clamp);
+  const f = useCurrentFrame(); // 0..225
+  const p = interpolate(f, [0, 50], [0.35, 1], clamp);
+  const shine = interpolate(f, [90, 120], [-0.2, 1.2], clamp);
+  const row = (k: number) => interpolate(f, [100 + k * 8, 112 + k * 8], [0, 1], { ...clamp, easing: ease });
+  const btn = interpolate(f, [124, 138], [0, 1], { ...clamp, easing: ease });
+  const sweep = ((f - 140) % 60) / 60;
   return (
-    <AbsoluteFill style={{ background: C.bg }}>
-      <NeonGrid speed={0.5} horizon={1180} />
-      <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 40%, #ffffff, transparent 60%)`, opacity: (1 - inP) * 0.8, mixBlendMode: 'screen' }} />
-      <Logo p={interpolate(f, [0, 30], [0.5, 1], clamp)} y={120} scale={0.82} />
-      <Caption text="تدوّر عقارك؟ قل لنا وش تبي… ونجيبه لك." from={at(38.3)} to={at(41.3)} y={640} size={50} />
-      {/* contact card */}
-      <div style={{ position: 'absolute', left: 90, right: 90, top: 800, direction: 'rtl' }}>
-        {[
-          { icon: '📞', text: '0565005633', size: 84 },
-          { icon: '✉️', text: 'ulwaqedi@gmail.com', size: 54 },
-        ].map((r, k) => (
-          <div
-            key={k}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 26,
-              justifyContent: 'center',
-              margin: '0 0 30px',
-              padding: '18px 30px',
-              borderRadius: 28,
-              background: 'rgba(18,15,51,0.75)',
-              border: `3px solid ${k ? C.purple : C.cyan}`,
-              boxShadow: glow(k ? C.purple : C.cyan, 0.6),
-              opacity: info(k),
-              transform: `translateY(${(1 - info(k)) * 40}px)`,
-            }}
-          >
-            <span style={{ fontSize: r.size * 0.8 }}>{r.icon}</span>
-            <span style={{ fontFamily: EN, fontWeight: 800, fontSize: r.size, color: '#fff', direction: 'ltr', letterSpacing: k ? 0 : 3 }}>{r.text}</span>
-          </div>
-        ))}
+    <AbsoluteFill>
+      <BrandBg />
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 150, display: 'flex', justifyContent: 'center', transform: `scale(${f > 88 && f < 110 ? 1 + 0.02 * Math.sin(((f - 88) / 22) * Math.PI) : 1})` }}>
+        <Lockup markW={300} p={p} shine={shine} nameSize={72} id="cta" />
       </div>
-      {/* neon button */}
+      <H y={790} size={84} weight={700} align="center">
+        <Reveal at={14} style={{ textAlign: 'center' }}>
+          قل لنا وش تدوّر…
+        </Reveal>
+      </H>
+      <H y={900} size={84} weight={700} align="center">
+        <Reveal at={52} style={{ textAlign: 'center' }}>
+          <Cu>والباقي علينا.</Cu>
+        </Reveal>
+      </H>
+      {/* contact rows */}
+      {[
+        { k: 'phone' as const, text: '0565005633', size: 74, w: 700, ls: 4 },
+        { k: 'mail' as const, text: 'ulwaqedi@gmail.com', size: 50, w: 500, ls: 1 },
+      ].map((r, k) => (
+        <div
+          key={k}
+          style={{
+            position: 'absolute',
+            left: 130,
+            right: 130,
+            top: 1080 + k * 140,
+            height: 116,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 26,
+            borderTop: k === 0 ? `1.5px solid ${B.copper}66` : undefined,
+            borderBottom: `1.5px solid ${B.copper}66`,
+            opacity: row(k),
+            transform: `translateY(${(1 - row(k)) * 30}px)`,
+          }}
+        >
+          <Icon kind={r.k} />
+          <span style={{ fontFamily: DIN, fontWeight: r.w, fontSize: r.size, color: B.cream, letterSpacing: r.ls, direction: 'ltr' }}>{r.text}</span>
+        </div>
+      ))}
+      {/* button */}
       <div
         style={{
           position: 'absolute',
-          left: 140,
-          right: 140,
-          top: 1290,
-          textAlign: 'center',
-          fontFamily: AR,
-          fontWeight: 900,
-          fontSize: 76,
-          color: '#fff',
-          padding: '18px 0 30px',
-          borderRadius: 999,
-          background: `linear-gradient(90deg, ${C.purple}, #8a4dff)`,
-          boxShadow: `${glow(C.purple, 1.6)}, inset 0 0 0 4px #E7D3FF`,
+          left: 170,
+          right: 170,
+          top: 1420,
+          height: 136,
+          borderRadius: 14,
+          background: COPPER_GRAD,
+          backgroundSize: '200% 100%',
+          backgroundPosition: `${(1 - sweep) * 100}% 0`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           direction: 'rtl',
+          fontFamily: DIN,
+          fontWeight: 700,
+          fontSize: 62,
+          color: B.navyDeep,
           opacity: btn,
-          transform: `scale(${(0.6 + 0.4 * btn) * (btn >= 1 ? pulse : 1)})`,
+          transform: `scale(${0.85 + 0.15 * btn})`,
+          boxShadow: `0 18px 50px rgba(0,0,0,0.45), 0 0 0 8px ${B.navy}, 0 0 0 9.5px ${B.copper}88`,
         }}
       >
-        اطلب عقارك الآن ←
+        تواصل معنا الآن
       </div>
-      <div style={{ position: 'absolute', left: 0, right: 0, top: 1490, textAlign: 'center', fontFamily: AR_BODY, fontWeight: 700, fontSize: 40, color: C.white, opacity: btn * 0.8, direction: 'rtl' }}>
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 1610, textAlign: 'center', fontFamily: PLEX, fontSize: 38, color: B.slate, direction: 'rtl', opacity: btn, letterSpacing: 1 }}>
         شقق · فلل · أراضي
       </div>
-      {f > 10 && <Butterfly x={bx} y={by} size={110} rot={Math.cos(orbit) * 20 + exit * 40} />}
-      <Grain amount={0.05} />
-      <AbsoluteFill style={{ background: '#000', opacity: fadeOut }} />
     </AbsoluteFill>
   );
 };
 
-/* ---------------- master ---------------- */
+/* ---------- master ---------- */
 export const AbuKayanAd: React.FC = () => (
-  <AbsoluteFill style={{ background: C.bg }}>
-    <Sequence from={0} durationInFrames={s(3.6)}>
+  <AbsoluteFill style={{ background: B.navy }}>
+    <Sequence from={0} durationInFrames={T.pain}>
       <Hook />
     </Sequence>
-    <Sequence from={s(3.6)} durationInFrames={s(10) - s(3.6)}>
-      <Struggle />
+    <Sequence from={T.pain} durationInFrames={T.turn - T.pain}>
+      <Pain />
     </Sequence>
-    <Sequence from={s(10)} durationInFrames={s(5)}>
-      <Shift />
+    <Sequence from={T.turn} durationInFrames={T.pillars - T.turn}>
+      <Turn />
     </Sequence>
-    <Sequence from={s(15)} durationInFrames={s(15)}>
-      <Features />
+    <Sequence from={T.pillars} durationInFrames={T.moment - T.pillars}>
+      <Pillars />
     </Sequence>
-    <Sequence from={s(30)} durationInFrames={s(8)}>
+    <Sequence from={T.moment} durationInFrames={T.cta - T.moment}>
       <Moment />
     </Sequence>
-    <Sequence from={s(38)} durationInFrames={s(7)}>
+    <Sequence from={T.cta} durationInFrames={DURATION - T.cta}>
       <CTA />
     </Sequence>
+    <ArchWipe cut={T.pain} />
+    <ArchWipe cut={T.turn} />
+    <ArchWipe cut={T.pillars} />
+    <ArchWipe cut={T.moment} />
+    <ArchWipe cut={T.cta} />
   </AbsoluteFill>
 );
