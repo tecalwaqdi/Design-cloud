@@ -1,0 +1,21 @@
+# ElevenLabs eleven_v4 · voice: RAED ALOTAIBI (lBgZD85rJJVmqahd7yzK) · SCRIPT_A_v2 (~60 s ad, ~45 s of speech)
+# Paste the text below as is. Each paragraph is one line in the edit; the target time in the ad is in the comment.
+# After generating: save as assets/audio/v3/vo_raed.mp3, measure the gaps with
+#   ffmpeg -i assets/audio/v3/vo_raed.mp3 -af silencedetect=n=-35dB:d=0.25 -f null -
+# and fill VO_LINES in scripts/mix_v3a.py with (vo_in, vo_out, ad_time).
+
+[energetic, slightly overwhelmed] من أول ما قلت إنك تدوّر شقة في جدة… جوالك ما سكت!          # 0.3 s
+
+[fast, ironic] الكل يرسل عروض… الكل مستعجل… والكل عنده "لقطة".                              # 5.3 s
+
+[slow, quiet, serious] بس… ولا واحد فيهم سألك: أنت… وش تبي؟                                   # 15.5 s
+
+[warm, confident] إلا واحد.                                                                 # 21.2 s
+
+[warm, sincere] أبو كيان ما يبدأ بعرض… يبدأ بطلبك أنت. وش الحي اللي في بالك؟ كم ميزانيتك؟ ووش أهم شي عندك؟   # 24.2 s
+
+[warm, confident] وبعدها يجيك العرض مفصّل: المدارس كم تبعد، الخدمات وين… والأوراق والسعر واضحة، قبل ما تطلع أي مشوار.   # 36.3 s
+
+[sincere, emphatic] الكل يبي يبيعك شقة… وأبو كيان يبيك تلقى بيتك.                            # 50.8 s
+
+[energetic, inviting] أرسل طلبك لأبو كيان الحين… وبتلاقي طلبك.                               # 55.6 s
