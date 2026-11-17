@@ -1,0 +1,23 @@
+{
+  "name": "abu-kayan-ad",
+  "version": "1.0.0",
+  "private": true,
+  "description": "أبو كيان للتسويق العقاري — 45s vertical buyer-focused ad (Remotion project)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts AbuKayanAd ../output/abu_kayan_video_only.mp4 --codec=h264 --crf=16 --muted"
+  },
+  "dependencies": {
+    "@fontsource/cairo": "^5.0.0",
+    "@fontsource/tajawal": "^5.0.0",
+    "@fontsource/inter": "^5.0.0",
+    "@remotion/cli": "4.0.290",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.290"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "typescript": "5.4.5"
+  }
+}

@@ -7,3 +7,7 @@ lufy-store-ad/recordings/*_frames/
 lufy-store-ad/output/lufy_store_ad_video_only.mp4
 lufy-store-ad/output/*.wav
 lufy-store-ad/remotion/out/
+# Abu Kayan: public/ is a copy of assets/img (scripts/prepare_public.sh); intermediates rebuildable
+abu-kayan-ad/remotion/public/
+abu-kayan-ad/output/abu_kayan_video_only.mp4
+abu-kayan-ad/output/*.wav
