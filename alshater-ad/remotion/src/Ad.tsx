@@ -177,7 +177,7 @@ const Punch: React.FC = () => {
     <AbsoluteFill style={{ background: C.navyDeep }}>
       {f >= hit && <BrandBg intensity={lerp(f, hit, hit + 10, 0, 1)} />}
       {/* the frozen pile, greyed, then blown away */}
-      <AbsoluteFill style={{ transform: `scale(${zoom * 0.82}) translateY(-180px)`, filter: `grayscale(${f < hit ? 1 : 0.4}) blur(${f < hit ? 4 : 2}px)`, opacity: f < hit ? 0.35 : Math.max(0, 1 - blast * 1.8) }}>
+      <AbsoluteFill style={{ transform: `scale(${zoom * 0.82}) translateY(-180px)`, filter: `grayscale(${f < hit ? 1 : 0.4}) blur(${f < hit ? 4 : 2}px)`, opacity: f < hit ? 0.35 : Math.max(0, 0.35 * (1 - (f - hit) / 5)) }}>
         <HookPile frozen={s2f(7.2)} blast={blast} />
       </AbsoluteFill>
       {f < hit && (
