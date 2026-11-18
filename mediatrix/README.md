@@ -20,20 +20,49 @@
 
 ## التشغيل محلياً
 ```bash
-cp .env.example .env.local   # عدّل ADMIN_PASSWORD و AUTH_SECRET
+cp .dev.vars.example .dev.vars   # عدّل ADMIN_PASSWORD و AUTH_SECRET
 npm install
-npm run dev                  # http://localhost:3000  — اللوحة: /admin
+npm run dev                      # http://localhost:3000  — اللوحة: /admin
+npm run preview                  # تشغيل نسخة Cloudflare الفعلية محلياً (http://localhost:8787)
+```
+محلياً تُحاكى قاعدة D1 ومخزن R2 تلقائياً داخل مجلد `.wrangler/`.
+
+## النشر على Cloudflare
+يعمل الموقع على **Cloudflare Workers** عبر محوّل OpenNext (الطريقة الرسمية الحالية لـ Next.js على Cloudflare؛
+محوّل Pages القديم `next-on-pages` أصبح متوقفاً).
+
+| المكوّن | الاستخدام |
+|---|---|
+| Workers | تشغيل الموقع ولوحة التحكم |
+| D1 `mediatrix-db` | المحتوى، الإحصائيات، الرسائل، كلمة المرور |
+| R2 `mediatrix-media` | الصور والفيديوهات المرفوعة |
+
+قاعدة D1 ومخزن R2 **تُنشآن تلقائياً** في أول نشر، والجداول تُنشأ تلقائياً عند أول طلب.
+
+### الطريقة ١: ربط GitHub من لوحة Cloudflare (موصى بها — نشر تلقائي مع كل تحديث)
+1. Cloudflare Dashboard ← **Workers & Pages** ← **Create** ← **Import a repository** واختر هذا المستودع.
+2. الإعدادات:
+   - **Root directory:** `mediatrix`
+   - **Build command:** `npx opennextjs-cloudflare build`
+   - **Deploy command:** `npx opennextjs-cloudflare deploy`
+3. بعد أول نشر: Worker ← **Settings ← Variables and Secrets** وأضف (كـ Secret):
+   - `ADMIN_PASSWORD` — كلمة مرور الدخول الأولى
+   - `AUTH_SECRET` — نص عشوائي طويل (`openssl rand -hex 32`)
+   - `SITE_URL` — رابط الموقع النهائي (مثل `https://mediatrix.com`)
+4. لربط دومينك: Worker ← **Settings ← Domains & Routes ← Add Custom Domain**.
+
+### الطريقة ٢: من سطر الأوامر
+```bash
+npx wrangler login
+npx wrangler secret put ADMIN_PASSWORD
+npx wrangler secret put AUTH_SECRET
+npm run deploy
 ```
 
-## النشر
-المحتوى والصور والإحصائيات تُحفظ في مجلد `DATA_DIR` (ملفات JSON + uploads)، لذلك يلزم خادم Node بقرص دائم
-(VPS، أو Railway / Render / Fly.io مع Volume، أو Docker):
-```bash
-docker build -t mediatrix .
-docker run -d -p 3000:3000 -v mediatrix-data:/data \
-  -e ADMIN_PASSWORD='...' -e AUTH_SECRET="$(openssl rand -hex 32)" -e SITE_URL='https://your-domain' mediatrix
-```
-> ملاحظة: Vercel لا يحفظ الملفات بين الطلبات؛ للنشر عليه يجب استبدال طبقة التخزين (`src/lib/store.ts`) بقاعدة بيانات مثل Supabase.
+> الخطة المجانية تكفي للبداية (حجم الـ Worker ≈ 1.1MB مضغوط من أصل 3MB). رفع الفيديو محدود بـ 80MB للملف.
+
+### بديل: أي خادم Node
+بدون Cloudflare يعمل الموقع بـ `npm run build && npm start` ويحفظ البيانات في ملفات داخل `DATA_DIR` (انظر `.env.example`).
 
 ## البنية
 ```

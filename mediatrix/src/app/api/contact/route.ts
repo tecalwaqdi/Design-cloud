@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
-import { updateStats } from "@/lib/store";
+import { clientIp } from "@/lib/auth";
+import { addMessage } from "@/lib/store";
 
 const recent = new Map<string, number>();
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || "local";
-  const last = recent.get(ip) || 0;
-  if (Date.now() - last < 20_000) return NextResponse.json({ error: "slow down" }, { status: 429 });
+  const ip = clientIp(req);
+  if (Date.now() - (recent.get(ip) || 0) < 20_000) return NextResponse.json({ error: "slow down" }, { status: 429 });
 
   const body = await req.json().catch(() => null);
   const clip = (v: unknown, n: number) => (typeof v === "string" ? v.trim().slice(0, n) : "");
@@ -21,9 +21,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "missing fields" }, { status: 400 });
   }
   recent.set(ip, Date.now());
-  await updateStats((s) => {
-    s.messages.unshift({ id: crypto.randomUUID(), ...msg, at: new Date().toISOString(), read: false });
-    s.messages = s.messages.slice(0, 1000);
-  });
+  await addMessage({ id: crypto.randomUUID(), ...msg, at: new Date().toISOString(), read: false });
   return NextResponse.json({ ok: true });
 }

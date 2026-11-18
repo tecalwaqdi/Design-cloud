@@ -74,7 +74,7 @@ export function CountryGrid({
                 )}
               </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`/flags/${c.flag}`} alt="" className="absolute end-2.5 top-2.5 h-[18px] w-auto rounded-[3px] shadow-[0_2px_6px_rgba(0,0,0,.25)] ring-1 ring-white/70" />
+              <img src={`/flags/${c.flag}.svg`} alt="" className="absolute end-2.5 top-2.5 h-[18px] w-auto rounded-[3px] shadow-[0_2px_6px_rgba(0,0,0,.25)] ring-1 ring-white/70" />
               {mine && (
                 <span className="btn-gold absolute start-2.5 top-2.5 rounded-full px-2.5 py-0.5 text-[0.65rem] font-semibold">{yourCountryLabel}</span>
               )}

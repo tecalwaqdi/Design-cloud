@@ -1,13 +1,8 @@
 import { NextResponse } from "next/server";
-import { today, updateStats } from "@/lib/store";
+import { addVisit } from "@/lib/store";
 
 export async function POST(req: Request) {
   const ua = req.headers.get("user-agent") || "";
-  if (!/bot|crawl|spider|preview/i.test(ua)) {
-    await updateStats((s) => {
-      const d = today();
-      s.visits[d] = (s.visits[d] || 0) + 1;
-    });
-  }
+  if (!/bot|crawl|spider|preview/i.test(ua)) await addVisit();
   return NextResponse.json({ ok: true });
 }

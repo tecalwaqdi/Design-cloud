@@ -176,7 +176,7 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
                 title={(x) => (
                   <span className="flex items-center gap-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/flags/${x.flag}`} alt="" className="h-4 w-6 rounded-sm object-cover ring-1 ring-ice-300" />
+                    <img src={`/flags/${x.flag}.svg`} alt="" className="h-4 w-6 rounded-sm object-cover ring-1 ring-ice-300" />
                     {x.name.ar}
                     {!x.enabled && <span className="rounded bg-ice-200 px-1.5 text-[0.65rem] text-mist">مخفية</span>}
                     {x.storeUrl ? <span className="text-[0.65rem] text-green-700">● متجر مفعّل</span> : <span className="text-[0.65rem] text-mist">● قريباً</span>}
@@ -314,7 +314,7 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
                 title={(x) => (
                   <span className="flex items-center gap-3">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/flags/${x.flag}`} alt="" className="h-4 w-6 rounded-sm object-cover" />
+                    <img src={`/flags/${x.flag}.svg`} alt="" className="h-4 w-6 rounded-sm object-cover" />
                     {x.city.ar}
                   </span>
                 )}
@@ -566,7 +566,7 @@ function Overview({ stats, c, go }: { stats: StatsView; c: Content; go: (t: Tab)
                 <div className="mb-1 flex items-center justify-between text-sm">
                   <span className="flex items-center gap-2 text-navy">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/flags/${x.flag}`} alt="" className="h-3.5 w-5 rounded-sm object-cover" />
+                    <img src={`/flags/${x.flag}.svg`} alt="" className="h-3.5 w-5 rounded-sm object-cover" />
                     {x.name}
                   </span>
                   <span className="tabular-nums text-navy-soft">

@@ -153,7 +153,7 @@ function Branches({ c, lang }: Ctx) {
             <Reveal key={b.id} delay={i * 0.08} className="w-full sm:w-[calc(50%-0.7rem)] lg:w-[calc(33.333%-0.85rem)]">
               <div className="glass flex h-full gap-4 rounded-[22px] p-6">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/flags/${b.flag}`} alt="" className="mt-1 h-6 w-9 shrink-0 rounded object-cover shadow ring-1 ring-white" />
+                <img src={`/flags/${b.flag}.svg`} alt="" className="mt-1 h-6 w-9 shrink-0 rounded object-cover shadow ring-1 ring-white" />
                 <div className="min-w-0">
                   <h3 className="font-heading text-xl font-semibold text-navy">{tr(b.city, lang)}</h3>
                   <p className="mt-1 text-sm leading-6 text-mist">{tr(b.address, lang)}</p>

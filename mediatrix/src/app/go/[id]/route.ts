@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getContent, today, updateStats } from "@/lib/store";
+import { addClick, getContent } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
@@ -10,11 +10,7 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
   const back = new URL(req.headers.get("referer") || "/", req.url);
   if (!country || !/^https?:\/\//i.test(country.storeUrl)) return NextResponse.redirect(back);
 
-  await updateStats((s) => {
-    const day = today();
-    s.clicks[id] = s.clicks[id] || {};
-    s.clicks[id][day] = (s.clicks[id][day] || 0) + 1;
-  });
+  await addClick(id);
 
   const target = new URL(country.storeUrl);
   if (!target.searchParams.has("utm_source")) {
