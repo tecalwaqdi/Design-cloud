@@ -61,6 +61,11 @@ npm run deploy
 
 > الخطة المجانية تكفي للبداية (حجم الـ Worker ≈ 1.1MB مضغوط من أصل 3MB). رفع الفيديو محدود بـ 80MB للملف.
 
+### معاينة سريعة على Vercel (للعرض فقط)
+vercel.com ← **Add New ← Project** ← استورد المستودع، واجعل **Root Directory** = `mediatrix`،
+وأضف `ADMIN_PASSWORD` و `AUTH_SECRET` في Environment Variables ثم **Deploy**.
+على Vercel تُحفظ تعديلات اللوحة والصور في ذاكرة مؤقتة تُمسح تلقائياً، لذلك هي للعرض والتجربة فقط؛ النسخة الفعلية على Cloudflare.
+
 ### بديل: أي خادم Node
 بدون Cloudflare يعمل الموقع بـ `npm run build && npm start` ويحفظ البيانات في ملفات داخل `DATA_DIR` (انظر `.env.example`).
 

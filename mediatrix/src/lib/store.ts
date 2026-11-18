@@ -141,7 +141,9 @@ function cloudflareBackend(db: D1Database, bucket?: R2Bucket): Backend {
 /* ----------------------------------------------------- filesystem backend */
 
 function fsBackend(): Backend {
-  const dataDir = () => process.env.DATA_DIR || "./data";
+  // On Vercel only /tmp is writable (and it is wiped on cold starts): good for a demo,
+// not for production. Production runs on Cloudflare (D1 + R2).
+  const dataDir = () => process.env.DATA_DIR || (process.env.VERCEL ? "/tmp/mediatrix" : "./data");
   const mod = async () => {
     const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
     const root = path.resolve(dataDir());
@@ -249,7 +251,10 @@ export const MIME: Record<string, string> = {
 async function backend(): Promise<Backend> {
   try {
     const { getCloudflareContext } = await import("@opennextjs/cloudflare");
-    const { env } = await getCloudflareContext({ async: true });
+    // Sync form: only succeeds inside the Workers runtime or `next dev` with the
+    // OpenNext dev bindings. (The async form would spin up a local emulator on
+    // plain Node servers such as Vercel.)
+    const { env } = getCloudflareContext();
     const cf = env as unknown as CFEnv;
     if (cf.DB) return cloudflareBackend(cf.DB, cf.MEDIA);
   } catch {
