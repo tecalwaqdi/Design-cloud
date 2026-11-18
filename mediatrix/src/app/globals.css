@@ -152,10 +152,15 @@ body[dir="rtl"] {
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: orbit 3.2s linear infinite;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.4s ease;
+}
+/* only the lit card (or the hovered one) animates, so idle cards cost nothing */
+.orbit-border[data-lit],
+.group:hover > .orbit-hover {
+  opacity: 1;
+  animation: orbit 3.2s linear infinite;
 }
 @property --a {
   syntax: "<angle>";
@@ -242,6 +247,38 @@ body[dir="rtl"] {
 }
 [dir="rtl"] .marquee-track {
   animation-direction: reverse;
+}
+
+/* ---------- store carousel (phones & tablets) ---------- */
+.carousel {
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-inline: 1.25rem;
+  touch-action: pan-x pan-y;
+}
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+@media (max-width: 1023px) {
+  /* backdrop blur on many moving cards is the main cause of scroll jank on phones */
+  .country-card.glass {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: linear-gradient(180deg, #ffffff, #f2f7f8);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.9) inset,
+      0 14px 28px -20px rgba(28, 42, 63, 0.4);
+  }
+  .country-card {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .carousel {
+    scroll-padding-inline: 2rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
