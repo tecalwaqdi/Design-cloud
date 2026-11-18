@@ -13,7 +13,7 @@ export async function POST(req: Request) {
   const type = MIME[ext];
   if (!type) return NextResponse.json({ error: "نوع الملف غير مدعوم" }, { status: 400 });
   const isVid = VID.includes(ext);
-  const max = (isVid ? 80 : 12) * 1024 * 1024;
+  const max = (isVid ? 25 : 12) * 1024 * 1024;
   if (file.size > max) return NextResponse.json({ error: `الحد الأقصى ${max / 1024 / 1024}MB` }, { status: 400 });
 
   const key = `${new Date().toISOString().slice(0, 7)}/${crypto.randomUUID().slice(0, 12)}${ext}`;

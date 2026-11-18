@@ -51,6 +51,13 @@ npm run preview                  # تشغيل نسخة Cloudflare الفعلية
    - `SITE_URL` — رابط الموقع النهائي (مثل `https://mediatrix.com`)
 4. لربط دومينك: Worker ← **Settings ← Domains & Routes ← Add Custom Domain**.
 
+### الموقع المنشور حالياً
+- الموقع: https://mediatrix.mediatrix.workers.dev
+- لوحة التحكم: https://mediatrix.mediatrix.workers.dev/admin
+- التخزين: D1 `mediatrix-db` للمحتوى والإحصائيات، و Workers KV `mediatrix-media-kv` للصور (حتى 25MB للملف).
+  لاستخدام R2 بدلاً منه: فعّل R2 من لوحة Cloudflare وأضف `r2_buckets` في الإعدادات (الكود يدعمه).
+- نُشر بـ `npx wrangler deploy -c deploy/wrangler.sites.jsonc` (نسخة ترفع الملفات الثابتة عبر Workers Sites/KV).
+
 ### الطريقة ٢: من سطر الأوامر
 ```bash
 npx wrangler login

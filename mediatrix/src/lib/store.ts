@@ -47,7 +47,11 @@ interface R2Bucket {
   head(key: string): Promise<R2Head | null>;
   get(key: string, opts?: { range?: { offset: number; length: number } }): Promise<R2Object | null>;
 }
-type CFEnv = { DB?: D1Database; MEDIA?: R2Bucket };
+interface KVNamespace {
+  put(key: string, value: ArrayBuffer, opts?: { metadata?: Record<string, unknown> }): Promise<void>;
+  getWithMetadata<M>(key: string, type: "arrayBuffer"): Promise<{ value: ArrayBuffer | null; metadata: M | null }>;
+}
+type CFEnv = { DB?: D1Database; MEDIA?: R2Bucket; MEDIA_KV?: KVNamespace };
 
 let schemaReady: Promise<unknown> | null = null;
 function ensureSchema(db: D1Database) {
@@ -67,7 +71,7 @@ function ensureSchema(db: D1Database) {
   return schemaReady;
 }
 
-function cloudflareBackend(db: D1Database, bucket?: R2Bucket): Backend {
+function cloudflareBackend(db: D1Database, bucket?: R2Bucket, kv?: KVNamespace): Backend {
   const q = async () => {
     await ensureSchema(db);
     return db;
@@ -117,10 +121,26 @@ function cloudflareBackend(db: D1Database, bucket?: R2Bucket): Backend {
       await (await q()).prepare("DELETE FROM messages WHERE id = ?").bind(id).run();
     },
     async putUpload(key, data, contentType) {
-      if (!bucket) throw new Error("R2 bucket binding MEDIA is missing");
+      if (!bucket && kv) {
+        // Workers KV fallback (values up to 25 MB)
+        await kv.put(key, data, { metadata: { contentType } });
+        return;
+      }
+      if (!bucket) throw new Error("No storage binding for uploads (MEDIA or MEDIA_KV)");
       await bucket.put(key, data, { httpMetadata: { contentType } });
     },
     async getUpload(key, range) {
+      if (!bucket && kv) {
+        const { value, metadata } = await kv.getWithMetadata<{ contentType?: string }>(key, "arrayBuffer");
+        if (!value) return null;
+        const all = new Uint8Array(value);
+        const contentType = metadata?.contentType || "application/octet-stream";
+        if (range) {
+          const end = Math.min(range.end ?? all.length - 1, all.length - 1);
+          return { body: all.slice(range.start, end + 1), size: all.length, contentType, range: { start: range.start, end } };
+        }
+        return { body: all, size: all.length, contentType };
+      }
       if (!bucket) return null;
       const head = await bucket.head(key);
       if (!head) return null;
@@ -256,7 +276,7 @@ async function backend(): Promise<Backend> {
     // plain Node servers such as Vercel.)
     const { env } = getCloudflareContext();
     const cf = env as unknown as CFEnv;
-    if (cf.DB) return cloudflareBackend(cf.DB, cf.MEDIA);
+    if (cf.DB) return cloudflareBackend(cf.DB, cf.MEDIA, cf.MEDIA_KV);
   } catch {
     // not running on Cloudflare (or dev without bindings) -> filesystem
   }

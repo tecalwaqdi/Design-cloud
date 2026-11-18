@@ -10,7 +10,8 @@
   },
   // Database for content, stats and contact messages (created automatically on first deploy)
   "d1_databases": [{ "binding": "DB", "database_name": "mediatrix-db" }],
-  // Bucket for uploaded images / videos (created automatically on first deploy)
-  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "mediatrix-media" }],
+  // Uploaded images / videos (Workers KV, created automatically). To use R2 instead,
+  // enable R2 in the dashboard and add: "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "mediatrix-media" }]
+  "kv_namespaces": [{ "binding": "MEDIA_KV" }],
   "observability": { "enabled": true }
 }
