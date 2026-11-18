@@ -589,7 +589,6 @@ export const AlshaterAd: React.FC = () => (
     <ChevronWipe at={CUTS.gov} />
     <ChevronWipe at={CUTS.slogan} dur={14} />
     <ChevronWipe at={CUTS.cta} />
-    <Disclosure />
     <Grain />
   </AbsoluteFill>
 );
