@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+}
+
+@theme {
+  --color-ice-50: #f8fbfa;
+  --color-ice-100: #eef4f5;
+  --color-ice-200: #e1ebed;
+  --color-ice-300: #d0dcdf;
+  --color-navy-soft: #3a4759;
+  --color-mist: #5f686d;
+  --color-gold-light: #d8bf8a;
+  --color-gold-pale: #efe2c4;
+  --color-gold-deep: #7d6238;
+
+  --font-display: var(--f-display), "Cormorant Garamond", serif;
+  --font-logo: var(--f-logo), "Libre Baskerville", serif;
+  --font-sans: var(--f-sans), system-ui, sans-serif;
+  --font-ar-display: var(--f-ar-display), "Amiri", serif;
+  --font-ar: var(--f-ar), "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+
+:root {
+  --gold: #a8875a;
+  --navy: #1c2a3f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-navy);
+  background: var(--color-ice-50);
+  -webkit-font-smoothing: antialiased;
+}
+
+[dir="rtl"] body,
+body[dir="rtl"] {
+  font-family: var(--font-ar);
+}
+
+.font-heading {
+  font-family: var(--font-display);
+}
+[dir="rtl"] .font-heading {
+  font-family: var(--font-ar-display);
+}
+
+/* ---------- luxury helpers ---------- */
+
+.bg-ice {
+  background:
+    radial-gradient(1200px 600px at 15% -10%, #ffffff 0%, transparent 60%),
+    radial-gradient(900px 500px at 100% 20%, #e7f1f3 0%, transparent 60%),
+    linear-gradient(180deg, #f6fafa 0%, #e6eff1 55%, #dce8ea 100%);
+}
+
+.text-gold-grad {
+  background: linear-gradient(100deg, #7d6238 0%, #c9a96e 30%, #f1dfb3 48%, #b8955f 62%, #8a6c40 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: goldShift 7s ease-in-out infinite;
+}
+
+@keyframes goldShift {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+}
+
+.btn-gold {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(180deg, #d9bd86 0%, #b8955f 45%, #9a7a4b 100%);
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 6px 16px -6px rgba(125, 98, 56, 0.55);
+  text-shadow: 0 1px 1px rgba(80, 60, 30, 0.35);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+}
+.btn-gold:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 10px 22px -8px rgba(125, 98, 56, 0.7);
+}
+.btn-gold:hover::after {
+  transform: translateX(120%);
+}
+.btn-gold[aria-disabled="true"] {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(239, 226, 196, 0.45));
+  color: #7d6238;
+  text-shadow: none;
+  box-shadow: inset 0 0 0 1px rgba(168, 135, 90, 0.45);
+  cursor: default;
+}
+.btn-gold[aria-disabled="true"]::after {
+  display: none;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(240, 246, 247, 0.62));
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 40px -24px rgba(28, 42, 63, 0.35),
+    0 2px 6px -2px rgba(28, 42, 63, 0.08);
+}
+
+.gold-hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+}
+
+/* Travelling light that orbits a card border (used on country cards) */
+.orbit-border {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--a, 0deg), transparent 0deg, transparent 300deg, #f6e3b4 330deg, #fff 345deg, transparent 360deg);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: orbit 3.2s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+@property --a {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes orbit {
+  to {
+    --a: 360deg;
+  }
+}
+
+/* ---------- small ambient animations ---------- */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-140px) translateX(var(--drift, 10px));
+    opacity: 0;
+  }
+}
+@keyframes drift {
+  from {
+    transform: translateX(-30%);
+  }
+  to {
+    transform: translateX(130%);
+  }
+}
+@keyframes burst {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+@keyframes sweep {
+  0%,
+  100% {
+    transform: rotate(-28deg);
+  }
+  50% {
+    transform: rotate(28deg);
+  }
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  60%,
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
