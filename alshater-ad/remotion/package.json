@@ -1,0 +1,23 @@
+{
+  "name": "alshater-ad",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EL-SHATER Business Services — 47s vertical marketing film (Remotion project)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts AlshaterAd ../output/alshater_video_only.mp4 --codec=h264 --crf=14 --muted"
+  },
+  "dependencies": {
+    "@fontsource/almarai": "^5.0.0",
+    "@fontsource/noto-kufi-arabic": "^5.0.0",
+    "@fontsource/noto-sans": "^5.0.0",
+    "@remotion/cli": "4.0.290",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.290"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.3",
+    "typescript": "5.4.5"
+  }
+}

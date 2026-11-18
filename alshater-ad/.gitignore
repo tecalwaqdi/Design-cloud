@@ -1,0 +1,6 @@
+remotion/node_modules/
+remotion/public/
+remotion/out/
+output/*.wav
+output/alshater_video_only.mp4
+output/frames/
