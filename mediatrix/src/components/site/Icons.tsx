@@ -17,6 +17,21 @@ export const serviceIcons: Record<string, React.ReactNode> = {
   star: <path {...P} d="M12 3 l2.7 5.6 l6.1 .9 l-4.4 4.3 l1 6.1 L12 17 l-5.4 2.9 l1 -6.1 L3.2 9.5 l6.1 -.9 Z" />,
   flask: <path {...P} d="M9 3 h6 M10 3 v6 L4.5 18.5 A1.6 1.6 0 0 0 6 21 h12 a1.6 1.6 0 0 0 1.5 -2.5 L14 9 V3 M7 15 h10" />,
   heart: <path {...P} d="M12 20 C 5 15, 3 11, 3 8.5 A4.5 4.5 0 0 1 12 6 A4.5 4.5 0 0 1 21 8.5 C21 11 19 15 12 20 Z" />,
+  syringe: <path {...P} d="M18 3 l3 3 M19.5 4.5 l-3 3 M17.5 6.5 l-9 9 l-3 -3 l9 -9 Z M11 10 l1.5 1.5 M9 12 l1.5 1.5 M5.5 15.5 l-1 1 M4.5 16.5 l-2 4.5 l4.5 -2 M8.5 15.5 l-1 1" />,
+  glove: <path {...P} d="M7 21 v-5 l-2.5 -4 c-.6 -1 .8 -2 1.6 -1.2 L8 12.5 V5 a1.2 1.2 0 0 1 2.4 0 V11 V3.8 a1.2 1.2 0 0 1 2.4 0 V11 V4.6 a1.2 1.2 0 0 1 2.4 0 V11 V6.6 a1.2 1.2 0 0 1 2.4 0 V15 c0 3 -1.5 4 -2.5 6" />,
+  monitor: (
+    <g {...P}>
+      <rect x="3" y="4" width="18" height="13" rx="2.5" />
+      <path d="M6.5 11 h2.5 l1.5 -3 l2 6 l1.5 -3 h3.5 M9 21 h6 M12 17 v4" />
+    </g>
+  ),
+  oxygen: (
+    <g {...P}>
+      <path d="M8 21 V9 a4 4 0 0 1 8 0 v12 Z M10.5 5 V3 h3 v2 M13.5 4 h3" />
+      <path d="M10.5 14.5 a1.5 1.8 0 1 0 0.01 0 M14 16.5 h1.6 l-1.6 1.8 h1.6" />
+    </g>
+  ),
+  shieldplus: <path {...P} d="M12 3 l8 3 v6 c0 5 -4 8 -8 9 c-4 -1 -8 -4 -8 -9 V6 Z M12 9 v6 M9 12 h6" />,
 };
 
 export const iconKeys = Object.keys(serviceIcons);

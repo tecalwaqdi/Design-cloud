@@ -6,8 +6,8 @@ export const defaultContent: Content = {
   identity: {
     name: "Mediatrix",
     tagline: {
-      ar: "جمال يُعنى به بدقة طبية",
-      en: "Beauty, cared for with medical precision",
+      ar: "مستلزمات طبية موثوقة بمعايير عالمية",
+      en: "Trusted medical supplies, global standards",
     },
     gold: "#A8875A",
     navy: "#1C2A3F",
@@ -15,8 +15,8 @@ export const defaultContent: Content = {
   hero: {
     welcome: { ar: "مرحباً بكم في", en: "Welcome to" },
     subtitle: {
-      ar: "اختر دولتك وتسوّق من متجرنا الرسمي فيها",
-      en: "Choose your country and shop from our official store there",
+      ar: "اختر دولتك واطلب مستلزماتك الطبية من متجرنا الرسمي فيها",
+      en: "Choose your country and order your medical supplies from our official store there",
     },
   },
   countries: [
@@ -69,53 +69,65 @@ export const defaultContent: Content = {
   about: {
     title: { ar: "من نحن", en: "About Us" },
     body: {
-      ar: "ميدياتركس علامة متخصصة في منتجات العناية بالبشرة والتجميل، تجمع بين الدقة العلمية والفخامة. نعمل عبر شبكة متاجر رسمية في عدة دول لنوصل منتجاتنا إلى عملائنا أينما كانوا.",
-      en: "Mediatrix is a skincare and beauty brand that brings scientific precision and luxury together. We operate through a network of official stores in several countries to bring our products to customers wherever they are.",
+      ar: "ميدياتركس شركة متخصصة في توريد المستلزمات والأجهزة الطبية. نوفّر كل ما يحتاجه القطاع الصحي والأفراد: من المستهلكات اليومية وأدوات التعقيم والسلامة، إلى أجهزة القياس والرعاية المنزلية. منتجاتنا أصلية ومعتمدة، ونوصلها عبر متاجر رسمية في عدة دول.",
+      en: "Mediatrix specialises in supplying medical consumables and devices. We provide what healthcare facilities and individuals need every day: from consumables, sterilisation and safety essentials to monitoring and home-care devices. Our products are genuine and certified, delivered through official stores in several countries.",
     },
     story: {
-      ar: "بدأت قصتنا بفكرة بسيطة: أن تكون العناية بالبشرة مبنية على العلم وتُقدَّم بتجربة راقية. اليوم نواصل التوسع بنفس الشغف.",
-      en: "Our story began with a simple idea: skincare should be grounded in science and delivered as a refined experience. Today we keep growing with the same passion.",
+      ar: "بدأنا من قناعة بسيطة: الجودة في المستلزمات الطبية ليست رفاهية، بل أمان. لذلك نختار كل منتج بعناية، ونتأكد من مطابقته للمعايير، ونوصله بسرعة وثقة لمن يحتاجه.",
+      en: "We started from a simple belief: in medical supplies, quality isn't a luxury — it's safety. So we choose every product carefully, make sure it meets the standards, and deliver it quickly and reliably to those who need it.",
     },
   },
   vision: {
     vision: {
-      ar: "أن نكون الاسم الأول في العناية بالبشرة الفاخرة في المنطقة والعالم.",
-      en: "To be the first name in luxury skincare across the region and the world.",
+      ar: "أن نكون المورّد الأوثق للمستلزمات والأجهزة الطبية في المنطقة.",
+      en: "To be the most trusted supplier of medical supplies and devices in the region.",
     },
     mission: {
-      ar: "تقديم منتجات موثوقة وفعّالة بتجربة شراء سهلة عبر متاجرنا الرسمية في كل دولة.",
-      en: "To deliver trusted, effective products with an effortless shopping experience through our official store in every country.",
+      ar: "توفير مستلزمات وأجهزة طبية أصلية ومعتمدة بأسعار عادلة، مع توصيل سريع وخدمة تفهم احتياج القطاع الصحي.",
+      en: "To provide genuine, certified medical supplies and devices at fair prices, with fast delivery and service that understands healthcare.",
     },
     goals: [
-      { ar: "جودة لا تقبل المساومة", en: "Uncompromising quality" },
-      { ar: "توسّع مدروس في أسواق جديدة", en: "Thoughtful expansion into new markets" },
-      { ar: "تجربة عميل تليق بعلامتنا", en: "A customer experience worthy of our brand" },
+      { ar: "منتجات أصلية مطابقة للمعايير الصحية", en: "Genuine products that meet health standards" },
+      { ar: "توفّر دائم وتوصيل سريع", en: "Constant availability and fast delivery" },
+      { ar: "خدمة المنشآت الصحية والأفراد على حد سواء", en: "Serving healthcare facilities and individuals alike" },
     ],
   },
   services: [
     {
       id: "s1",
-      icon: "drop",
-      title: { ar: "منتجات العناية بالبشرة", en: "Skincare Products" },
-      desc: { ar: "سيرومات وكريمات وأمبولات بتركيبات مدروسة.", en: "Serums, creams and ampoules with carefully studied formulas." },
+      icon: "syringe",
+      title: { ar: "المستهلكات الطبية", en: "Medical Consumables" },
+      desc: {
+        ar: "إبر ومحاقن وقفازات طبية وشاش ومستلزمات الاستخدام اليومي للعيادات والمنازل.",
+        en: "Needles, syringes, medical gloves, gauze and everyday essentials for clinics and homes.",
+      },
     },
     {
       id: "s2",
-      icon: "globe",
-      title: { ar: "متاجر رسمية دولية", en: "Official International Stores" },
-      desc: { ar: "تسوّق من متجر دولتك مباشرة بأسعار وشحن محلي.", en: "Shop directly from your country's store with local prices and shipping." },
+      icon: "shieldplus",
+      title: { ar: "التعقيم والسلامة", en: "Sterilisation & Safety" },
+      desc: {
+        ar: "مطهرات ومعقمات وكمامات وأدوات الحماية الشخصية لبيئة عمل آمنة.",
+        en: "Disinfectants, sanitisers, masks and personal protective equipment for a safe environment.",
+      },
     },
     {
       id: "s3",
-      icon: "pulse",
-      title: { ar: "استشارات متخصصة", en: "Expert Consultation" },
-      desc: { ar: "فريق يساعدك تختار الروتين المناسب لبشرتك.", en: "A team that helps you pick the right routine for your skin." },
+      icon: "monitor",
+      title: { ar: "أجهزة القياس", en: "Monitoring Devices" },
+      desc: {
+        ar: "أجهزة قياس السكر والضغط ونسبة الأكسجين، بدقة يعتمد عليها في المنزل والعيادة.",
+        en: "Glucose, blood-pressure and oxygen-saturation monitors you can rely on at home or in clinic.",
+      },
     },
     {
       id: "s4",
-      icon: "handshake",
-      title: { ar: "شراكات وتوزيع", en: "Partnerships & Distribution" },
-      desc: { ar: "فرص توزيع للعيادات والمتاجر والموزعين.", en: "Distribution opportunities for clinics, retailers and distributors." },
+      icon: "oxygen",
+      title: { ar: "الأكسجين والرعاية المنزلية", en: "Oxygen & Home Care" },
+      desc: {
+        ar: "أجهزة ومستلزمات الأكسجين والرعاية المنزلية، مع إرشاد لاختيار الأنسب.",
+        en: "Oxygen equipment and home-care supplies, with guidance to choose the right one.",
+      },
     },
   ],
   branches: [
@@ -163,12 +175,12 @@ export const defaultContent: Content = {
     { key: "contact", visible: true },
   ],
   seo: {
-    title: { ar: "ميدياتركس | الموقع الرسمي", en: "Mediatrix | Official Website" },
+    title: { ar: "ميدياتركس | مستلزمات وأجهزة طبية", en: "Mediatrix | Medical Supplies & Devices" },
     description: {
-      ar: "الموقع الرسمي لميدياتركس – اختر دولتك وتسوّق من متجرنا الرسمي.",
-      en: "The official Mediatrix website – choose your country and shop from our official store.",
+      ar: "ميدياتركس لتوريد المستلزمات والأجهزة الطبية: إبر وقفازات ومطهرات وأدوات سلامة، وأجهزة قياس السكر والضغط والأكسجين. اختر دولتك واطلب من متجرنا الرسمي.",
+      en: "Mediatrix medical supplies and devices: needles, gloves, disinfectants, safety equipment, glucose and blood-pressure monitors and oxygen devices. Choose your country and order from our official store.",
     },
-    keywords: "Mediatrix, skincare, beauty, ميدياتركس, عناية بالبشرة",
+    keywords: "Mediatrix, medical supplies, medical devices, gloves, syringes, disinfectants, glucose meter, blood pressure monitor, oxygen, ميدياتركس, مستلزمات طبية, أجهزة طبية, قفازات, إبر, مطهرات, جهاز قياس السكر, جهاز الضغط, أجهزة الأكسجين",
     gaId: "",
   },
   privacy: {

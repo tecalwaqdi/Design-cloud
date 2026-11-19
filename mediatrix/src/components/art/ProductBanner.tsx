@@ -1,34 +1,20 @@
-// Hero banner illustration: silver silk band, flowing gold ribbon and a
-// luxury skincare set (glass + gold). viewBox 1200 x 340.
+// Hero banner illustration: silver silk band, flowing gold ribbon and a set of
+// premium medical supplies (oxygen cylinder, antiseptic, nitrile gloves,
+// glucose meter, blood-pressure monitor, pulse oximeter, vials, syringe).
+// viewBox crops to 0 40 1200 290.
 
-const label = (x: number, y: number, size = 9, color = "#1c2a3f", sub?: string) => (
+const brand = (x: number, y: number, size = 9, color = "#1c2a3f", sub?: string) => (
   <g textAnchor="middle" fontFamily="var(--font-logo), serif">
     <text x={x} y={y} fontSize={size} fontWeight="700" fill={color} letterSpacing="0.5">
       MEDIATRIX
     </text>
     {sub && (
-      <text x={x} y={y + size * 1.15} fontSize={size * 0.55} fill={color} opacity="0.7" letterSpacing="1.5">
+      <text x={x} y={y + size * 1.2} fontSize={size * 0.55} fontFamily="var(--font-sans), sans-serif" fontWeight="600" fill={color} opacity="0.75" letterSpacing="1.2">
         {sub}
       </text>
     )}
   </g>
 );
-
-// shapes reused by the shine clip-path
-const shapes = {
-  dropperBody: { x: 293, y: 196, w: 72, h: 104, r: 13 },
-  serum: { x: 414, y: 148, w: 46, h: 152, r: 9 },
-  jarLid: { x: 496, y: 206, w: 128, h: 34, r: 6 },
-  jarBody: { x: 500, y: 238, w: 120, h: 62, r: 11 },
-  goldLid: { x: 640, y: 194, w: 116, h: 42, r: 6 },
-  goldBody: { x: 644, y: 234, w: 108, h: 66, r: 11 },
-  pump: { x: 870, y: 138, w: 74, h: 162, r: 14 },
-  small: { x: 966, y: 214, w: 42, h: 86, r: 8 },
-};
-
-function R({ s, fill, ...rest }: { s: { x: number; y: number; w: number; h: number; r: number }; fill: string } & React.SVGProps<SVGRectElement>) {
-  return <rect x={s.x} y={s.y} width={s.w} height={s.h} rx={s.r} fill={fill} {...rest} />;
-}
 
 function Leaves({ x, y, flip = false }: { x: number; y: number; flip?: boolean }) {
   const leaves = [
@@ -47,6 +33,22 @@ function Leaves({ x, y, flip = false }: { x: number; y: number; flip?: boolean }
           <animateTransform attributeName="transform" type="rotate" values={`${rot} ${lx} ${ly};${rot + 6} ${lx} ${ly};${rot} ${lx} ${ly}`} dur={`${4 + i * 0.4}s`} repeatCount="indefinite" />
         </ellipse>
       ))}
+    </g>
+  );
+}
+
+/** Two readings that cross-fade, like a device refreshing its display. */
+function Reading({ x, y, a, b, size, color = "#8fe3f0", dur = 5, delay = 0 }: { x: number; y: number; a: string; b: string; size: number; color?: string; dur?: number; delay?: number }) {
+  return (
+    <g fontFamily="var(--font-sans), sans-serif" fontWeight="700" fontSize={size} fill={color} textAnchor="middle">
+      <text x={x} y={y}>
+        {a}
+        <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.45;0.5;0.95;1" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
+      </text>
+      <text x={x} y={y} opacity="0">
+        {b}
+        <animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.45;0.5;0.95;1" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
+      </text>
     </g>
   );
 }
@@ -84,26 +86,33 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <stop offset="0.85" stopColor="#c9d8df" stopOpacity="0.8" />
           <stop offset="1" stopColor="#ffffff" stopOpacity="0.95" />
         </linearGradient>
-        <linearGradient id="pb-frost" x1="0" x2="1">
-          <stop offset="0" stopColor="#b9c5cc" />
-          <stop offset="0.25" stopColor="#f3f7f8" />
-          <stop offset="0.55" stopColor="#d4dde2" />
-          <stop offset="0.8" stopColor="#ffffff" />
-          <stop offset="1" stopColor="#aeb9c0" />
+        <linearGradient id="pb-white" x1="0" x2="1">
+          <stop offset="0" stopColor="#c7d1d7" />
+          <stop offset="0.2" stopColor="#f7fafb" />
+          <stop offset="0.6" stopColor="#ffffff" />
+          <stop offset="0.85" stopColor="#e4ebee" />
+          <stop offset="1" stopColor="#b7c3c9" />
         </linearGradient>
-        <linearGradient id="pb-amber" x1="0" x2="1">
-          <stop offset="0" stopColor="#9c6418" />
-          <stop offset="0.4" stopColor="#f2c66b" />
-          <stop offset="0.6" stopColor="#ffe3a3" />
-          <stop offset="1" stopColor="#a36a1c" />
+        <linearGradient id="pb-white-top" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="1" stopColor="#e3eaee" />
         </linearGradient>
-        <linearGradient id="pb-liquid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#f6e2bf" stopOpacity="0.55" />
-          <stop offset="1" stopColor="#e7c58c" stopOpacity="0.85" />
+        <linearGradient id="pb-screen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#21344f" />
+          <stop offset="1" stopColor="#0e1a2c" />
         </linearGradient>
-        <linearGradient id="pb-blush" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fbe9e6" stopOpacity="0.4" />
-          <stop offset="1" stopColor="#f0cfc8" stopOpacity="0.85" />
+        <linearGradient id="pb-teal" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#bfe6ec" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#6fbfcc" stopOpacity="0.85" />
+        </linearGradient>
+        <linearGradient id="pb-nitrile" x1="0" x2="1">
+          <stop offset="0" stopColor="#5b8fd0" />
+          <stop offset="0.45" stopColor="#a9cbf2" />
+          <stop offset="1" stopColor="#4f7fbf" />
+        </linearGradient>
+        <linearGradient id="pb-cuff" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#3a4d6b" />
+          <stop offset="1" stopColor="#1c2a3f" />
         </linearGradient>
         <radialGradient id="pb-shadow">
           <stop offset="0" stopColor="#1c2a3f" stopOpacity="0.28" />
@@ -115,12 +124,12 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <clipPath id="pb-products">
-          {Object.values(shapes).map((s, i) => (
-            <rect key={i} x={s.x} y={s.y} width={s.w} height={s.h} rx={s.r} />
-          ))}
-          <rect x="312" y="158" width="34" height="24" rx="3" />
-          <rect x="420" y="116" width="34" height="34" rx="4" />
-          <rect x="896" y="96" width="48" height="14" rx="3" />
+          <path d="M282 300 V168 a29 29 0 0 1 58 0 V300 Z" />
+          <rect x="362" y="168" width="70" height="132" rx="14" />
+          <rect x="452" y="220" width="140" height="80" rx="4" />
+          <rect x="614" y="206" width="64" height="94" rx="16" />
+          <rect x="692" y="222" width="126" height="78" rx="12" />
+          <rect x="960" y="256" width="54" height="44" rx="14" />
         </clipPath>
       </defs>
 
@@ -149,7 +158,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
       </path>
 
       <Leaves x={170} y={300} />
-      <Leaves x={1040} y={300} flip />
+      <Leaves x={1080} y={300} flip />
 
       {/* flowing gold ribbon (behind) */}
       <path fill="none" stroke="url(#pb-gold)" strokeWidth="9" strokeLinecap="round" opacity="0.9">
@@ -167,90 +176,146 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
 
       {showProducts && (
         <g>
-          <ellipse cx="640" cy="302" rx="430" ry="16" fill="url(#pb-shadow)" />
+          <ellipse cx="650" cy="303" rx="420" ry="16" fill="url(#pb-shadow)" />
 
-          {/* dropper bottle */}
-          <R s={shapes.dropperBody} fill="url(#pb-glass)" stroke="#fff" strokeOpacity="0.8" />
-          <rect x="298" y="226" width="62" height="70" rx="10" fill="url(#pb-liquid)" />
-          <rect x="316" y="180" width="26" height="18" rx="3" fill="url(#pb-glass)" />
-          <rect x="312" y="158" width="34" height="24" rx="3" fill="url(#pb-gold)" />
-          <rect x="319" y="114" width="20" height="46" rx="10" fill="#f1ebe0" />
-          <rect x="322" y="118" width="4" height="36" rx="2" fill="#fff" opacity="0.8" />
-          <line x1="329" y1="182" x2="329" y2="270" stroke="#cfdde4" strokeWidth="3" strokeLinecap="round" opacity="0.8" />
-          <rect x="300" y="203" width="6" height="88" rx="3" fill="#fff" opacity="0.75" />
-          <rect x="303" y="238" width="52" height="34" rx="3" fill="#fff" opacity="0.55" />
-          {label(329, 253, 8, "#1c2a3f", "SERUM")}
+          {/* ── oxygen cylinder ── */}
+          <path d="M282 300 V168 a29 29 0 0 1 58 0 V300 Z" fill="url(#pb-white)" />
+          <rect x="282" y="196" width="58" height="14" fill="#6fbfcc" opacity="0.9" />
+          <rect x="282" y="212" width="58" height="3" fill="url(#pb-gold)" />
+          <text x="311" y="258" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="26" fill="#1c2a3f">
+            O<tspan fontSize="14" dy="6">2</tspan>
+          </text>
+          <text x="311" y="282" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" fill="#1c2a3f" opacity="0.7" letterSpacing="1.5">
+            MEDICAL OXYGEN
+          </text>
+          <rect x="288" y="172" width="6" height="122" rx="3" fill="#fff" opacity="0.8" />
+          <rect x="303" y="124" width="16" height="22" rx="2" fill="url(#pb-gold)" />
+          <ellipse cx="311" cy="122" rx="17" ry="5" fill="url(#pb-gold)" />
+          <rect x="318" y="130" width="14" height="5" fill="url(#pb-gold)" />
+          <circle cx="340" cy="132" r="10" fill="#fff" stroke="url(#pb-gold)" strokeWidth="2.5" />
+          <line x1="340" y1="132" x2="340" y2="125" stroke="#1c2a3f" strokeWidth="1.4" strokeLinecap="round">
+            <animateTransform attributeName="transform" type="rotate" values="-50 340 132;40 340 132;20 340 132;40 340 132;-50 340 132" dur="7s" repeatCount="indefinite" />
+          </line>
 
-          {/* tall serum */}
-          <R s={shapes.serum} fill="url(#pb-glass)" stroke="#fff" strokeOpacity="0.8" />
-          <rect x="418" y="190" width="38" height="106" rx="7" fill="url(#pb-blush)" />
-          <rect x="420" y="116" width="34" height="34" rx="4" fill="url(#pb-gold)" />
-          <rect x="419" y="156" width="5" height="136" rx="2.5" fill="#fff" opacity="0.7" />
-          <g transform="rotate(-90 437 240)">{label(437, 243, 9, "#7d6238")}</g>
-
-          {/* silver jar */}
-          <R s={shapes.jarBody} fill="url(#pb-frost)" />
-          <R s={shapes.jarLid} fill="url(#pb-frost)" />
-          <rect x="496" y="234" width="128" height="6" fill="#9fadb5" opacity="0.6" />
-          <rect x="504" y="212" width="10" height="24" rx="3" fill="#fff" opacity="0.8" />
-          {label(560, 268, 11, "#1c2a3f", "RENEWAL CREAM")}
-
-          {/* gold jar */}
-          <R s={shapes.goldBody} fill="url(#pb-frost)" />
-          <rect x="644" y="276" width="108" height="6" fill="url(#pb-gold)" />
-          <R s={shapes.goldLid} fill="url(#pb-gold)" />
-          <rect x="648" y="200" width="10" height="30" rx="3" fill="#fff" opacity="0.6" />
-          {label(698, 220, 10, "#5c4626", "GOLD")}
-          {label(698, 260, 10, "#7d6238")}
-
-          {/* ampoules */}
-          {[780, 806, 832].map((x, i) => (
-            <g key={x} transform={`translate(${x} ${i === 1 ? -14 : 0})`}>
-              <rect x="-8" y="222" width="16" height="78" rx="6" fill="url(#pb-amber)" />
-              <path d="M-5 223 C -5 214, -2 212, -2 206 L 2 206 C 2 212, 5 214, 5 223 Z" fill="url(#pb-amber)" />
-              <ellipse cx="0" cy="200" rx="4" ry="7" fill="url(#pb-amber)" />
-              <rect x="-8" y="250" width="16" height="16" fill="#fff" opacity="0.65" />
-              <rect x="-5" y="228" width="2.5" height="66" rx="1.2" fill="#fff" opacity="0.6" />
-            </g>
-          ))}
-
-          {/* pump bottle */}
-          <R s={shapes.pump} fill="url(#pb-glass)" stroke="#fff" strokeOpacity="0.8" />
-          <rect x="874" y="176" width="66" height="120" rx="12" fill="url(#pb-blush)" />
-          <rect x="896" y="120" width="22" height="20" rx="3" fill="url(#pb-gold)" />
-          <rect x="902" y="108" width="10" height="14" fill="url(#pb-gold)" />
-          <rect x="896" y="96" width="48" height="14" rx="3" fill="url(#pb-gold)" />
-          <rect x="936" y="100" width="24" height="5" rx="2.5" fill="url(#pb-gold)" />
-          <rect x="878" y="146" width="7" height="146" rx="3.5" fill="#fff" opacity="0.7" />
-          {label(907, 236, 11, "#1c2a3f", "HYDRA LOTION")}
-
-          {/* small bottle */}
-          <R s={shapes.small} fill="url(#pb-glass)" stroke="#fff" strokeOpacity="0.8" />
-          <rect x="969" y="240" width="36" height="56" rx="6" fill="url(#pb-liquid)" />
-          <rect x="972" y="188" width="30" height="28" rx="4" fill="url(#pb-gold)" />
-          {label(987, 266, 6.5, "#1c2a3f")}
-
-          {/* water splash near the dropper */}
-          <g fill="url(#pb-glass)" stroke="#fff" strokeWidth="0.8">
-            <path d="M262 286 C 250 250, 270 230, 282 214 C 278 240, 292 262, 288 290 Z" opacity="0.7" />
-            <path d="M372 288 C 386 260, 378 236, 392 218 C 400 242, 392 268, 384 292 Z" opacity="0.6" />
-          </g>
-          {[
-            [258, 206, 4],
-            [276, 190, 2.5],
-            [396, 204, 3],
-            [404, 186, 2],
-            [248, 232, 2],
-          ].map(([cx, cy, r], i) => (
-            <circle key={i} cx={cx} cy={cy} r={r} fill="url(#pb-glass)" stroke="#fff" strokeWidth="0.8">
-              <animate attributeName="cy" values={`${cy};${cy - 6};${cy}`} dur={`${2.6 + i * 0.3}s`} repeatCount="indefinite" />
+          {/* ── antiseptic pump bottle ── */}
+          <rect x="362" y="168" width="70" height="132" rx="14" fill="url(#pb-glass)" stroke="#fff" strokeOpacity="0.85" />
+          <rect x="366" y="196" width="62" height="100" rx="11" fill="url(#pb-teal)" />
+          <rect x="384" y="150" width="26" height="20" rx="3" fill="url(#pb-white)" />
+          <rect x="392" y="138" width="10" height="14" fill="url(#pb-gold)" />
+          <rect x="380" y="126" width="36" height="13" rx="3" fill="url(#pb-gold)" />
+          <rect x="410" y="130" width="28" height="5" rx="2.5" fill="url(#pb-gold)" />
+          <rect x="370" y="232" width="54" height="44" rx="4" fill="#fff" opacity="0.8" />
+          <path d="M397 238 v10 M392 243 h10" stroke="#6fbfcc" strokeWidth="2.4" strokeLinecap="round" />
+          {brand(397, 260, 8.5, "#1c2a3f", "ANTISEPTIC")}
+          <rect x="368" y="176" width="6" height="116" rx="3" fill="#fff" opacity="0.75" />
+          {/* bubbles rising in the liquid */}
+          {[376, 396, 414].map((cx, i) => (
+            <circle key={cx} cx={cx} cy="290" r={1.6 + i * 0.4} fill="#fff" opacity="0.8">
+              <animate attributeName="cy" values="292;205" dur={`${3 + i}s`} begin={`${i * 0.8}s`} repeatCount="indefinite" />
+              <animate attributeName="opacity" values="0;0.9;0" dur={`${3 + i}s`} begin={`${i * 0.8}s`} repeatCount="indefinite" />
             </circle>
           ))}
 
-          {/* light sweep across the glass */}
+          {/* ── box of nitrile gloves ── */}
+          <polygon points="452,220 592,220 606,208 466,208" fill="url(#pb-white-top)" />
+          <polygon points="592,220 606,208 606,288 592,300" fill="#c9d4da" />
+          <rect x="452" y="220" width="140" height="80" rx="3" fill="url(#pb-white)" />
+          <ellipse cx="529" cy="214" rx="36" ry="4.2" fill="#9fb0ba" />
+          <path
+            d="M505 214 C 502 198, 508 188, 513 184 L 514 168 C 514 163, 521 163, 521 168 L 522 181 L 524 162 C 524 157, 531 157, 531 162 L 531 181 L 533 165 C 533 160, 540 160, 540 165 L 539 183 L 543 172 C 545 167, 551 169, 549 174 L 545 192 C 553 198, 557 207, 553 214 Z"
+            fill="url(#pb-nitrile)"
+          >
+            <animateTransform attributeName="transform" type="translate" values="0 2;0 -2;0 2" dur="4s" repeatCount="indefinite" />
+          </path>
+          <rect x="452" y="232" width="140" height="5" fill="#6fbfcc" opacity="0.85" />
+          {brand(522, 258, 11, "#1c2a3f", "NITRILE EXAM GLOVES")}
+          <rect x="452" y="284" width="140" height="3" fill="url(#pb-gold)" />
+          <text x="580" y="279" textAnchor="end" fontFamily="var(--font-sans), sans-serif" fontWeight="700" fontSize="7" fill="#7d6238">
+            100 PCS
+          </text>
+
+          {/* ── glucose meter ── */}
+          <rect x="642" y="190" width="12" height="20" rx="1.5" fill="#fff" stroke="#c9d4da" />
+          <rect x="645" y="192" width="6" height="4" fill="url(#pb-gold)" />
+          <path d="M648 181 C 646 184, 645 186, 645 187.5 a3 3 0 0 0 6 0 C 651 186, 650 184, 648 181 Z" fill="#d64545">
+            <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.2;0.8;1" dur="5s" repeatCount="indefinite" />
+          </path>
+          <rect x="614" y="206" width="64" height="94" rx="16" fill="url(#pb-white)" />
+          <rect x="622" y="216" width="48" height="36" rx="6" fill="url(#pb-screen)" />
+          <Reading x={646} y={238} a="112" b="98" size={15} />
+          <text x="646" y="248" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontSize="5.5" fill="#8fe3f0" opacity="0.8">
+            mg/dL
+          </text>
+          <circle cx="646" cy="272" r="9" fill="url(#pb-gold)" />
+          <circle cx="646" cy="272" r="5" fill="#fff" opacity="0.35" />
+          <text x="646" y="292" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6" fill="#1c2a3f">
+            MEDIATRIX
+          </text>
+
+          {/* ── blood pressure monitor + cuff ── */}
+          <path d="M818 256 C 860 244, 850 296, 888 286" fill="none" stroke="#9fb0ba" strokeWidth="3.2" strokeLinecap="round" />
+          <rect x="868" y="278" width="88" height="24" rx="11" fill="url(#pb-cuff)" />
+          <rect x="876" y="288" width="72" height="3" rx="1.5" fill="url(#pb-gold)" opacity="0.9" />
+          <rect x="692" y="222" width="126" height="78" rx="12" fill="url(#pb-white)" />
+          <rect x="700" y="230" width="80" height="54" rx="6" fill="url(#pb-screen)" />
+          <g fontFamily="var(--font-sans), sans-serif" fontSize="5" fill="#8fe3f0" opacity="0.75">
+            <text x="705" y="239">SYS</text>
+            <text x="705" y="257">DIA</text>
+            <text x="705" y="276">PUL</text>
+          </g>
+          <Reading x={752} y={246} a="120" b="118" size={14} dur={6} />
+          <Reading x={752} y={264} a="80" b="78" size={12} dur={6} />
+          <Reading x={752} y={280} a="72" b="75" size={8} dur={6} />
+          <path d="M766 276 l3 -4 l3 4 l3 -6 l3 6" fill="none" stroke="#e5687a" strokeWidth="1.2" strokeLinejoin="round">
+            <animate attributeName="opacity" values="1;0.2;1" dur="0.9s" repeatCount="indefinite" />
+          </path>
+          <circle cx="799" cy="252" r="10" fill="url(#pb-gold)" />
+          <circle cx="799" cy="252" r="5.5" fill="#fff" opacity="0.35" />
+          <text x="799" y="282" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6.5" fill="#1c2a3f">
+            MEDIATRIX
+          </text>
+
+          {/* ── pulse oximeter ── */}
+          <path d="M962 262 C 962 246, 1012 246, 1012 262 Z" fill="url(#pb-white-top)" />
+          <rect x="960" y="256" width="54" height="44" rx="14" fill="url(#pb-white)" />
+          <rect x="967" y="266" width="40" height="22" rx="4" fill="url(#pb-screen)" />
+          <Reading x={981} y={281} a="98" b="97" size={10} dur={4} />
+          <text x="995" y="275" fontFamily="var(--font-sans), sans-serif" fontSize="4" fill="#8fe3f0" opacity="0.8">
+            SpO2
+          </text>
+          <rect x="994" y="279" width="9" height="5" rx="1" fill="none" stroke="#e5687a" strokeWidth="0.9">
+            <animate attributeName="opacity" values="1;0.2;1" dur="0.9s" repeatCount="indefinite" />
+          </rect>
+
+          {/* ── medicine vials ── */}
+          {[1034, 1056].map((x, i) => (
+            <g key={x} transform={`translate(${x} ${i ? 6 : 0})`}>
+              <rect x="-9" y="246" width="18" height="48" rx="4" fill="url(#pb-glass)" stroke="#fff" strokeOpacity="0.8" />
+              <rect x="-7" y="262" width="14" height="30" rx="3" fill="url(#pb-teal)" />
+              <rect x="-6" y="238" width="12" height="9" rx="1.5" fill={i ? "url(#pb-gold)" : "#6fbfcc"} />
+              <rect x="-9" y="270" width="18" height="10" fill="#fff" opacity="0.7" />
+            </g>
+          ))}
+
+          {/* ── syringe lying in front ── */}
+          <g transform="translate(470 314) rotate(-2.5)">
+            <line x1="-82" y1="0" x2="-14" y2="0" stroke="#aeb9c0" strokeWidth="1.6" strokeLinecap="round" />
+            <rect x="-16" y="-4.5" width="16" height="9" rx="2" fill="url(#pb-gold)" />
+            <rect x="0" y="-8" width="172" height="16" rx="4" fill="url(#pb-glass)" stroke="#c9d8df" />
+            <rect x="2" y="-5.5" width="118" height="11" rx="2" fill="url(#pb-teal)" />
+            {Array.from({ length: 15 }, (_, k) => (
+              <line key={k} x1={10 + k * 10} y1="-8" x2={10 + k * 10} y2={k % 2 ? -4 : -2} stroke="#1c2a3f" strokeOpacity="0.45" strokeWidth="0.7" />
+            ))}
+            <rect x="120" y="-7" width="10" height="14" rx="2" fill="#1c2a3f" />
+            <rect x="130" y="-2.5" width="78" height="5" rx="1.5" fill="url(#pb-white)" />
+            <rect x="170" y="-15" width="6" height="30" rx="2" fill="url(#pb-white)" />
+            <rect x="206" y="-11" width="7" height="22" rx="2" fill="url(#pb-gold)" />
+          </g>
+
+          {/* light sweep across the glass and devices */}
           <g clipPath="url(#pb-products)" style={{ mixBlendMode: "screen" }}>
             <rect x="-120" y="80" width="70" height="240" fill="url(#pb-shine)" transform="skewX(-20)">
-              <animate attributeName="x" values="160;1180;1180" keyTimes="0;0.55;1" dur="6.5s" repeatCount="indefinite" />
+              <animate attributeName="x" values="200;1200;1200" keyTimes="0;0.55;1" dur="6.5s" repeatCount="indefinite" />
             </rect>
           </g>
         </g>
