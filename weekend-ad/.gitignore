@@ -1,0 +1,6 @@
+output/*.wav
+output/weekend_ad_video_only.mp4
+remotion/public/
+remotion/node_modules
+recordings/frames/
+assets/explore/cart.html
