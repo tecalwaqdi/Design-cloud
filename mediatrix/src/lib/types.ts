@@ -8,6 +8,9 @@ export type LandmarkArt =
   | "burj"
   | "kingdom"
   | "kuwait"
+  | "doha"
+  | "bahrain"
+  | "oman"
   | "generic";
 
 export interface Country {

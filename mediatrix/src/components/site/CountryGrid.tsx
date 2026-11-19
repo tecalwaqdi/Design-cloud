@@ -121,8 +121,6 @@ export function CountryGrid({
     el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, []);
 
-  const lgCols =
-    cards.length >= 5 ? "lg:grid-cols-5" : cards.length === 4 ? "lg:grid-cols-4" : cards.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2";
 
   return (
     <div className="relative">
@@ -132,7 +130,7 @@ export function CountryGrid({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.15 }}
-        className={`carousel -mx-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto scroll-smooth px-5 pb-4 pt-2 sm:gap-4 md:-mx-8 md:px-8 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${lgCols}`}
+        className={`carousel -mx-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto scroll-smooth px-5 pb-4 pt-2 sm:gap-4 md:-mx-8 md:px-8 lg:mx-0 lg:flex-wrap lg:justify-center lg:snap-none lg:overflow-visible lg:px-0`}
         aria-roledescription="carousel"
       >
         {cards.map((c, i) => {
@@ -146,7 +144,7 @@ export function CountryGrid({
               }}
               variants={item}
               aria-label={c.name}
-              className={`country-card glass group relative w-[78%] shrink-0 snap-center snap-always rounded-[22px] p-2.5 transition-[transform,box-shadow] duration-500 active:scale-[0.985] sm:w-[46%] md:w-[31%] lg:w-auto lg:hover:-translate-y-2 lg:active:scale-100 ${
+              className={`country-card glass group relative w-[78%] shrink-0 snap-center snap-always rounded-[22px] p-2.5 transition-[transform,box-shadow] duration-500 active:scale-[0.985] sm:w-[46%] md:w-[31%] lg:w-[calc((100%-4rem)/5)] lg:hover:-translate-y-2 lg:active:scale-100 ${
                 mine ? "ring-2 ring-gold/60" : ""
               }`}
             >

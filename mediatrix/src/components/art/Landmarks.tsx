@@ -341,6 +341,203 @@ function Kuwait({ id }: P) {
   );
 }
 
+function Doha({ id }: P) {
+  const tornado = "M120 140 L118 98 C116 84 112 74 112 64 C112 54 116 44 118 34 L130 34 C132 44 136 54 136 64 C136 74 132 84 130 98 L128 140 Z";
+  return (
+    <Frame label="Doha skyline">
+      <defs>
+        <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#1a1f45" />
+          <stop offset="0.55" stopColor="#5b3f73" />
+          <stop offset="0.85" stopColor="#d9876c" />
+          <stop offset="1" stopColor="#f2b984" />
+        </linearGradient>
+        <linearGradient id={`${id}-sea`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#2c2f5a" />
+          <stop offset="1" stopColor="#141836" />
+        </linearGradient>
+        <linearGradient id={`${id}-glass`} x1="0" x2="1">
+          <stop offset="0" stopColor="#3a4a7a" />
+          <stop offset="0.5" stopColor="#9fb7e8" />
+          <stop offset="1" stopColor="#33416b" />
+        </linearGradient>
+        <clipPath id={`${id}-tw`}>
+          <path d={tornado} />
+          <rect x="72" y="40" width="22" height="100" rx="11" />
+        </clipPath>
+      </defs>
+      <rect width="200" height="150" fill={`url(#${id}-sky)`} />
+      <Stars count={22} h={60} seed={31} />
+      <Skyline x0={0} x1={200} base={118} seed={33} color="#2a2550" lit maxH={34} />
+      {/* Burj Doha: rounded cylinder with lattice */}
+      <rect x="72" y="40" width="22" height="78" rx="11" fill={`url(#${id}-glass)`} />
+      {Array.from({ length: 9 }, (_, i) => (
+        <path key={i} d={`M72 ${52 + i * 8} L94 ${48 + i * 8}`} stroke="#d9e6ff" strokeOpacity="0.35" strokeWidth="0.6" />
+      ))}
+      <line x1="83" y1="24" x2="83" y2="41" stroke="#c9d6f2" strokeWidth="1" />
+      {/* Tornado tower with colour-cycling lights */}
+      <path d={tornado} fill={`url(#${id}-glass)`} />
+      <path d={tornado} fill="none" stroke="#ff5fa2" strokeWidth="1.2" opacity="0.8">
+        <animate attributeName="stroke" values="#ff5fa2;#5fd0ff;#ffd36b;#ff5fa2" dur="5s" repeatCount="indefinite" />
+      </path>
+      <rect x="150" y="70" width="14" height="48" fill="#3d3a6b" />
+      <polygon points="150,70 157,58 164,70" fill="#3d3a6b" />
+      <Shine clip={`${id}-tw`} id={`${id}-sh`} dur={5} delay={0.6} />
+      {/* corniche water + reflections */}
+      <rect y="118" width="200" height="32" fill={`url(#${id}-sea)`} />
+      {[124, 130, 137, 144].map((y, i) => (
+        <line key={y} x1="0" x2="200" y1={y} y2={y} stroke="#f2b984" strokeOpacity="0.35" strokeWidth="0.6" strokeDasharray="5 8">
+          <animate attributeName="stroke-dashoffset" from="0" to={i % 2 ? 26 : -26} dur="4s" repeatCount="indefinite" />
+        </line>
+      ))}
+      {/* dhow sailing across */}
+      <g>
+        <animateTransform attributeName="transform" type="translate" from="-40 0" to="230 0" dur="26s" repeatCount="indefinite" />
+        <path d="M0 132 L26 132 L22 138 L4 138 Z" fill="#1a1530" />
+        <path d="M12 131 L12 112 L24 129 Z" fill="#f4e6cf" opacity="0.9" />
+        <line x1="12" y1="112" x2="12" y2="132" stroke="#1a1530" strokeWidth="0.8" />
+      </g>
+    </Frame>
+  );
+}
+
+function Bahrain({ id }: P) {
+  const left = "M56 140 L64 28 C70 40 84 70 92 140 Z";
+  const right = "M144 140 L136 28 C130 40 116 70 108 140 Z";
+  const turbine = (cy: number, r: number, delay: number) => (
+    <g transform={`translate(100 ${cy})`}>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur={`${3 + delay}s`} repeatCount="indefinite" />
+        {[0, 120, 240].map((a) => (
+          <path key={a} d={`M0 0 L${-1.2} ${-r} L1.2 ${-r} Z`} fill="#f4f7fb" transform={`rotate(${a})`} />
+        ))}
+      </g>
+      <circle r="1.6" fill="#c9a96e" />
+    </g>
+  );
+  return (
+    <Frame label="Bahrain World Trade Center">
+      <defs>
+        <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#3b6aa6" />
+          <stop offset="0.65" stopColor="#c7b7c9" />
+          <stop offset="1" stopColor="#f3c99a" />
+        </linearGradient>
+        <linearGradient id={`${id}-glass`} x1="0" x2="1">
+          <stop offset="0" stopColor="#7f97b5" />
+          <stop offset="0.5" stopColor="#e6eef7" />
+          <stop offset="1" stopColor="#6d84a3" />
+        </linearGradient>
+        <clipPath id={`${id}-tw`}>
+          <path d={left} />
+          <path d={right} />
+        </clipPath>
+      </defs>
+      <rect width="200" height="150" fill={`url(#${id}-sky)`} />
+      <Cloud y={16} scale={0.7} dur={44} delay={9} opacity={0.6} />
+      <Skyline x0={0} x1={50} base={140} seed={41} color="#6b7894" maxH={28} />
+      <Skyline x0={150} x1={200} base={140} seed={43} color="#6b7894" maxH={30} />
+      <path d={left} fill={`url(#${id}-glass)`} />
+      <path d={right} fill={`url(#${id}-glass)`} />
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => (
+        <g key={i} stroke="#3e5578" strokeOpacity="0.25" strokeWidth="0.5">
+          <line x1={58 + i * 0.6} y1={40 + i * 10} x2={66 + i * 2.4} y2={40 + i * 10} />
+          <line x1={142 - i * 0.6} y1={40 + i * 10} x2={134 - i * 2.4} y2={40 + i * 10} />
+        </g>
+      ))}
+      {[62, 88, 114].map((y) => (
+        <rect key={y} x="74" y={y} width="52" height="3" fill="#d6dee8" stroke="#9fb0c4" strokeWidth="0.4" />
+      ))}
+      {turbine(60, 12, 0)}
+      {turbine(86, 12, 0.4)}
+      {turbine(112, 12, 0.8)}
+      <Shine clip={`${id}-tw`} id={`${id}-sh`} dur={5.5} delay={0.4} />
+      <rect y="140" width="200" height="10" fill="#8a7a6a" />
+    </Frame>
+  );
+}
+
+function Oman({ id }: P) {
+  const dome = "M76 96 C76 78 88 66 100 60 C112 66 124 78 124 96 Z";
+  return (
+    <Frame label="Sultan Qaboos Grand Mosque">
+      <defs>
+        <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#f0a35e" />
+          <stop offset="0.6" stopColor="#f7cf8f" />
+          <stop offset="1" stopColor="#fbe7c2" />
+        </linearGradient>
+        <linearGradient id={`${id}-stone`} x1="0" x2="1">
+          <stop offset="0" stopColor="#c9b28a" />
+          <stop offset="0.5" stopColor="#f3e6cc" />
+          <stop offset="1" stopColor="#bba27a" />
+        </linearGradient>
+        <linearGradient id={`${id}-gold`} x1="0" x2="1">
+          <stop offset="0" stopColor="#9a7a3e" />
+          <stop offset="0.5" stopColor="#f3d88f" />
+          <stop offset="1" stopColor="#8a6c34" />
+        </linearGradient>
+        <clipPath id={`${id}-tw`}>
+          <path d={dome} />
+          <rect x="146" y="38" width="10" height="92" />
+        </clipPath>
+      </defs>
+      <rect width="200" height="150" fill={`url(#${id}-sky)`} />
+      <circle cx="40" cy="44" r="16" fill="#fff4d6" opacity="0.85">
+        <animate attributeName="opacity" values="0.7;0.95;0.7" dur="5s" repeatCount="indefinite" />
+      </circle>
+      {/* birds */}
+      {[0, 1, 2].map((i) => (
+        <g key={i}>
+          <animateTransform attributeName="transform" type="translate" from={`${-20 - i * 18} ${30 + i * 8}`} to={`${220 - i * 18} ${18 + i * 8}`} dur={`${16 + i * 3}s`} repeatCount="indefinite" />
+          <path d="M0 0 q3 -3 6 0 q3 -3 6 0" fill="none" stroke="#7a5a3a" strokeWidth="0.8">
+            <animate attributeName="d" values="M0 0 q3 -3 6 0 q3 -3 6 0;M0 0 q3 2 6 0 q3 2 6 0;M0 0 q3 -3 6 0 q3 -3 6 0" dur="0.8s" repeatCount="indefinite" />
+          </path>
+        </g>
+      ))}
+      {/* main prayer hall */}
+      <rect x="54" y="96" width="92" height="34" fill={`url(#${id}-stone)`} />
+      {Array.from({ length: 7 }, (_, i) => (
+        <path key={i} d={`M${60 + i * 12.5} 130 V112 a5 5 0 0 1 10 0 V130`} fill="#a88d62" opacity="0.55" />
+      ))}
+      <rect x="54" y="94" width="92" height="3" fill={`url(#${id}-gold)`} />
+      {/* dome + drum */}
+      <rect x="80" y="90" width="40" height="7" fill={`url(#${id}-stone)`} />
+      <path d={dome} fill={`url(#${id}-gold)`} />
+      <line x1="100" y1="60" x2="100" y2="50" stroke="#9a7a3e" strokeWidth="1.4" />
+      <circle cx="100" cy="49" r="1.8" fill="#f3d88f" />
+      {/* minarets */}
+      {[
+        [150, 38, 10],
+        [40, 74, 7],
+        [168, 72, 7],
+      ].map(([x, top, w], i) => (
+        <g key={i}>
+          <rect x={x - w / 2 + (i === 0 ? 1 : 0)} y={top} width={w} height={130 - top} fill={`url(#${id}-stone)`} />
+          <rect x={x - w / 2 - 1.5 + (i === 0 ? 1 : 0)} y={top + 14} width={w + 3} height="3" fill={`url(#${id}-gold)`} />
+          <path d={`M${x - w / 2 + (i === 0 ? 1 : 0)} ${top} L${x + (i === 0 ? 1 : 0)} ${top - 12} L${x + w / 2 + (i === 0 ? 1 : 0)} ${top} Z`} fill={`url(#${id}-gold)`} />
+        </g>
+      ))}
+      {/* palms */}
+      {[22, 182].map((x) => (
+        <g key={x} transform={`translate(${x} 130)`}>
+          <path d="M0 0 C 1 -12, -1 -22, 1 -32" stroke="#6b5636" strokeWidth="2" fill="none" />
+          <g fill="#3f6b44">
+            <animateTransform attributeName="transform" type="rotate" values="-3 1 -32;3 1 -32;-3 1 -32" dur="4s" repeatCount="indefinite" />
+            <path d="M1 -32 q-12 -4 -16 4 q8 -6 16 -4" />
+            <path d="M1 -32 q12 -4 16 4 q-8 -6 -16 -4" />
+            <path d="M1 -32 q-6 -10 -14 -10 q9 2 14 10" />
+            <path d="M1 -32 q6 -10 14 -10 q-9 2 -14 10" />
+          </g>
+        </g>
+      ))}
+      <Shine clip={`${id}-tw`} id={`${id}-sh`} dur={5} delay={1} />
+      <rect y="130" width="200" height="20" fill="#d9c29a" />
+      <rect y="130" width="200" height="1.5" fill="#f3e6cc" />
+    </Frame>
+  );
+}
+
 function Generic({ id }: P) {
   return (
     <Frame label="Globe">
@@ -381,6 +578,12 @@ export function LandmarkScene({ art, id }: { art: LandmarkArt; id: string }) {
       return <Kingdom id={pid} />;
     case "kuwait":
       return <Kuwait id={pid} />;
+    case "doha":
+      return <Doha id={pid} />;
+    case "bahrain":
+      return <Bahrain id={pid} />;
+    case "oman":
+      return <Oman id={pid} />;
     default:
       return <Generic id={pid} />;
   }
@@ -393,5 +596,8 @@ export const landmarkOptions: { value: LandmarkArt; label: string }[] = [
   { value: "burj", label: "برج خليفة – Burj Khalifa" },
   { value: "kingdom", label: "برج المملكة – Kingdom Centre" },
   { value: "kuwait", label: "أبراج الكويت – Kuwait Towers" },
+  { value: "doha", label: "أفق الدوحة – Doha Skyline" },
+  { value: "bahrain", label: "مركز البحرين التجاري – Bahrain WTC" },
+  { value: "oman", label: "جامع السلطان قابوس – Grand Mosque, Muscat" },
   { value: "generic", label: "كرة أرضية – Globe" },
 ];
