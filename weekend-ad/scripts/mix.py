@@ -13,7 +13,7 @@ WAKE = 3.5  # music opens up here
 
 # (vo_in, vo_out, ad_time) — measured with silencedetect on vo_a.mp3
 VO_LINES = [
-    (0.00, 3.46, 0.05),    # [yawn] ويكند… وبدون اشتراك؟
+    (0.00, 2.80, 0.30, 'vo_open_a.mp3'),  # ويكند… وبدون اشتراك؟! (clean re-take, no yawn)
     (4.05, 7.82, 3.55),    # القاضي فور كي… ست أشهر بتسعة وستين ريال بس!
     (8.09, 12.06, 9.05),   # وزيادة عليها… كود لوفي عشرة، خصم عشرة بالمية!
     (12.34, 15.73, 14.35), # التفعيل سريع، ودعم على الواتساب… لوفي ستور!
@@ -42,7 +42,7 @@ def build(with_vo, out_wav):
 
     m = add(MUSIC)
     ch.append(f'[{m}:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim=0:{DUR},asetpts=PTS-STARTPTS,asplit=2[ma][mb]')
-    ch.append(f'[ma]atrim=0:{WAKE},lowpass=f=520,lowpass=f=520,volume=-5dB,afade=t=in:d=0.6,afade=t=out:st={WAKE - 0.05}:d=0.05[m1]')
+    ch.append(f'[ma]atrim=0:{WAKE},volume=-13dB,afade=t=in:d=0.4,afade=t=out:st={WAKE - 0.05}:d=0.05[m1]')  # clean, low intro
     ch.append(f'[mb]atrim={WAKE}:{DUR},asetpts=PTS-STARTPTS,volume=-4dB,afade=t=out:st={DUR - WAKE - 0.8}:d=0.8,adelay={int(WAKE * 1000)}|{int(WAKE * 1000)}[m2]')
     ch.append('[m1][m2]amix=inputs=2:normalize=0[music]')
     for k, (p, at, g, tl) in enumerate(CUES):
@@ -54,8 +54,9 @@ def build(with_vo, out_wav):
     ch.append(f'{"".join(fx)}amix=inputs={len(fx)}:normalize=0[sfx]')
     if True:  # same chain for both mixes; the no-VO mix mutes the narrator (so music/SFX are identical)
         vo = []
-        for k, (a, b, at) in enumerate(VO_LINES):
-            i = add(VO)
+        for k, line in enumerate(VO_LINES):
+            a, b, at = line[:3]
+            i = add(os.path.join(A, line[3]) if len(line) > 3 else VO)
             ms = int(round(at * 1000))
             ch.append(f'[{i}:a]aformat=sample_rates=48000:channel_layouts=stereo,atrim={a}:{b + 0.05},asetpts=PTS-STARTPTS,'
                       f'afade=t=in:d=0.012,afade=t=out:st={b - a}:d=0.05,volume={1 if with_vo else 0},adelay={ms}|{ms}[v{k}]')

@@ -5,7 +5,7 @@ import '@fontsource/ibm-plex-sans-arabic/700.css';
 import '@fontsource/inter/700.css';
 import '@fontsource/inter/800.css';
 import './fonts';
-import { AR_HEAD, C, EN, Grain, Headline, Particles, Vignette, clamp, ease, easeInOut, lerp, shake } from './fx';
+import { AR_HEAD, C, EN, Grain, Headline, Particles, Vignette, clamp, ease, easeInOut, lerp } from './fx';
 
 export const DURATION = 540; // 18 s @ 30 fps
 const PURPLE = '#7C3AED';
@@ -62,11 +62,11 @@ const ScreenContent: React.FC = () => {
 
 const HandPhone: React.FC = () => {
   const f = useCurrentFrame();
-  // camera: slow push in S1, pull back for headline room in S2/S3, dive into the screen at the end
-  const s = f < 105 ? interpolate(f, [0, 105], [1.06, 1.0], clamp) : f < 420 ? interpolate(f, [105, 125], [1.0, 0.8], { ...clamp, easing: ease }) : interpolate(f, [420, 436], [0.8, 3.2], { ...clamp, easing: (t) => t * t });
-  const ty = f < 105 ? 0 : f < 420 ? interpolate(f, [105, 125], [0, 150], { ...clamp, easing: ease }) : interpolate(f, [420, 436], [150, 0], clamp);
+  // camera: gentle push-in in S1, smooth pull-back for headline room (1.3 s), smooth push into the screen at the end (1 s). No shake.
+  const s = f < 100 ? interpolate(f, [0, 100], [1.04, 1.0], clamp) : f < 405 ? interpolate(f, [100, 140], [1.0, 0.8], { ...clamp, easing: easeInOut }) : interpolate(f, [405, 436], [0.8, 2.4], { ...clamp, easing: easeInOut });
+  const ty = f < 100 ? 0 : f < 405 ? interpolate(f, [100, 140], [0, 150], { ...clamp, easing: easeInOut }) : interpolate(f, [405, 436], [150, 0], { ...clamp, easing: easeInOut });
   return (
-    <AbsoluteFill style={{ transform: `${shake(f, 105, 8, 12)} translateY(${ty}px) scale(${s})`, transformOrigin: '50% 50%' }}>
+    <AbsoluteFill style={{ transform: `translateY(${ty}px) scale(${s})`, transformOrigin: '50% 50%', opacity: interpolate(f, [420, 436], [1, 0], clamp) }}>
       <Img src={staticFile('img/hand.jpg')} style={{ width: 1080, height: 1920 }} />
       <div style={{ position: 'absolute', left: SCR.x, top: SCR.y, width: SCR.w, height: SCR.h, borderRadius: SCR.r, overflow: 'hidden' }}>
         <ScreenContent />
@@ -152,6 +152,7 @@ export const WeekendAd: React.FC = () => {
   const head3 = lerp(f, 272, 284, 0, 1);
   return (
     <AbsoluteFill style={{ background: '#000' }}>
+      {f >= 420 && <EndCard />}
       {f < 436 && <HandPhone />}
       {f >= 105 && f < 436 && <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(10,3,24,0.85) 0%, rgba(10,3,24,0) 22%)' }} />}
       {/* S2 headline: القاضي 4K — 6 أشهر بـ 69 ريال فقط */}
@@ -172,7 +173,7 @@ export const WeekendAd: React.FC = () => {
         </AbsoluteFill>
       )}
       {/* S3 headline + coupon motion graphic */}
-      {f >= 270 && f < 432 && (
+      {f >= 270 && f < 420 && (
         <>
           <AbsoluteFill style={{ alignItems: 'center', paddingTop: 200, opacity: head3 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 18, direction: 'rtl', transform: `scale(${interpolate(f, [272, 278, 284], [1.4, 0.95, 1], clamp)})` }}>
@@ -184,12 +185,10 @@ export const WeekendAd: React.FC = () => {
           <CouponCard />
         </>
       )}
-      {f >= 432 && <EndCard />}
-      <Flash at={105} dur={6} color={PURPLE} max={0.55} />
+      <Flash at={105} dur={10} color={PURPLE} max={0.25} />
       <Flash at={190} dur={5} color={C.gold} max={0.4} />
       <Flash at={326} dur={5} color={C.gold} max={0.45} />
-      <Flash at={432} dur={8} color="#ffffff" max={0.7} />
-      <Disclosure />
+      
       <Vignette strength={0.55} />
       <Grain opacity={0.07} />
     </AbsoluteFill>
