@@ -21,6 +21,15 @@ export const defaultContent: Content = {
   },
   countries: [
     {
+      id: "sa",
+      flag: "SA",
+      name: { ar: "السعودية", en: "Saudi Arabia" },
+      landmark: { ar: "برج المملكة – الرياض", en: "Kingdom Centre – Riyadh" },
+      art: "kingdom",
+      storeUrl: "",
+      enabled: true,
+    },
+    {
       id: "us",
       flag: "US",
       name: { ar: "الولايات المتحدة", en: "United States" },
@@ -53,15 +62,6 @@ export const defaultContent: Content = {
       name: { ar: "الإمارات", en: "United Arab Emirates" },
       landmark: { ar: "برج خليفة – دبي", en: "Burj Khalifa – Dubai" },
       art: "burj",
-      storeUrl: "",
-      enabled: true,
-    },
-    {
-      id: "sa",
-      flag: "SA",
-      name: { ar: "السعودية", en: "Saudi Arabia" },
-      landmark: { ar: "برج المملكة – الرياض", en: "Kingdom Centre – Riyadh" },
-      art: "kingdom",
       storeUrl: "",
       enabled: true,
     },
