@@ -19,3 +19,11 @@ export default async function Privacy({ params }: { params: Promise<{ lang: Lang
     </section>
   );
 }
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: Lang }> }) {
+  const { lang } = await params;
+  return {
+    title: lang === "ar" ? "سياسة الخصوصية | ميدياتركس" : "Privacy Policy | Mediatrix",
+    alternates: { canonical: `/${lang}/privacy`, languages: { ar: "/ar/privacy", en: "/en/privacy", "x-default": "/ar/privacy" } },
+  };
+}

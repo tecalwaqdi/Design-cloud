@@ -20,22 +20,62 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLang(lang)) return {};
   const c = await getContent();
   const base = process.env.SITE_URL;
+  const title = tr(c.seo.title, lang);
+  const description = tr(c.seo.description, lang);
+  const ogImage = c.seo.ogImage || `/og-${lang}.png`;
   return {
     metadataBase: base ? new URL(base) : undefined,
-    title: tr(c.seo.title, lang),
-    description: tr(c.seo.description, lang),
+    title,
+    description,
     keywords: c.seo.keywords,
-    alternates: { languages: { ar: "/ar", en: "/en" } },
+    applicationName: c.identity.name,
+    alternates: { canonical: `/${lang}`, languages: { ar: "/ar", en: "/en", "x-default": "/ar" } },
     openGraph: {
-      title: tr(c.seo.title, lang),
-      description: tr(c.seo.description, lang),
+      title,
+      description,
+      url: `/${lang}`,
       siteName: c.identity.name,
       locale: lang === "ar" ? "ar_SA" : "en_US",
-      images: c.seo.ogImage ? [c.seo.ogImage] : undefined,
+      alternateLocale: lang === "ar" ? ["en_US"] : ["ar_SA"],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
       type: "website",
     },
-    icons: { icon: "/icon.svg" },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+    icons: { icon: "/icon.svg", apple: "/apple-touch-icon.png" },
+    formatDetection: { telephone: false },
   };
+}
+
+function jsonLd(c: Awaited<ReturnType<typeof getContent>>, lang: Lang) {
+  const base = (process.env.SITE_URL || "").replace(/\/$/, "");
+  const sameAs = Object.values(c.contact.social).filter(Boolean);
+  const org = {
+    "@type": "Organization",
+    "@id": `${base}/#organization`,
+    name: c.identity.name,
+    alternateName: "ميدياتركس",
+    url: `${base}/${lang}`,
+    logo: `${base}/logo.png`,
+    image: `${base}/og-${lang}.png`,
+    description: tr(c.seo.description, lang),
+    slogan: tr(c.identity.tagline, lang),
+    email: c.contact.email || undefined,
+    telephone: c.contact.phone || undefined,
+    sameAs: sameAs.length ? sameAs : undefined,
+    areaServed: c.countries.filter((x) => x.enabled).map((x) => ({ "@type": "Country", name: x.name.en })),
+    knowsAbout: ["Medical supplies", "Medical devices", "Syringes", "Medical gloves", "Disinfectants", "Glucose meters", "Blood pressure monitors", "Oxygen equipment"],
+    contactPoint: c.contact.email || c.contact.phone ? [{ "@type": "ContactPoint", contactType: "customer service", email: c.contact.email || undefined, telephone: c.contact.phone || undefined, availableLanguage: ["Arabic", "English"] }] : undefined,
+  };
+  const site = {
+    "@type": "WebSite",
+    "@id": `${base}/#website`,
+    url: `${base}/${lang}`,
+    name: c.identity.name,
+    inLanguage: lang === "ar" ? "ar" : "en",
+    publisher: { "@id": `${base}/#organization` },
+  };
+  return JSON.stringify({ "@context": "https://schema.org", "@graph": [org, site] }).replace(/</g, "\\u003c");
 }
 
 export default async function SiteLayout({ children, params }: { children: React.ReactNode; params: Promise<{ lang: string }> }) {
@@ -55,6 +95,7 @@ export default async function SiteLayout({ children, params }: { children: React
   return (
     <html suppressHydrationWarning lang={lang} dir={dirOf(lang)} className={fontVars} style={{ ["--gold" as string]: c.identity.gold, ["--navy" as string]: c.identity.navy }}>
       <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(c, lang) }} />
         {c.seo.gaId ? (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(c.seo.gaId)}`} />
