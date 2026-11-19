@@ -13,14 +13,16 @@ WAKE = 3.5  # music opens up here
 
 # (vo_in, vo_out, ad_time) — measured with silencedetect on vo_a.mp3
 VO_LINES = [
-    (0.00, 2.80, 0.30, 'vo_open_a.mp3'),  # ويكند… وبدون اشتراك؟! (clean re-take, no yawn)
+    (0.00, 2.40, 0.95, 'vo_hook_a.mp3'),  # انتبه… عرض الويكند وصل! (new hook)
     (4.05, 7.82, 3.55),    # القاضي فور كي… ست أشهر بتسعة وستين ريال بس!
     (8.09, 12.06, 9.05),   # وزيادة عليها… كود لوفي عشرة، خصم عشرة بالمية!
     (12.34, 15.73, 14.35), # التفعيل سريع، ودعم على الواتساب… لوفي ستور!
 ]
 S = lambda n: os.path.join(SFX, n)
 CUES = [
-    (S('whoosh_big.wav'), 3.30, -6, None), (S('bass_impact.wav'), 3.50, -6, 1.6),  # wake-up
+    (os.path.join(A, 'notif_ding.wav'), 1.66, -3, None),                              # notification drops
+    (S('ui_click.wav'), 3.13, -6, None),                                               # thumb taps the notification
+    (S('whoosh_big.wav'), 3.30, -7, None), (S('bass_impact.wav'), 3.50, -7, 1.6),     # into the store
     (S('ui_click.wav'), 5.10, -7, None), (S('ui_click.wav'), 6.12, -7, None),        # taps in the real recording
     (S('gold_pop.wav'), 6.33, -4, None), (S('bass_impact.wav'), 6.33, -9, 1.2),      # 69 SAR slam
     (S('ui_click.wav'), 8.91, -6, None),                                               # add to cart

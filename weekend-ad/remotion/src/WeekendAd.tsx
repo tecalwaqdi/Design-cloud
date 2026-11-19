@@ -13,7 +13,8 @@ const PRICE = 69;
 const DISCOUNTED = (PRICE * 0.9).toFixed(2); // 62.10 — LUFY10 = 10% (verified active in the store)
 
 // Phone screen inside hand.jpg (detected on the 2x image, mapped to 1080x1920)
-const SCR = { x: 159, y: 135, w: 762, h: 1561, r: 58 };
+// inner screen edge measured on the rim lines (left 159/right 921/top 134/bottom 1697), inner corner radius ~100 px
+const SCR = { x: 162, y: 137, w: 756, h: 1557, r: 100 };
 
 const Flash: React.FC<{ at: number; dur?: number; color?: string; max?: number }> = ({ at, dur = 6, color = '#fff', max = 0.7 }) => {
   const f = useCurrentFrame();
@@ -23,27 +24,42 @@ const Flash: React.FC<{ at: number; dur?: number; color?: string; max?: number }
 /** Content shown on the hand-held phone's screen. */
 const ScreenContent: React.FC = () => {
   const f = useCurrentFrame();
-  const wake = interpolate(f, [30, 42], [0, 1], clamp);
+  const wake = interpolate(f, [12, 24], [0, 1], clamp); // screen wakes at 0.4 s
   return (
     <AbsoluteFill style={{ background: '#000' }}>
-      {/* S1: black -> purple #7C3AED, sleepy hook */}
+      {/* S1 hook: lock screen lights up, a LUFY STORE notification drops in */}
       {f < 105 && (
-        <AbsoluteFill style={{ background: PURPLE, opacity: wake, justifyContent: 'center', alignItems: 'center' }}>
-          <AbsoluteFill style={{ background: 'radial-gradient(circle at 50% 35%, rgba(255,255,255,0.25), rgba(0,0,0,0) 55%)' }} />
-          <div style={{ fontSize: 210, transform: `translateY(${Math.sin(f / 9) * 10}px) rotate(${Math.sin(f / 14) * 6}deg)` }}>😴</div>
-          {['Z', 'z', 'z'].map((z, i) => {
-            const t = ((f - 34 - i * 10) % 50) / 50;
-            if (f < 34 + i * 10) return null;
+        <AbsoluteFill style={{ opacity: wake }}>
+          <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 30%, #9b5cff 0%, ${PURPLE} 38%, #1d0745 85%)` }} />
+          {/* status bar */}
+          <div style={{ position: 'absolute', top: 26, left: 56, right: 56, display: 'flex', justifyContent: 'space-between', fontFamily: EN, fontWeight: 700, fontSize: 30, color: '#fff', direction: 'ltr' }}>
+            <span>9:41</span><span>5G ▮▮▮</span>
+          </div>
+          {/* lock-screen date + clock */}
+          <div style={{ position: 'absolute', top: 130, width: '100%', textAlign: 'center', color: '#fff' }}>
+            <div style={{ fontFamily: AR_HEAD, fontWeight: 700, fontSize: 40, opacity: 0.9 }}>الخميس، ١٩ نوفمبر</div>
+            <div style={{ fontFamily: EN, fontWeight: 700, fontSize: 190, lineHeight: 1.05, letterSpacing: -4 }}>9:41</div>
+          </div>
+          {/* notification */}
+          {f >= 50 && (() => {
+            const n = interpolate(f, [50, 61], [0, 1], { ...clamp, easing: ease });
+            const pulse = 1 + Math.max(0, Math.sin((f - 61) / 5)) * 0.015 * (f > 61 ? 1 : 0);
             return (
-              <div key={i} style={{ position: 'absolute', left: 470 + t * 120, top: 470 - t * 260, fontFamily: EN, fontWeight: 800, fontSize: 70 - i * 12, color: '#fff', opacity: 1 - t }}>
-                {z}
+              <div style={{ position: 'absolute', top: 470 + (1 - n) * -260, left: 34, right: 34, opacity: n, transform: `scale(${pulse})`, borderRadius: 40, padding: '26px 28px 30px', background: 'rgba(255,255,255,0.88)', boxShadow: '0 20px 50px rgba(0,0,0,0.35)', direction: 'rtl' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+                  <Img src={staticFile('brand/lufy_logo.png')} style={{ width: 70, height: 70, borderRadius: 18 }} />
+                  <div style={{ flex: 1, fontFamily: AR_HEAD, fontWeight: 700, fontSize: 34, color: '#1b0b36' }}>لوفي ستور</div>
+                  <div style={{ fontFamily: AR_HEAD, fontWeight: 500, fontSize: 28, color: '#6b6280' }}>الآن</div>
+                </div>
+                <div style={{ marginTop: 16, fontFamily: AR_HEAD, fontWeight: 800, fontSize: 46, color: '#1b0b36' }}>🔥 عرض الويكند وصل!</div>
+                <div style={{ marginTop: 8, fontFamily: AR_HEAD, fontWeight: 500, fontSize: 34, lineHeight: 1.4, color: '#3d3358' }}>القاضي <bdi>4K</bdi> — <bdi>6</bdi> أشهر بـ<bdi>69</bdi> ريال، ومعه كود خصم <bdi>LUFY10</bdi> 🎁</div>
               </div>
             );
-          })}
-          <div style={{ position: 'absolute', bottom: 330, width: '100%', opacity: lerp(f, 38, 50, 0, 1), transform: `translateY(${(1 - lerp(f, 38, 50, 0, 1)) * 30}px)` }}>
-            <Headline size={84} weight={800} glow="#2a0b5e">ويكند بدون</Headline>
-            <Headline size={84} weight={800} glow="#2a0b5e">اشتراك؟</Headline>
-          </div>
+          })()}
+          {/* thumb tap on the notification just before the cut */}
+          {f >= 88 && f < 105 && (
+            <div style={{ position: 'absolute', left: 378 - 50, top: 640 - 50, width: 100, height: 100, borderRadius: 50, background: 'rgba(255,255,255,0.45)', border: '4px solid rgba(255,255,255,0.95)', transform: `scale(${interpolate(f, [88, 94, 100], [1.2, 0.75, 1], clamp)})` }} />
+          )}
         </AbsoluteFill>
       )}
       {/* S2: real browsing — home -> ALQadi -> 6 months (69 SAR) -> add to cart (rec 0–6.43 s @1.17x, pre-cut) */}
