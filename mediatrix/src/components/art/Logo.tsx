@@ -64,7 +64,7 @@ export function Logo({
     return <img src={logoUrl} alt={name} className={`${h} w-auto`} />;
   }
   const dims = {
-    sm: { pulse: "w-16", text: "text-xl" },
+    sm: { pulse: "w-[4.6rem]", text: "text-[1.45rem]" },
     md: { pulse: "w-24", text: "text-[1.7rem]" },
     lg: { pulse: "w-40", text: "text-5xl" },
   }[size];

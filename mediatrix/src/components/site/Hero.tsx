@@ -177,7 +177,7 @@ export function Hero({
           transition={{ duration: 1.2, ease, delay: 0.45 }}
           className="font-heading flex flex-col items-center justify-center gap-x-4 leading-none sm:flex-row sm:flex-wrap"
         >
-          <span className="text-gold-grad text-xl font-semibold uppercase tracking-[0.14em] rtl:tracking-normal sm:text-3xl lg:text-[2rem]">{welcome}</span>
+          <span className="text-gold-grad text-xl font-bold uppercase tracking-[0.14em] rtl:text-3xl rtl:tracking-normal sm:text-3xl lg:text-[2rem] rtl:lg:text-[2.4rem]">{welcome}</span>
           <Wordmark className="mt-1 text-[3.4rem] sm:mt-0 sm:text-6xl lg:text-[4.1rem]" />
         </motion.h1>
         <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.2, ease, delay: 0.9 }} className="gold-hairline mx-auto mt-3 w-40" />
