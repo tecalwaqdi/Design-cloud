@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Pulse } from "../art/Logo";
 import { Social } from "./Icons";
@@ -71,6 +71,7 @@ export function ChatWidget({
   const [msgs, setMsgs] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
+  const [hover, setHover] = useState(false);
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -123,27 +124,34 @@ export function ChatWidget({
 
   return (
     <>
-      {/* launcher */}
+      {/* launcher (with a little robot peeking from behind it) */}
       <AnimatePresence>
         {!open && (
-          <motion.button
+          <motion.div
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
-            onClick={() => setOpen(true)}
-            aria-label={t.open}
-            className="fixed bottom-5 start-5 z-40 flex items-center gap-2 rounded-full bg-navy py-3 pe-5 ps-3 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(28,42,63,.7)] ring-1 ring-gold/40 transition hover:scale-[1.03]"
+            className="fixed bottom-5 start-5 z-40"
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
           >
-            <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-b from-gold-light to-gold">
-              <span className="absolute inset-0 animate-ping rounded-full bg-gold/40" />
-              <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M4 5h16v11H9l-5 4z" />
-                <path d="M8 10.5h2l1.2-2.5 1.6 5 1.2-2.5H16" />
-              </svg>
-            </span>
-            <span className="hidden sm:inline">{t.open}</span>
-          </motion.button>
+            <RobotPeek hover={hover} greeting={lang === "ar" ? "أهلاً! 👋" : "Hi! 👋"} />
+            <button
+              onClick={() => setOpen(true)}
+              aria-label={t.open}
+              className="relative z-10 flex items-center gap-2 rounded-full bg-navy py-3 pe-5 ps-3 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(28,42,63,.7)] ring-1 ring-gold/40 transition hover:scale-[1.03]"
+            >
+              <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-b from-gold-light to-gold">
+                <span className="absolute inset-0 animate-ping rounded-full bg-gold/40" />
+                <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M4 5h16v11H9l-5 4z" />
+                  <path d="M8 10.5h2l1.2-2.5 1.6 5 1.2-2.5H16" />
+                </svg>
+              </span>
+              <span className="hidden sm:inline">{t.open}</span>
+            </button>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -242,6 +250,94 @@ export function ChatWidget({
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+/** A friendly robot head that rises from behind the launcher, looks around, waves and hides again. */
+function RobotPeek({ hover, greeting }: { hover: boolean; greeting: string }) {
+  const reduce = useReducedMotion();
+  const times = [0, 0.16, 0.34, 0.52, 0.7, 0.84, 1];
+  const loop = { duration: 6, times, repeat: Infinity, repeatDelay: 2.2, ease: "easeInOut" as const, delay: 1.6 };
+  const up = -40;
+  const head = hover || reduce
+    ? { animate: { y: up, rotate: 0 }, transition: { type: "spring" as const, stiffness: 300, damping: 16 } }
+    : { animate: { y: [0, up, up, up, up, up, 0], rotate: [0, 0, -9, 9, -4, 0, 0] }, transition: loop };
+  const eyes = hover || reduce ? { animate: { x: 0 } } : { animate: { x: [0, 0, -2.5, 2.5, 0, 0, 0] }, transition: loop };
+  const wave = hover || reduce
+    ? { animate: { opacity: 1, rotate: [0, -25, 15, -25, 0] }, transition: { duration: 1.2, repeat: Infinity } }
+    : { animate: { opacity: [0, 0, 0, 1, 1, 0, 0], rotate: [0, 0, 0, -25, 20, 0, 0] }, transition: loop };
+  const bubble = hover
+    ? { animate: { opacity: 1, scale: 1, y: 0 } }
+    : reduce
+      ? { animate: { opacity: 0 } }
+      : { animate: { opacity: [0, 0, 1, 1, 1, 0, 0], scale: [0.6, 0.6, 1, 1, 1, 0.6, 0.6], y: [6, 6, 0, 0, 0, 6, 6] }, transition: loop };
+
+  return (
+    <div className="pointer-events-none absolute bottom-2 start-[5px] z-0 h-[52px] w-[50px]" aria-hidden="true">
+      <motion.div className="absolute inset-0 origin-bottom" initial={{ y: 0 }} {...head}>
+        <svg viewBox="0 0 60 62" className="h-full w-full drop-shadow-[0_6px_10px_rgba(28,42,63,.35)]">
+          <defs>
+            <linearGradient id="rb-head" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#ffffff" />
+              <stop offset="1" stopColor="#dfe8ec" />
+            </linearGradient>
+            <linearGradient id="rb-gold" x1="0" x2="1">
+              <stop offset="0" stopColor="#9a7a4b" />
+              <stop offset="0.5" stopColor="#f1dfb3" />
+              <stop offset="1" stopColor="#a8875a" />
+            </linearGradient>
+            <radialGradient id="rb-glow">
+              <stop offset="0" stopColor="#fff6d6" />
+              <stop offset="1" stopColor="#e6c98e" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          {/* antenna */}
+          <line x1="30" y1="6" x2="30" y2="15" stroke="#a8875a" strokeWidth="2" strokeLinecap="round" />
+          <circle cx="30" cy="5" r="7" fill="url(#rb-glow)">
+            <animate attributeName="r" values="5;8;5" dur="1.4s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="30" cy="5" r="3.2" fill="url(#rb-gold)" />
+          {/* ears */}
+          <rect x="1" y="27" width="6" height="13" rx="3" fill="url(#rb-gold)" />
+          <rect x="53" y="27" width="6" height="13" rx="3" fill="url(#rb-gold)" />
+          {/* head */}
+          <rect x="5" y="14" width="50" height="44" rx="15" fill="url(#rb-head)" stroke="#c9d5db" strokeWidth="1" />
+          <rect x="9" y="17" width="9" height="20" rx="4.5" fill="#fff" opacity="0.9" />
+          {/* visor */}
+          <rect x="11" y="23" width="38" height="22" rx="11" fill="#1c2a3f" />
+          <motion.g {...eyes}>
+            <ellipse cx="22.5" cy="33" rx="4" ry="4.6" fill="#8fe3f0">
+              <animate attributeName="ry" values="4.6;4.6;0.6;4.6;4.6" keyTimes="0;0.45;0.5;0.55;1" dur="3.4s" repeatCount="indefinite" />
+            </ellipse>
+            <ellipse cx="37.5" cy="33" rx="4" ry="4.6" fill="#8fe3f0">
+              <animate attributeName="ry" values="4.6;4.6;0.6;4.6;4.6" keyTimes="0;0.45;0.5;0.55;1" dur="3.4s" repeatCount="indefinite" />
+            </ellipse>
+            <circle cx="24" cy="31.4" r="1.2" fill="#fff" />
+            <circle cx="39" cy="31.4" r="1.2" fill="#fff" />
+          </motion.g>
+          <path d="M26 40.5 q4 2.6 8 0" stroke="#8fe3f0" strokeWidth="1.6" fill="none" strokeLinecap="round" />
+          {/* cheeks */}
+          <circle cx="14" cy="49" r="2.6" fill="#f3b8b8" opacity="0.7" />
+          <circle cx="46" cy="49" r="2.6" fill="#f3b8b8" opacity="0.7" />
+          {/* heartbeat badge */}
+          <path d="M23 52 h4 l1.5 -3 l2 6 l1.5 -3 h5" stroke="#a8875a" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        {/* waving hand */}
+        <motion.svg viewBox="0 0 20 26" className="absolute -end-3.5 top-[10px] h-[22px] w-[17px] origin-bottom" initial={{ opacity: 0 }} {...wave}>
+          <rect x="6" y="18" width="8" height="6" rx="2" fill="#a8875a" />
+          <path d="M4 18 V9 a2 2 0 0 1 4 0 V7 a2 2 0 0 1 4 0 V8 a2 2 0 0 1 4 0 V18 Z" fill="#fff" stroke="#c9d5db" strokeWidth="1" />
+          <path d="M4 13 q-3 -2 -2.5 -4.5 q1.6 -0.6 2.5 1.5" fill="#fff" stroke="#c9d5db" strokeWidth="1" />
+        </motion.svg>
+      </motion.div>
+      {/* greeting bubble */}
+      <motion.span
+        initial={{ opacity: 0 }}
+        {...bubble}
+        className="absolute -top-[74px] start-[38px] whitespace-nowrap rounded-full rounded-es-sm bg-white px-2.5 py-1 text-[0.72rem] font-semibold text-navy shadow-md ring-1 ring-gold/30"
+      >
+        {greeting}
+      </motion.span>
+    </div>
   );
 }
 
