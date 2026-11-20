@@ -5,12 +5,25 @@ import { t, tr } from "@/lib/i18n";
 import { getContent } from "@/lib/store";
 import type { Lang } from "@/lib/types";
 
-export default async function Home({ params }: { params: Promise<{ lang: Lang }> }) {
+async function detectCountry(): Promise<string | undefined> {
+  // 1) Cloudflare's own geolocation of the request
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const cc = (getCloudflareContext().cf as { country?: string } | undefined)?.country;
+    if (cc && /^[A-Z]{2}$/i.test(cc) && cc.toUpperCase() !== "XX") return cc.toUpperCase();
+  } catch {}
+  // 2) Country headers from common CDNs / hosts
+  const h = await headers();
+  const v = h.get("cf-ipcountry") || h.get("x-vercel-ip-country") || h.get("x-country-code");
+  return v && /^[A-Z]{2}$/i.test(v) && v.toUpperCase() !== "XX" ? v.toUpperCase() : undefined;
+}
+
+export default async function Home({ params, searchParams }: { params: Promise<{ lang: Lang }>; searchParams: Promise<{ country?: string }> }) {
   const { lang } = await params;
   const c = await getContent();
-  const h = await headers();
-  // Country hint from common CDNs / hosts (Vercel, Cloudflare, generic proxies).
-  const visitorCountry = h.get("x-vercel-ip-country") || h.get("cf-ipcountry") || h.get("x-country-code") || undefined;
+  // ?country=SA lets you preview the order a visitor from another country sees.
+  const forced = (await searchParams).country;
+  const visitorCountry = forced && /^[A-Za-z]{2}$/.test(forced) ? forced.toUpperCase() : await detectCountry();
 
   return (
     <>
