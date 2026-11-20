@@ -47,9 +47,10 @@ function IvI({ delay = 0 }: { delay?: number }) {
     <svg viewBox="0 0 40 100" className="inline-block h-[0.98em] w-[0.34em] align-baseline" aria-hidden="true" style={{ marginBottom: "-0.02em" }}>
       {/* drop = the dot of the i, falling into the bottle */}
       <path d="M20 14 C 16.8 19.5, 15 22.5, 15 25.2 a5 5 0 0 0 10 0 C 25 22.5, 23.2 19.5, 20 14 Z" fill="url(#wm-fluid)" stroke="#e9f7fc" strokeWidth="0.8">
-        <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 18;0 18" keyTimes="0;0.6;0.8;1" dur="3.2s" begin={`${delay}s`} repeatCount="indefinite" />
+        <animateTransform attributeName="transform" type="translate" values="0 0;0 0;0 24;0 24" keyTimes="0;0.6;0.8;1" dur="3.2s" begin={`${delay}s`} repeatCount="indefinite" />
         <animate attributeName="opacity" values="1;1;0;0;1" keyTimes="0;0.6;0.8;0.9;1" dur="3.2s" begin={`${delay}s`} repeatCount="indefinite" />
       </path>
+      <g transform="translate(0 5.5)">
       {/* cap */}
       <rect x="13" y="44" width="14" height="5" rx="1.5" fill="url(#wm-gold)" />
       {/* bottle body = stem of the i (x-height) */}
@@ -68,8 +69,7 @@ function IvI({ delay = 0 }: { delay?: number }) {
         <line key={y} x1="23" x2="28" y1={y} y2={y} stroke="#3f6f88" strokeOpacity="0.55" strokeWidth="0.9" />
       ))}
       <rect x="12.4" y="52" width="2.6" height="33" rx="1.3" fill="#fff" opacity="0.9" />
-      {/* drip outlet */}
-      <rect x="17.5" y="90.5" width="5" height="5.5" rx="1" fill="url(#wm-gold)" />
+      </g>
     </svg>
   );
 }
