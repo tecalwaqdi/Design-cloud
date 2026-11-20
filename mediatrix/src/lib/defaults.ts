@@ -223,6 +223,42 @@ export const defaultContent: Content = {
     ar: "نحترم خصوصيتك. لا نجمع من بياناتك إلا ما ترسله لنا عبر نموذج التواصل، ونستخدمه فقط للرد عليك. يمكنك طلب حذف بياناتك في أي وقت عبر التواصل معنا.\n\nعند انتقالك إلى أحد متاجرنا، تخضع بياناتك لسياسة الخصوصية الخاصة بذلك المتجر.",
     en: "We respect your privacy. We only collect the information you send us through the contact form and use it solely to reply to you. You can ask us to delete your data at any time by contacting us.\n\nWhen you move to one of our stores, your data is governed by that store's own privacy policy.",
   },
+  assistant: {
+    enabled: true,
+    name: { ar: "مساعد ميدياتركس", en: "Mediatrix Assistant" },
+    welcome: {
+      ar: "أهلاً بك 👋 أنا مساعد ميدياتركس. اسألني عن منتجاتنا وخدماتنا ومتاجرنا، أو اطلب التحدث مع خدمة العملاء.",
+      en: "Hi 👋 I'm the Mediatrix assistant. Ask me about our products, services and stores, or ask to talk to customer service.",
+    },
+    model: "claude-opus-5-5",
+    faq: [
+      {
+        id: "f1",
+        q: { ar: "كيف أطلب المنتجات؟", en: "How do I order?" },
+        a: {
+          ar: "اختر دولتك من قسم «متاجرنا حول العالم» في الصفحة الرئيسية، واضغط «اذهب للمتجر» لتطلب من متجرنا الرسمي في دولتك. وإذا كان متجر دولتك «قريباً»، تواصل معنا ونساعدك بالطلب.",
+          en: "Choose your country in the “Our Stores Worldwide” section and press “Go to Store” to order from our official store there. If your country shows “Coming soon”, contact us and we'll help you order.",
+        },
+      },
+      {
+        id: "f2",
+        q: { ar: "هل توردون للمستشفيات والعيادات؟", en: "Do you supply hospitals and clinics?" },
+        a: {
+          ar: "نعم، نوفّر عروض كميات وتوريداً منتظماً للمستشفيات والعيادات والصيدليات. تواصل مع خدمة العملاء بتفاصيل طلبك ونرسل لك عرض سعر.",
+          en: "Yes, we offer volume pricing and regular supply for hospitals, clinics and pharmacies. Contact customer service with your requirements and we'll send you a quote.",
+        },
+      },
+      {
+        id: "f3",
+        q: { ar: "هل المنتجات أصلية؟", en: "Are the products genuine?" },
+        a: {
+          ar: "نعم، منتجاتنا أصلية ومعتمدة ونختارها بعناية لتطابق المعايير الصحية.",
+          en: "Yes, our products are genuine and certified, carefully selected to meet health standards.",
+        },
+      },
+    ],
+    notes: { ar: "", en: "" },
+  },
   updatedAt: new Date(0).toISOString(),
 };
 

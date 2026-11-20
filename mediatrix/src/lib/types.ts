@@ -53,6 +53,23 @@ export interface GalleryItem {
   caption: L;
 }
 
+export type AssistantModel = "claude-opus-5-5" | "claude-sonnet-5-5" | "claude-haiku-5-5";
+
+export interface FaqItem {
+  id: string;
+  q: L;
+  a: L;
+}
+
+export interface AssistantConfig {
+  enabled: boolean;
+  name: L;
+  welcome: L;
+  model: AssistantModel;
+  faq: FaqItem[];
+  notes: L; // extra knowledge the owner wants the bot to know
+}
+
 export type SectionKey =
   | "countries"
   | "about"
@@ -112,6 +129,7 @@ export interface Content {
     gaId: string;
   };
   privacy: L;
+  assistant: AssistantConfig;
   updatedAt: string;
 }
 

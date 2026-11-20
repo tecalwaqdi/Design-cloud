@@ -4,7 +4,7 @@ import { landmarkOptions, LandmarkScene } from "../art/Landmarks";
 import { Logo } from "../art/Logo";
 import { Icon, iconKeys } from "../site/Icons";
 import { Btn, Card, emptyL, Field, LField, ListEditor, Text, Toggle, uid, Upload, inputCls } from "./ui";
-import type { Branch, ContactMessage, Content, Country, GalleryItem, Partner, SectionKey, Service } from "@/lib/types";
+import type { AssistantModel, Branch, ContactMessage, Content, Country, FaqItem, GalleryItem, Partner, SectionKey, Service } from "@/lib/types";
 
 export type StatsView = {
   days: { date: string; visits: number }[];
@@ -27,6 +27,7 @@ const TABS = [
   { k: "contact", label: "التواصل", icon: "drop" },
   { k: "sections", label: "ترتيب الأقسام", icon: "shield" },
   { k: "seo", label: "SEO والخصوصية", icon: "globe" },
+  { k: "assistant", label: "المساعد الذكي", icon: "pulse" },
   { k: "messages", label: "الرسائل", icon: "heart" },
   { k: "security", label: "الأمان", icon: "shield" },
 ] as const;
@@ -470,6 +471,42 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
               </Card>
               <Card title="سياسة الخصوصية">
                 <LField area rows={8} label="النص" value={c.privacy} onChange={(privacy) => set("privacy", privacy)} />
+              </Card>
+            </>
+          )}
+
+          {tab === "assistant" && (
+            <>
+              <Card
+                title="المساعد الذكي (بوت المحادثة)"
+                desc="يجيب الزوار من محتوى موقعك والأسئلة الشائعة أدناه، ويحوّلهم لخدمة العملاء (واتساب، إيميل، أو يتركون رقمهم فيصلك في «الرسائل»)."
+              >
+                <Toggle checked={c.assistant.enabled} onChange={(enabled) => set("assistant", { ...c.assistant, enabled })} label={c.assistant.enabled ? "ظاهر في الموقع" : "مخفي"} />
+                <LField label="اسم المساعد" value={c.assistant.name} onChange={(name) => set("assistant", { ...c.assistant, name })} />
+                <LField area rows={2} label="رسالة الترحيب" value={c.assistant.welcome} onChange={(welcome) => set("assistant", { ...c.assistant, welcome })} />
+                <Field label="نموذج الذكاء الاصطناعي" hint="يعمل فقط بعد إضافة مفتاح ANTHROPIC_API_KEY في Cloudflare. بدون المفتاح يجيب من الأسئلة الشائعة فقط.">
+                  <select className={inputCls} value={c.assistant.model} onChange={(e) => set("assistant", { ...c.assistant, model: e.target.value as AssistantModel })}>
+                    <option value="claude-opus-5-5">Claude Opus 5.5 — الأذكى (افتراضي)</option>
+                    <option value="claude-sonnet-5-5">Claude Sonnet 5.5 — متوازن</option>
+                    <option value="claude-haiku-5-5">Claude Haiku 5.5 — الأسرع والأرخص</option>
+                  </select>
+                </Field>
+                <LField area rows={4} label="معلومات إضافية للمساعد (اختياري)" value={c.assistant.notes} onChange={(notes) => set("assistant", { ...c.assistant, notes })} />
+              </Card>
+              <Card title="الأسئلة الشائعة" desc="المساعد يعتمد هذه الإجابات، وتظهر كأزرار اقتراح عند فتح المحادثة.">
+                <ListEditor<FaqItem>
+                  items={c.assistant.faq}
+                  onChange={(faq) => set("assistant", { ...c.assistant, faq })}
+                  addLabel="إضافة سؤال"
+                  make={() => ({ id: uid(), q: { ar: "سؤال جديد", en: "New question" }, a: emptyL() })}
+                  title={(x) => x.q.ar}
+                  render={(x, up) => (
+                    <>
+                      <LField label="السؤال" value={x.q} onChange={(q) => up({ q })} />
+                      <LField area rows={3} label="الإجابة" value={x.a} onChange={(a) => up({ a })} />
+                    </>
+                  )}
+                />
               </Card>
             </>
           )}

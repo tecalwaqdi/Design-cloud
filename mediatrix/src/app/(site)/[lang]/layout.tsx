@@ -9,6 +9,7 @@ import { Footer } from "@/components/site/Footer";
 import { Intro } from "@/components/site/Intro";
 import { VisitTracker } from "@/components/site/VisitTracker";
 import { WhatsApp } from "@/components/site/WhatsApp";
+import { ChatWidget } from "@/components/site/ChatWidget";
 import type { Lang } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -113,6 +114,16 @@ export default async function SiteLayout({ children, params }: { children: React
         <main>{children}</main>
         <Footer c={c} lang={lang} />
         <WhatsApp number={c.contact.whatsapp} label={t("whatsapp", lang)} />
+        {c.assistant.enabled ? (
+          <ChatWidget
+            lang={lang}
+            name={tr(c.assistant.name, lang)}
+            welcome={tr(c.assistant.welcome, lang)}
+            suggestions={c.assistant.faq.map((f) => tr(f.q, lang)).filter(Boolean)}
+            whatsapp={c.contact.whatsapp}
+            email={c.contact.email}
+          />
+        ) : null}
         <VisitTracker />
       </body>
     </html>

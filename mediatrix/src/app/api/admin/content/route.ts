@@ -31,6 +31,9 @@ export async function PUT(req: Request) {
     body.contact.social[k] = safeUrl(body.contact.social[k]);
   }
   body.seo.gaId = String(body.seo.gaId || "").replace(/[^A-Za-z0-9-]/g, "");
+  if (body.assistant && !["claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"].includes(body.assistant.model)) {
+    body.assistant.model = "claude-opus-5-5";
+  }
   const saved = await saveContent(body);
   revalidatePath("/", "layout");
   return NextResponse.json(saved);
