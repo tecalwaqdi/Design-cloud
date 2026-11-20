@@ -1,5 +1,5 @@
 "use client";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Pulse } from "../art/Logo";
 import { Social } from "./Icons";
@@ -157,12 +157,15 @@ export function ChatWidget({
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
             className="fixed bottom-5 start-5 z-40"
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            onPointerEnter={(e) => e.pointerType === "mouse" && setHover(true)}
+            onPointerLeave={() => setHover(false)}
           >
-            <RobotPeek hover={hover} greeting={lang === "ar" ? "أهلاً! 👋" : "Hi! 👋"} />
+            <RobotPeek hover={hover} />
             <button
-              onClick={() => setOpen(true)}
+              onClick={() => {
+                setHover(false);
+                setOpen(true);
+              }}
               aria-label={t.open}
               className="relative z-10 flex items-center gap-2 rounded-full bg-navy py-3 pe-5 ps-3 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(28,42,63,.7)] ring-1 ring-gold/40 transition hover:scale-[1.03]"
             >
@@ -282,24 +285,17 @@ export function ChatWidget({
 }
 
 /** A friendly robot head that rises from behind the launcher, looks around, waves and hides again. */
-function RobotPeek({ hover, greeting }: { hover: boolean; greeting: string }) {
-  const reduce = useReducedMotion();
+function RobotPeek({ hover }: { hover: boolean }) {
   const times = [0, 0.16, 0.34, 0.52, 0.7, 0.84, 1];
   const loop = { duration: 6, times, repeat: Infinity, repeatDelay: 2.2, ease: "easeInOut" as const, delay: 1.6 };
   const up = -40;
-  const head = hover || reduce
+  const head = hover
     ? { animate: { y: up, rotate: 0 }, transition: { type: "spring" as const, stiffness: 300, damping: 16 } }
     : { animate: { y: [0, up, up, up, up, up, 0], rotate: [0, 0, -9, 9, -4, 0, 0] }, transition: loop };
-  const eyes = hover || reduce ? { animate: { x: 0 } } : { animate: { x: [0, 0, -2.5, 2.5, 0, 0, 0] }, transition: loop };
-  const wave = hover || reduce
+  const eyes = hover ? { animate: { x: 0 } } : { animate: { x: [0, 0, -2.5, 2.5, 0, 0, 0] }, transition: loop };
+  const wave = hover
     ? { animate: { opacity: 1, rotate: [0, -25, 15, -25, 0] }, transition: { duration: 1.2, repeat: Infinity } }
     : { animate: { opacity: [0, 0, 0, 1, 1, 0, 0], rotate: [0, 0, 0, -25, 20, 0, 0] }, transition: loop };
-  const bubble = hover
-    ? { animate: { opacity: 1, scale: 1, y: 0 } }
-    : reduce
-      ? { animate: { opacity: 0 } }
-      : { animate: { opacity: [0, 0, 1, 1, 1, 0, 0], scale: [0.6, 0.6, 1, 1, 1, 0.6, 0.6], y: [6, 6, 0, 0, 0, 6, 6] }, transition: loop };
-
   return (
     <div className="pointer-events-none absolute bottom-2 start-[5px] z-0 h-[52px] w-[50px]" aria-hidden="true">
       <motion.div className="absolute inset-0 origin-bottom" initial={{ y: 0 }} {...head}>
@@ -357,14 +353,6 @@ function RobotPeek({ hover, greeting }: { hover: boolean; greeting: string }) {
           <path d="M4 13 q-3 -2 -2.5 -4.5 q1.6 -0.6 2.5 1.5" fill="#fff" stroke="#c9d5db" strokeWidth="1" />
         </motion.svg>
       </motion.div>
-      {/* greeting bubble */}
-      <motion.span
-        initial={{ opacity: 0 }}
-        {...bubble}
-        className="absolute -top-[74px] start-[38px] whitespace-nowrap rounded-full rounded-es-sm bg-white px-2.5 py-1 text-[0.72rem] font-semibold text-navy shadow-md ring-1 ring-gold/30"
-      >
-        {greeting}
-      </motion.span>
     </div>
   );
 }
