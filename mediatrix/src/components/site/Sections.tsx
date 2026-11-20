@@ -39,9 +39,9 @@ function Countries({ c, lang, visitorCountry }: Ctx) {
       hasStore: /^https?:\/\//i.test(x.storeUrl),
     }));
   return (
-    <section id="countries" className="relative scroll-mt-24 pb-20 pt-6">
+    <section id="countries" className="relative scroll-mt-24 pb-20 pt-6 lg:pt-4">
       <div className={wrap}>
-        <p className="mb-6 text-center text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-gold rtl:tracking-normal rtl:text-xs">{t("countries_title", lang)}</p>
+        <p className="mb-6 text-center text-[0.7rem] font-semibold uppercase tracking-[0.35em] text-gold rtl:tracking-normal rtl:text-xs lg:mb-3">{t("countries_title", lang)}</p>
         <CountryGrid
           cards={cards}
           goLabel={t("go_store", lang)}

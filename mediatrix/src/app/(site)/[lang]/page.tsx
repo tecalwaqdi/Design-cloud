@@ -16,11 +16,12 @@ export default async function Home({ params }: { params: Promise<{ lang: Lang }>
     <>
       <Hero
         welcome={tr(c.hero.welcome, lang)}
-        name={c.identity.name}
         tagline={tr(c.identity.tagline, lang)}
         subtitle={tr(c.hero.subtitle, lang)}
         bannerUrl={c.hero.bannerUrl}
         scrollLabel={t("scroll", lang)}
+        rtl={lang === "ar"}
+        captions={c.hero.slides.map((s) => ({ title: tr(s.title, lang), sub: tr(s.sub, lang) }))}
       />
       {c.sections
         .filter((s) => s.visible)

@@ -100,6 +100,7 @@ export interface Content {
     welcome: L;
     subtitle: L;
     bannerUrl?: string; // optional uploaded product image (transparent PNG) for the banner
+    slides: { title: L; sub: L }[]; // captions of the hero slider (products, cold chain, network)
   };
   countries: Country[];
   about: { title: L; body: L; story: L };

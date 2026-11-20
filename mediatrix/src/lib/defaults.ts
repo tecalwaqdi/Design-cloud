@@ -18,6 +18,20 @@ export const defaultContent: Content = {
       ar: "اختر دولتك واطلب مستلزماتك الطبية من متجرنا الرسمي فيها",
       en: "Choose your country and order your medical supplies from our official store there",
     },
+    slides: [
+      {
+        title: { ar: "مستلزمات وأجهزة طبية معتمدة", en: "Certified medical supplies & devices" },
+        sub: { ar: "من المستهلكات اليومية إلى أجهزة القياس", en: "From everyday consumables to monitoring devices" },
+      },
+      {
+        title: { ar: "عناية خاصة بالمنتجات المبرّدة", en: "Special care for temperature-sensitive products" },
+        sub: { ar: "حفظ ونقل يراعي درجات الحرارة", en: "Storage and transport that respect temperature" },
+      },
+      {
+        title: { ar: "متاجر رسمية في الخليج والعالم", en: "Official stores across the Gulf & beyond" },
+        sub: { ar: "اختر دولتك واطلب من متجرها", en: "Pick your country and order from its store" },
+      },
+    ],
   },
   countries: [
     {

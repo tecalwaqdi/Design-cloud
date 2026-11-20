@@ -160,6 +160,17 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
               <Card title="الواجهة الرئيسية (Hero)">
                 <LField label="عبارة الترحيب" value={c.hero.welcome} onChange={(welcome) => set("hero", { ...c.hero, welcome })} />
                 <LField label="النص التعريفي" value={c.hero.subtitle} onChange={(subtitle) => set("hero", { ...c.hero, subtitle })} />
+                {c.hero.slides.map((sl, i) => (
+                  <div key={i} className="rounded-xl border border-ice-200 bg-ice-50/60 p-3">
+                    <p className="mb-2 text-xs font-bold text-gold-deep">
+                      شريحة {i + 1}: {["المنتجات", "المنتجات المبرّدة", "شبكة المتاجر"][i]}
+                    </p>
+                    <div className="space-y-3">
+                      <LField label="العنوان" value={sl.title} onChange={(title) => set("hero", { ...c.hero, slides: c.hero.slides.map((x, j) => (j === i ? { ...x, title } : x)) })} />
+                      <LField label="سطر إضافي" value={sl.sub} onChange={(sub) => set("hero", { ...c.hero, slides: c.hero.slides.map((x, j) => (j === i ? { ...x, sub } : x)) })} />
+                    </div>
+                  </div>
+                ))}
                 <Field label="صورة البانر (اختياري)" hint="ارفع صورة منتجاتكم الحقيقية (PNG شفاف بعرض 2400px تقريباً). اتركه فارغاً لاستخدام الرسم المتحرك.">
                   <Upload value={c.hero.bannerUrl} onChange={(bannerUrl) => set("hero", { ...c.hero, bannerUrl })} />
                 </Field>
