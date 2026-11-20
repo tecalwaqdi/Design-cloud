@@ -1,4 +1,6 @@
-// The Mediatrix mark: a heartbeat line over the serif wordmark.
+import { Wordmark } from "./Wordmark";
+
+// The Mediatrix mark: a heartbeat line over the icy wordmark (IV-bottle i, ribbon x).
 // When `animated`, the line draws itself and a gold pulse runs along it.
 
 export const PULSE_PATH = "M2 30 H58 L66 34 L76 4 L88 52 L98 22 L104 30 H158";
@@ -64,14 +66,18 @@ export function Logo({
     return <img src={logoUrl} alt={name} className={`${h} w-auto`} />;
   }
   const dims = {
-    sm: { pulse: "w-[4.6rem]", text: "text-[1.45rem]" },
-    md: { pulse: "w-24", text: "text-[1.7rem]" },
-    lg: { pulse: "w-40", text: "text-5xl" },
+    sm: { pulse: "w-[4.6rem]", text: "text-[1.75rem]" },
+    md: { pulse: "w-24", text: "text-[2.1rem]" },
+    lg: { pulse: "w-40", text: "text-6xl" },
   }[size];
   return (
     <span className="inline-flex flex-col items-center leading-none" dir="ltr">
-      <Pulse animated={animated} className={`${dims.pulse} -mb-1 h-auto`} id={`pulse-${size}`} />
-      <span className={`font-logo font-bold tracking-tight text-navy ${dims.text}`}>{name}</span>
+      <Pulse animated={animated} className={`${dims.pulse} -mb-1.5 h-auto`} id={`pulse-${size}`} />
+      {name.toLowerCase() === "mediatrix" ? (
+        <Wordmark className={`leading-none ${dims.text}`} uid={`wm-logo-${size}`} />
+      ) : (
+        <span className={`font-logo font-bold tracking-tight text-navy ${dims.text}`}>{name}</span>
+      )}
     </span>
   );
 }
