@@ -61,8 +61,11 @@ export interface FaqItem {
   a: L;
 }
 
+export type AssistantProvider = "free" | "gemini" | "claude";
+
 export interface AssistantConfig {
   enabled: boolean;
+  provider: AssistantProvider; // free = Cloudflare Workers AI (no key needed)
   name: L;
   welcome: L;
   model: AssistantModel;

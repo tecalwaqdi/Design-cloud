@@ -19,5 +19,7 @@
     { "pattern": "mediatrixglobal.com", "custom_domain": true },
     { "pattern": "www.mediatrixglobal.com", "custom_domain": true }
   ],
+  // Workers AI (free daily allowance) for the website assistant
+  "ai": { "binding": "AI" },
   "observability": { "enabled": true }
 }

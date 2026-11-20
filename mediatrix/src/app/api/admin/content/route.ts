@@ -34,6 +34,7 @@ export async function PUT(req: Request) {
   if (body.assistant && !["claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5"].includes(body.assistant.model)) {
     body.assistant.model = "claude-opus-5-5";
   }
+  if (body.assistant && !["free", "gemini", "claude"].includes(body.assistant.provider)) body.assistant.provider = "free";
   const saved = await saveContent(body);
   revalidatePath("/", "layout");
   return NextResponse.json(saved);

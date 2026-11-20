@@ -4,7 +4,7 @@ import { landmarkOptions, LandmarkScene } from "../art/Landmarks";
 import { Logo } from "../art/Logo";
 import { Icon, iconKeys } from "../site/Icons";
 import { Btn, Card, emptyL, Field, LField, ListEditor, Text, Toggle, uid, Upload, inputCls } from "./ui";
-import type { AssistantModel, Branch, ContactMessage, Content, Country, FaqItem, GalleryItem, Partner, SectionKey, Service } from "@/lib/types";
+import type { AssistantModel, AssistantProvider, Branch, ContactMessage, Content, Country, FaqItem, GalleryItem, Partner, SectionKey, Service } from "@/lib/types";
 
 export type StatsView = {
   days: { date: string; visits: number }[];
@@ -484,13 +484,25 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
                 <Toggle checked={c.assistant.enabled} onChange={(enabled) => set("assistant", { ...c.assistant, enabled })} label={c.assistant.enabled ? "ظاهر في الموقع" : "مخفي"} />
                 <LField label="اسم المساعد" value={c.assistant.name} onChange={(name) => set("assistant", { ...c.assistant, name })} />
                 <LField area rows={2} label="رسالة الترحيب" value={c.assistant.welcome} onChange={(welcome) => set("assistant", { ...c.assistant, welcome })} />
-                <Field label="نموذج الذكاء الاصطناعي" hint="يعمل فقط بعد إضافة مفتاح ANTHROPIC_API_KEY في Cloudflare. بدون المفتاح يجيب من الأسئلة الشائعة فقط.">
-                  <select className={inputCls} value={c.assistant.model} onChange={(e) => set("assistant", { ...c.assistant, model: e.target.value as AssistantModel })}>
-                    <option value="claude-opus-5-5">Claude Opus 5.5 — الأذكى (افتراضي)</option>
-                    <option value="claude-sonnet-5-5">Claude Sonnet 5.5 — متوازن</option>
-                    <option value="claude-haiku-5-5">Claude Haiku 5.5 — الأسرع والأرخص</option>
+                <Field label="محرّك الذكاء الاصطناعي">
+                  <select className={inputCls} value={c.assistant.provider} onChange={(e) => set("assistant", { ...c.assistant, provider: e.target.value as AssistantProvider })}>
+                    <option value="free">مجاني: Cloudflare Workers AI (بدون أي إعداد)</option>
+                    <option value="gemini">مجاني: Google Gemini (يحتاج مفتاح GEMINI_API_KEY)</option>
+                    <option value="claude">مدفوع: Claude (يحتاج مفتاح ANTHROPIC_API_KEY)</option>
                   </select>
                 </Field>
+                {c.assistant.provider === "claude" && (
+                  <Field label="نموذج Claude">
+                    <select className={inputCls} value={c.assistant.model} onChange={(e) => set("assistant", { ...c.assistant, model: e.target.value as AssistantModel })}>
+                      <option value="claude-opus-5-5">Claude Opus 5.5: الأذكى</option>
+                      <option value="claude-sonnet-5-5">Claude Sonnet 5.5: متوازن</option>
+                      <option value="claude-haiku-5-5">Claude Haiku 5.5: الأسرع والأرخص</option>
+                    </select>
+                  </Field>
+                )}
+                <p className="rounded-xl bg-ice-100 p-3 text-xs leading-6 text-navy-soft">
+                  إذا تعطّل المحرّك المختار أو انتهى رصيده المجاني لليوم، يتحوّل المساعد تلقائياً للمحرّك المجاني ثم للأسئلة الشائعة، فلا يتوقف أبداً.
+                </p>
                 <LField area rows={4} label="معلومات إضافية للمساعد (اختياري)" value={c.assistant.notes} onChange={(notes) => set("assistant", { ...c.assistant, notes })} />
               </Card>
               <Card title="الأسئلة الشائعة" desc="المساعد يعتمد هذه الإجابات، وتظهر كأزرار اقتراح عند فتح المحادثة.">

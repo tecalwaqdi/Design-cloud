@@ -230,6 +230,7 @@ export const defaultContent: Content = {
       ar: "أهلاً بك 👋 أنا مساعد ميدياتركس. اسألني عن منتجاتنا وخدماتنا ومتاجرنا، أو اطلب التحدث مع خدمة العملاء.",
       en: "Hi 👋 I'm the Mediatrix assistant. Ask me about our products, services and stores, or ask to talk to customer service.",
     },
+    provider: "free",
     model: "claude-opus-5-5",
     faq: [
       {
