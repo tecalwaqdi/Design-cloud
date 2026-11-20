@@ -46,14 +46,14 @@ export function ColdChainBanner() {
           <stop offset="1" stopColor="#d6e3e9" />
         </linearGradient>
         <linearGradient id="cc-navy" x1="0" x2="1">
-          <stop offset="0" stopColor="#1c2a3f" />
+          <stop offset="0" stopColor="#0e2a47" />
           <stop offset="0.5" stopColor="#2f4a6b" />
-          <stop offset="1" stopColor="#1c2a3f" />
+          <stop offset="1" stopColor="#0e2a47" />
         </linearGradient>
         <linearGradient id="cc-gold" x1="0" x2="1">
-          <stop offset="0" stopColor="#7d6238" />
-          <stop offset="0.5" stopColor="#f1dfb3" />
-          <stop offset="1" stopColor="#8a6c40" />
+          <stop offset="0" stopColor="#136a80" />
+          <stop offset="0.5" stopColor="#e6f6fa" />
+          <stop offset="1" stopColor="#1d5d80" />
         </linearGradient>
         <linearGradient id="cc-glass" x1="0" x2="1">
           <stop offset="0" stopColor="#ffffff" stopOpacity="0.95" />
@@ -70,8 +70,8 @@ export function ColdChainBanner() {
           <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
         <radialGradient id="cc-shadow">
-          <stop offset="0" stopColor="#1c2a3f" stopOpacity="0.28" />
-          <stop offset="1" stopColor="#1c2a3f" stopOpacity="0" />
+          <stop offset="0" stopColor="#0e2a47" stopOpacity="0.28" />
+          <stop offset="1" stopColor="#0e2a47" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -143,7 +143,7 @@ export function ColdChainBanner() {
           <animate attributeName="opacity" values="1;0.75;1" dur="2.4s" repeatCount="indefinite" />
         </text>
         <path d="M618 244 l4 0 M618 248 l4 0" stroke="#8fe3f0" strokeWidth="1" />
-        <text x="752" y="260" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="11" fill="#1c2a3f">MEDIATRIX</text>
+        <text x="752" y="260" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="11" fill="#0e2a47">MEDIATRIX</text>
         <text x="752" y="273" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" letterSpacing="1.5" fill="#2f6d92">COLD CHAIN</text>
         <path d="M640 302 v8 h32 v-8" fill="none" stroke="url(#cc-gold)" strokeWidth="4" strokeLinecap="round" />
       </g>
@@ -198,13 +198,13 @@ export function NetworkBanner() {
     <svg viewBox="0 40 1200 290" className="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
         <radialGradient id="nw-glow" cx="0.5" cy="0.5" r="0.6">
-          <stop offset="0" stopColor="#f3e6c6" stopOpacity="0.9" />
-          <stop offset="1" stopColor="#f3e6c6" stopOpacity="0" />
+          <stop offset="0" stopColor="#dff2f7" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#dff2f7" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="nw-gold" x1="0" x2="1">
-          <stop offset="0" stopColor="#7d6238" />
-          <stop offset="0.5" stopColor="#f1dfb3" />
-          <stop offset="1" stopColor="#a8875a" />
+          <stop offset="0" stopColor="#136a80" />
+          <stop offset="0.5" stopColor="#e6f6fa" />
+          <stop offset="1" stopColor="#2a9db8" />
         </linearGradient>
       </defs>
       <ellipse cx="640" cy="205" rx="430" ry="140" fill="url(#nw-glow)" />
@@ -219,8 +219,8 @@ export function NetworkBanner() {
         "M776 214 C 900 100, 1000 90, 1080 120",
       ].map((d, i) => (
         <g key={i}>
-          <path d={d} fill="none" stroke="#c9a96e" strokeOpacity="0.45" strokeWidth="1.2" strokeDasharray="3 6" />
-          <circle r="3" fill="#c9a96e">
+          <path d={d} fill="none" stroke="#4fb3cc" strokeOpacity="0.45" strokeWidth="1.2" strokeDasharray="3 6" />
+          <circle r="3" fill="#4fb3cc">
             <animateMotion dur={`${5 + i}s`} begin={`${i * 1.3}s`} repeatCount="indefinite" path={d} />
             <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur={`${5 + i}s`} begin={`${i * 1.3}s`} repeatCount="indefinite" />
           </circle>
@@ -233,7 +233,7 @@ export function NetworkBanner() {
         return (
           <g key={n.k}>
             <path d={d} fill="none" stroke="url(#nw-gold)" strokeWidth="2" strokeLinecap="round" opacity="0.85" />
-            <path d={d} fill="none" stroke="#fff6dc" strokeWidth="2.4" strokeLinecap="round" pathLength={1} strokeDasharray="0.12 1">
+            <path d={d} fill="none" stroke="#e6f6fa" strokeWidth="2.4" strokeLinecap="round" pathLength={1} strokeDasharray="0.12 1">
               <animate attributeName="stroke-dashoffset" values="0.12;-1" dur="2.6s" begin={`${i * 0.45}s`} repeatCount="indefinite" />
             </path>
           </g>
@@ -243,12 +243,12 @@ export function NetworkBanner() {
       {/* city nodes */}
       {NODES.map((n, i) => (
         <g key={n.k} transform={`translate(${n.x} ${n.y})`}>
-          <circle r="6" fill="none" stroke="#c9a96e" strokeWidth="1.5">
+          <circle r="6" fill="none" stroke="#4fb3cc" strokeWidth="1.5">
             <animate attributeName="r" values="6;20" dur="2.4s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.9;0" dur="2.4s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
           </circle>
           <circle r={i === 0 ? 8 : 5.5} fill="url(#nw-gold)" stroke="#fff" strokeWidth="1.5" />
-          <text y={i === 0 ? 26 : -12} textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="10.5" fill="#1c2a3f" opacity="0.85">
+          <text y={i === 0 ? 26 : -12} textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="10.5" fill="#0e2a47" opacity="0.85">
             {n.label}
           </text>
         </g>
@@ -262,9 +262,9 @@ export function NetworkBanner() {
           [18, -30, 40, 30],
         ].map(([x, y, w, h], i) => (
           <g key={i}>
-            <rect x={x} y={y} width={w} height={h} rx="3" fill="#e9dcc0" stroke="#c9b08a" />
-            <rect x={x + w / 2 - 4} y={y} width="8" height={h} fill="#c9a96e" opacity="0.6" />
-            <path d={`M${x + 6} ${y + h - 8} h10`} stroke="#7d6238" strokeWidth="1.4" />
+            <rect x={x} y={y} width={w} height={h} rx="3" fill="#e6f1f5" stroke="#9fc5d6" />
+            <rect x={x + w / 2 - 4} y={y} width="8" height={h} fill="#4fb3cc" opacity="0.6" />
+            <path d={`M${x + 6} ${y + h - 8} h10`} stroke="#136a80" strokeWidth="1.4" />
           </g>
         ))}
       </g>

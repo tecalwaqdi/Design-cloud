@@ -1,4 +1,4 @@
-import { Pulse } from "../art/Logo";
+import { Logomark } from "../art/Logo";
 import { Wordmark } from "../art/Wordmark";
 
 // First-visit splash: the heartbeat draws itself, then the curtain lifts.
@@ -13,10 +13,10 @@ export function Intro({ name }: { name: string }) {
       />
       <div id="intro" className="bg-ice fixed inset-0 z-[100] flex items-center justify-center" aria-hidden="true">
         <div className="flex flex-col items-center" dir="ltr">
-          <Pulse className="h-auto w-56 md:w-72" id="intro-pulse" />
-          <span className="intro-word -mt-2">
+          <Logomark className="h-24 w-24 drop-shadow-[0_14px_26px_rgba(14,42,71,.35)] md:h-28 md:w-28" id="lm-intro" />
+          <span className="intro-word mt-5">
             {name.toLowerCase() === "mediatrix" ? (
-              <Wordmark uid="wm-intro" className="text-6xl md:text-8xl" />
+              <Wordmark uid="wm-intro" className="text-6xl md:text-7xl" />
             ) : (
               <span className="font-logo text-4xl font-bold text-navy md:text-6xl">{name}</span>
             )}

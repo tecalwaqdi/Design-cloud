@@ -9,8 +9,8 @@ export const defaultContent: Content = {
       ar: "مستلزمات طبية موثوقة بمعايير عالمية",
       en: "Trusted medical supplies, global standards",
     },
-    gold: "#A8875A",
-    navy: "#1C2A3F",
+    gold: "#2A9DB8",
+    navy: "#0E2A47",
   },
   hero: {
     welcome: { ar: "مرحباً بكم في", en: "Welcome to" },
@@ -26,10 +26,6 @@ export const defaultContent: Content = {
       {
         title: { ar: "عناية خاصة بالمنتجات المبرّدة", en: "Special care for temperature-sensitive products" },
         sub: { ar: "حفظ ونقل يراعي درجات الحرارة", en: "Storage and transport that respect temperature" },
-      },
-      {
-        title: { ar: "متاجر رسمية في الخليج والعالم", en: "Official stores across the Gulf & beyond" },
-        sub: { ar: "اختر دولتك واطلب من متجرها", en: "Pick your country and order from its store" },
       },
     ],
   },

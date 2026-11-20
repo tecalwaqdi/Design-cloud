@@ -149,7 +149,7 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
                 </div>
                 <LField label="الشعار النصي (Tagline)" value={c.identity.tagline} onChange={(tagline) => set("identity", { ...c.identity, tagline })} />
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="اللون الذهبي">
+                  <Field label="لون التمييز (الأكوا)">
                     <ColorInput value={c.identity.gold} onChange={(gold) => set("identity", { ...c.identity, gold })} />
                   </Field>
                   <Field label="اللون الكحلي">
@@ -160,10 +160,10 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
               <Card title="الواجهة الرئيسية (Hero)">
                 <LField label="عبارة الترحيب" value={c.hero.welcome} onChange={(welcome) => set("hero", { ...c.hero, welcome })} />
                 <LField label="النص التعريفي" value={c.hero.subtitle} onChange={(subtitle) => set("hero", { ...c.hero, subtitle })} />
-                {c.hero.slides.map((sl, i) => (
+                {c.hero.slides.slice(0, 2).map((sl, i) => (
                   <div key={i} className="rounded-xl border border-ice-200 bg-ice-50/60 p-3">
                     <p className="mb-2 text-xs font-bold text-gold-deep">
-                      شريحة {i + 1}: {["المنتجات", "المنتجات المبرّدة", "شبكة المتاجر"][i]}
+                      شريحة {i + 1}: {["المنتجات", "المنتجات المبرّدة"][i]}
                     </p>
                     <div className="space-y-3">
                       <LField label="العنوان" value={sl.title} onChange={(title) => set("hero", { ...c.hero, slides: c.hero.slides.map((x, j) => (j === i ? { ...x, title } : x)) })} />

@@ -1,9 +1,10 @@
-// Hero banner illustration: silver silk band, flowing gold ribbon and a set of
+// Hero banner illustration (brand: navy / glacier aqua / silver): ice-silk band,
+// a heartbeat monitor trace running behind the products, and a set of
 // premium medical supplies (oxygen cylinder, antiseptic, nitrile gloves,
 // glucose meter, blood-pressure monitor, pulse oximeter, vials, syringe).
 // viewBox crops to 0 40 1200 290.
 
-const brand = (x: number, y: number, size = 9, color = "#1c2a3f", sub?: string) => (
+const brand = (x: number, y: number, size = 9, color = "#0e2a47", sub?: string) => (
   <g textAnchor="middle" fontFamily="var(--font-logo), serif">
     <text x={x} y={y} fontSize={size} fontWeight="700" fill={color} letterSpacing="0.5">
       MEDIATRIX
@@ -15,27 +16,6 @@ const brand = (x: number, y: number, size = 9, color = "#1c2a3f", sub?: string) 
     )}
   </g>
 );
-
-function Leaves({ x, y, flip = false }: { x: number; y: number; flip?: boolean }) {
-  const leaves = [
-    [18, -30, -40],
-    [30, -52, 30],
-    [44, -70, -35],
-    [56, -92, 35],
-    [68, -108, -30],
-    [10, -14, 40],
-  ];
-  return (
-    <g transform={`translate(${x} ${y}) scale(${flip ? -1 : 1} 1)`} fill="none" stroke="url(#pb-gold-v)" strokeWidth="1.6">
-      <path d="M0 0 C 20 -40, 50 -80, 80 -120" />
-      {leaves.map(([lx, ly, rot], i) => (
-        <ellipse key={i} cx={lx} cy={ly} rx="11" ry="4.2" transform={`rotate(${rot} ${lx} ${ly})`} fill="url(#pb-gold-v)" fillOpacity="0.35">
-          <animateTransform attributeName="transform" type="rotate" values={`${rot} ${lx} ${ly};${rot + 6} ${lx} ${ly};${rot} ${lx} ${ly}`} dur={`${4 + i * 0.4}s`} repeatCount="indefinite" />
-        </ellipse>
-      ))}
-    </g>
-  );
-}
 
 /** Two readings that cross-fade, like a device refreshing its display. */
 function Reading({ x, y, a, b, size, color = "#8fe3f0", dur = 5, delay = 0 }: { x: number; y: number; a: string; b: string; size: number; color?: string; dur?: number; delay?: number }) {
@@ -59,8 +39,8 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
       <defs>
         <linearGradient id="pb-silk" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#ffffff" />
-          <stop offset="0.35" stopColor="#e3eaee" />
-          <stop offset="0.7" stopColor="#b8c5cc" />
+          <stop offset="0.35" stopColor="#e4f0f5" />
+          <stop offset="0.7" stopColor="#bcd3de" />
           <stop offset="1" stopColor="#eef3f5" />
         </linearGradient>
         <linearGradient id="pb-silk-h" x1="0" x2="1">
@@ -69,15 +49,19 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <stop offset="1" stopColor="#fff" stopOpacity="0" />
         </linearGradient>
         <linearGradient id="pb-gold" x1="0" x2="1">
-          <stop offset="0" stopColor="#7d6238" />
-          <stop offset="0.28" stopColor="#d9bd86" />
-          <stop offset="0.5" stopColor="#fff1c9" />
-          <stop offset="0.72" stopColor="#c9a96e" />
-          <stop offset="1" stopColor="#7d6238" />
+          <stop offset="0" stopColor="#5f7484" />
+          <stop offset="0.28" stopColor="#c9d8e0" />
+          <stop offset="0.5" stopColor="#ffffff" />
+          <stop offset="0.72" stopColor="#a6b9c4" />
+          <stop offset="1" stopColor="#5a6f7f" />
         </linearGradient>
         <linearGradient id="pb-gold-v" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#e9d3a0" />
-          <stop offset="1" stopColor="#a8875a" />
+          <stop offset="0" stopColor="#bfe9f4" />
+          <stop offset="1" stopColor="#2a9db8" />
+        </linearGradient>
+        <linearGradient id="pb-ecg" x1="0" x2="1">
+          <stop offset="0" stopColor="#8fd3e2" />
+          <stop offset="1" stopColor="#1d78a0" />
         </linearGradient>
         <linearGradient id="pb-glass" x1="0" x2="1">
           <stop offset="0" stopColor="#ffffff" stopOpacity="0.95" />
@@ -112,11 +96,11 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
         </linearGradient>
         <linearGradient id="pb-cuff" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#3a4d6b" />
-          <stop offset="1" stopColor="#1c2a3f" />
+          <stop offset="1" stopColor="#0e2a47" />
         </linearGradient>
         <radialGradient id="pb-shadow">
-          <stop offset="0" stopColor="#1c2a3f" stopOpacity="0.28" />
-          <stop offset="1" stopColor="#1c2a3f" stopOpacity="0" />
+          <stop offset="0" stopColor="#0e2a47" stopOpacity="0.28" />
+          <stop offset="1" stopColor="#0e2a47" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="pb-shine" x1="0" x2="1">
           <stop offset="0" stopColor="#fff" stopOpacity="0" />
@@ -157,21 +141,11 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
         />
       </path>
 
-      <Leaves x={170} y={300} />
-      <Leaves x={1080} y={300} flip />
 
-      {/* flowing gold ribbon (behind) */}
-      <path fill="none" stroke="url(#pb-gold)" strokeWidth="9" strokeLinecap="round" opacity="0.9">
-        <animate
-          attributeName="d"
-          dur="7s"
-          repeatCount="indefinite"
-          calcMode="spline"
-          keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
-          values="M-30 110 C 220 30, 420 250, 640 150 S 1000 40, 1230 190;
-                  M-30 140 C 240 60, 440 210, 660 120 S 980 90, 1230 150;
-                  M-30 110 C 220 30, 420 250, 640 150 S 1000 40, 1230 190"
-        />
+      {/* heartbeat monitor trace behind the products */}
+      <path d="M-20 150 H250 L268 142 L286 168 L304 92 L326 196 L344 132 L358 150 H640 L658 142 L676 168 L694 92 L716 196 L734 132 L748 150 H1000 L1018 142 L1036 168 L1054 92 L1076 196 L1094 132 L1108 150 H1220" fill="none" stroke="#2a9db8" strokeOpacity="0.28" strokeWidth="2.4" strokeLinejoin="round" strokeLinecap="round" />
+      <path d="M-20 150 H250 L268 142 L286 168 L304 92 L326 196 L344 132 L358 150 H640 L658 142 L676 168 L694 92 L716 196 L734 132 L748 150 H1000 L1018 142 L1036 168 L1054 92 L1076 196 L1094 132 L1108 150 H1220" fill="none" stroke="url(#pb-ecg)" strokeWidth="3.4" strokeLinejoin="round" strokeLinecap="round" pathLength={1} strokeDasharray="0.16 1">
+        <animate attributeName="stroke-dashoffset" values="0.16;-1" dur="4.2s" repeatCount="indefinite" />
       </path>
 
       {showProducts && (
@@ -182,10 +156,10 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <path d="M282 300 V168 a29 29 0 0 1 58 0 V300 Z" fill="url(#pb-white)" />
           <rect x="282" y="196" width="58" height="14" fill="#6fbfcc" opacity="0.9" />
           <rect x="282" y="212" width="58" height="3" fill="url(#pb-gold)" />
-          <text x="311" y="258" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="26" fill="#1c2a3f">
+          <text x="311" y="258" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="26" fill="#0e2a47">
             O<tspan fontSize="14" dy="6">2</tspan>
           </text>
-          <text x="311" y="282" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" fill="#1c2a3f" opacity="0.7" letterSpacing="1.5">
+          <text x="311" y="282" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" fill="#0e2a47" opacity="0.7" letterSpacing="1.5">
             MEDICAL OXYGEN
           </text>
           <rect x="288" y="172" width="6" height="122" rx="3" fill="#fff" opacity="0.8" />
@@ -193,7 +167,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <ellipse cx="311" cy="122" rx="17" ry="5" fill="url(#pb-gold)" />
           <rect x="318" y="130" width="14" height="5" fill="url(#pb-gold)" />
           <circle cx="340" cy="132" r="10" fill="#fff" stroke="url(#pb-gold)" strokeWidth="2.5" />
-          <line x1="340" y1="132" x2="340" y2="125" stroke="#1c2a3f" strokeWidth="1.4" strokeLinecap="round">
+          <line x1="340" y1="132" x2="340" y2="125" stroke="#0e2a47" strokeWidth="1.4" strokeLinecap="round">
             <animateTransform attributeName="transform" type="rotate" values="-50 340 132;40 340 132;20 340 132;40 340 132;-50 340 132" dur="7s" repeatCount="indefinite" />
           </line>
 
@@ -206,7 +180,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <rect x="410" y="130" width="28" height="5" rx="2.5" fill="url(#pb-gold)" />
           <rect x="370" y="232" width="54" height="44" rx="4" fill="#fff" opacity="0.8" />
           <path d="M397 238 v10 M392 243 h10" stroke="#6fbfcc" strokeWidth="2.4" strokeLinecap="round" />
-          {brand(397, 260, 8.5, "#1c2a3f", "ANTISEPTIC")}
+          {brand(397, 260, 8.5, "#0e2a47", "ANTISEPTIC")}
           <rect x="368" y="176" width="6" height="116" rx="3" fill="#fff" opacity="0.75" />
           {/* bubbles rising in the liquid */}
           {[376, 396, 414].map((cx, i) => (
@@ -228,9 +202,9 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
             <animateTransform attributeName="transform" type="translate" values="0 2;0 -2;0 2" dur="4s" repeatCount="indefinite" />
           </path>
           <rect x="452" y="232" width="140" height="5" fill="#6fbfcc" opacity="0.85" />
-          {brand(522, 258, 11, "#1c2a3f", "NITRILE EXAM GLOVES")}
+          {brand(522, 258, 11, "#0e2a47", "NITRILE EXAM GLOVES")}
           <rect x="452" y="284" width="140" height="3" fill="url(#pb-gold)" />
-          <text x="580" y="279" textAnchor="end" fontFamily="var(--font-sans), sans-serif" fontWeight="700" fontSize="7" fill="#7d6238">
+          <text x="580" y="279" textAnchor="end" fontFamily="var(--font-sans), sans-serif" fontWeight="700" fontSize="7" fill="#136a80">
             100 PCS
           </text>
 
@@ -248,7 +222,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           </text>
           <circle cx="646" cy="272" r="9" fill="url(#pb-gold)" />
           <circle cx="646" cy="272" r="5" fill="#fff" opacity="0.35" />
-          <text x="646" y="292" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6" fill="#1c2a3f">
+          <text x="646" y="292" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6" fill="#0e2a47">
             MEDIATRIX
           </text>
 
@@ -271,7 +245,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           </path>
           <circle cx="799" cy="252" r="10" fill="url(#pb-gold)" />
           <circle cx="799" cy="252" r="5.5" fill="#fff" opacity="0.35" />
-          <text x="799" y="282" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6.5" fill="#1c2a3f">
+          <text x="799" y="282" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6.5" fill="#0e2a47">
             MEDIATRIX
           </text>
 
@@ -304,9 +278,9 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
             <rect x="0" y="-8" width="172" height="16" rx="4" fill="url(#pb-glass)" stroke="#c9d8df" />
             <rect x="2" y="-5.5" width="118" height="11" rx="2" fill="url(#pb-teal)" />
             {Array.from({ length: 15 }, (_, k) => (
-              <line key={k} x1={10 + k * 10} y1="-8" x2={10 + k * 10} y2={k % 2 ? -4 : -2} stroke="#1c2a3f" strokeOpacity="0.45" strokeWidth="0.7" />
+              <line key={k} x1={10 + k * 10} y1="-8" x2={10 + k * 10} y2={k % 2 ? -4 : -2} stroke="#0e2a47" strokeOpacity="0.45" strokeWidth="0.7" />
             ))}
-            <rect x="120" y="-7" width="10" height="14" rx="2" fill="#1c2a3f" />
+            <rect x="120" y="-7" width="10" height="14" rx="2" fill="#0e2a47" />
             <rect x="130" y="-2.5" width="78" height="5" rx="1.5" fill="url(#pb-white)" />
             <rect x="170" y="-15" width="6" height="30" rx="2" fill="url(#pb-white)" />
             <rect x="206" y="-11" width="7" height="22" rx="2" fill="url(#pb-gold)" />
@@ -321,19 +295,6 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
         </g>
       )}
 
-      {/* thin gold ribbon (in front) */}
-      <path fill="none" stroke="url(#pb-gold)" strokeWidth="2.6" strokeLinecap="round" opacity="0.95">
-        <animate
-          attributeName="d"
-          dur="8s"
-          repeatCount="indefinite"
-          calcMode="spline"
-          keySplines="0.45 0 0.55 1;0.45 0 0.55 1"
-          values="M-30 250 C 200 330, 380 170, 560 300 S 900 330, 1230 230;
-                  M-30 270 C 220 300, 400 200, 580 290 S 920 300, 1230 250;
-                  M-30 250 C 200 330, 380 170, 560 300 S 900 330, 1230 230"
-        />
-      </path>
     </svg>
   );
 }

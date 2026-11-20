@@ -2,7 +2,7 @@
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
 import { ProductBanner } from "../art/ProductBanner";
-import { ColdChainBanner, NetworkBanner } from "../art/Slides";
+import { ColdChainBanner } from "../art/Slides";
 import { Wordmark } from "../art/Wordmark";
 import { Sparkles } from "./Sparkles";
 
@@ -38,7 +38,6 @@ export function Hero({
       <ProductBanner key="p" />
     ),
     <ColdChainBanner key="c" />,
-    <NetworkBanner key="n" />,
   ];
   const [[index, dir], setState] = useState<[number, number]>([0, 1]);
   const [paused, setPaused] = useState(false);
@@ -70,12 +69,12 @@ export function Hero({
     >
       {/* fine gold line-art accents */}
       <svg className="pointer-events-none absolute -start-10 top-32 hidden h-64 w-64 opacity-40 lg:block" viewBox="0 0 200 200" aria-hidden="true">
-        <path d="M10 190 C 60 120, 120 80, 190 10" fill="none" stroke="#c9a96e" strokeWidth="0.8" />
-        <path d="M30 190 C 80 130, 140 100, 190 40" fill="none" stroke="#c9a96e" strokeWidth="0.5" />
+        <path d="M10 190 C 60 120, 120 80, 190 10" fill="none" stroke="#4fb3cc" strokeWidth="0.8" />
+        <path d="M30 190 C 80 130, 140 100, 190 40" fill="none" stroke="#4fb3cc" strokeWidth="0.5" />
       </svg>
       <svg className="pointer-events-none absolute -end-6 top-40 hidden h-72 w-72 opacity-30 lg:block" viewBox="0 0 200 200" aria-hidden="true">
-        <circle cx="100" cy="100" r="90" fill="none" stroke="#c9a96e" strokeWidth="0.6" strokeDasharray="2 6" />
-        <circle cx="100" cy="100" r="70" fill="none" stroke="#c9a96e" strokeWidth="0.4" />
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#4fb3cc" strokeWidth="0.6" strokeDasharray="2 6" />
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#4fb3cc" strokeWidth="0.4" />
       </svg>
 
       <Sparkles count={18} bubbles={8} />
@@ -177,8 +176,8 @@ export function Hero({
           transition={{ duration: 1.2, ease, delay: 0.45 }}
           className="font-heading flex flex-col items-center justify-center gap-x-4 leading-none sm:flex-row sm:flex-wrap"
         >
-          <span className="text-gold-grad text-xl font-bold uppercase tracking-[0.14em] rtl:text-3xl rtl:tracking-normal sm:text-3xl lg:text-[2rem] rtl:lg:text-[2.4rem]">{welcome}</span>
-          <Wordmark uid="wm-hero" className="mt-1 text-[3.4rem] sm:mt-0 sm:text-6xl lg:text-[4.1rem]" />
+          <span className="text-gold-grad py-[0.18em] leading-[1.25] text-xl font-medium uppercase tracking-[0.16em] rtl:text-2xl rtl:font-semibold rtl:tracking-normal sm:text-[1.7rem] lg:text-[1.8rem] rtl:lg:text-[2.1rem]">{welcome}</span>
+          <Wordmark uid="wm-hero" className="mt-1 text-[3.3rem] sm:mt-0 sm:text-[3.6rem] lg:text-[4rem]" />
         </motion.h1>
         <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.2, ease, delay: 0.9 }} className="gold-hairline mx-auto mt-3 w-40" />
         <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.1 }} className="mt-2 text-sm text-mist md:text-[0.95rem]">

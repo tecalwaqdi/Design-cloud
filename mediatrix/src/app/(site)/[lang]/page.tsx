@@ -21,7 +21,7 @@ export default async function Home({ params }: { params: Promise<{ lang: Lang }>
         bannerUrl={c.hero.bannerUrl}
         scrollLabel={t("scroll", lang)}
         rtl={lang === "ar"}
-        captions={c.hero.slides.map((s) => ({ title: tr(s.title, lang), sub: tr(s.sub, lang) }))}
+        captions={c.hero.slides.slice(0, 2).map((s) => ({ title: tr(s.title, lang), sub: tr(s.sub, lang) }))}
       />
       {c.sections
         .filter((s) => s.visible)
