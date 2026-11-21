@@ -78,16 +78,50 @@ export function CountryGrid({
   const cardEls = useRef<(HTMLElement | null)[]>([]);
   const [current, setCurrent] = useState(0); // card centred in the carousel
   const [orbit, setOrbit] = useState(0); // card with the travelling light (desktop grid)
-  const [isGrid, setIsGrid] = useState(false);
+  // One swipeable row on every screen size (no wrapping grid), so the row can glide.
+  const isGrid = false;
 
-  // Grid on large screens, swipeable carousel below.
+  // Auto-glide: one card at a time toward the end of the row, then back toward the start
+  // (ping-pong). Pauses while the visitor touches, scrolls or hovers, resumes after a few seconds.
+  const pausedUntil = useRef(0);
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const on = () => setIsGrid(mq.matches);
-    on();
-    mq.addEventListener("change", on);
-    return () => mq.removeEventListener("change", on);
-  }, []);
+    const root = scroller.current;
+    if (!root || cards.length < 2) return;
+    const rtl = getComputedStyle(root).direction === "rtl";
+    let dir = 1; // 1 = toward the end of the row (reading direction)
+    const hold = (ms: number) => () => (pausedUntil.current = Date.now() + ms);
+    const onTouch = hold(6000);
+    const onHover = hold(60_000);
+    const onLeave = () => (pausedUntil.current = Date.now() + 2500);
+    root.addEventListener("pointerdown", onTouch);
+    root.addEventListener("touchstart", onTouch, { passive: true });
+    root.addEventListener("wheel", onTouch, { passive: true });
+    root.addEventListener("mouseenter", onHover);
+    root.addEventListener("mouseleave", onLeave);
+    let visible = true;
+    const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.3 });
+    io.observe(root);
+    const t = setInterval(() => {
+      if (!visible || document.hidden || Date.now() < pausedUntil.current) return;
+      const pos = Math.abs(root.scrollLeft);
+      const max = root.scrollWidth - root.clientWidth;
+      if (max < 4) return;
+      if (dir === 1 && pos >= max - 4) dir = -1;
+      else if (dir === -1 && pos <= 4) dir = 1;
+      const card = cardEls.current[0];
+      const step = card ? card.getBoundingClientRect().width + 16 : root.clientWidth * 0.8;
+      root.scrollBy({ left: dir * step * (rtl ? -1 : 1), behavior: "smooth" });
+    }, 2800);
+    return () => {
+      clearInterval(t);
+      io.disconnect();
+      root.removeEventListener("pointerdown", onTouch);
+      root.removeEventListener("touchstart", onTouch);
+      root.removeEventListener("wheel", onTouch);
+      root.removeEventListener("mouseenter", onHover);
+      root.removeEventListener("mouseleave", onLeave);
+    };
+  }, [cards.length]);
 
   // Desktop: the light travels from card to card, like in the brand film.
   useEffect(() => {
@@ -165,7 +199,7 @@ export function CountryGrid({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.15 }}
-        className={`carousel -mx-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto scroll-smooth px-5 pb-4 pt-2 sm:gap-4 md:-mx-8 md:px-8 lg:mx-0 lg:flex-wrap lg:justify-center lg:snap-none lg:overflow-visible lg:px-0`}
+        className={`carousel -mx-5 flex snap-x snap-mandatory gap-3.5 overflow-x-auto scroll-smooth px-5 pb-4 pt-2 sm:gap-4 md:-mx-8 md:px-8 lg:mx-0 lg:px-1 lg:pt-3 lg:[mask-image:linear-gradient(90deg,transparent,#000_3%,#000_97%,transparent)]`}
         aria-roledescription="carousel"
       >
         {cards.map((c, i) => {
@@ -179,7 +213,7 @@ export function CountryGrid({
               }}
               variants={item}
               aria-label={c.name}
-              className={`country-card glass group relative w-[78%] shrink-0 snap-center snap-always rounded-[22px] p-2.5 transition-[transform,box-shadow] duration-500 active:scale-[0.985] sm:w-[46%] md:w-[31%] lg:w-[calc((100%-4rem)/5)] lg:hover:-translate-y-2 lg:active:scale-100 ${
+              className={`country-card glass group relative w-[78%] shrink-0 snap-center snap-always rounded-[22px] p-2.5 transition-[transform,box-shadow] duration-500 active:scale-[0.985] sm:w-[46%] md:w-[31%] lg:w-[calc((100%-4rem)/5)] lg:snap-start lg:hover:-translate-y-2 lg:active:scale-100 ${
                 mine ? "ring-2 ring-gold/60" : ""
               }`}
             >

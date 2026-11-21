@@ -2,13 +2,14 @@ import { Wordmark } from "./Wordmark";
 
 /*
  * Mediatrix identity — "Pulse of Care"
- *  - Logomark: an M drawn as a single heartbeat trace on a deep-navy tile,
+ *  - Logomark: a gold ECG heartbeat trace on a deep-navy tile,
  *    with an ice drop (cold chain / IV fluids) in the corner.
  *  - Wordmark: Readex Pro, navy; the i-dots are ice drops, the x is aqua.
  *  - Motion: the trace draws itself, then a light pulse travels along it.
  */
 
-export const M_PATH = "M8 41 H15 L22 19 L32 37 L42 19 L49 41 H56";
+// ECG trace (P wave, sharp QRS spike, T wave) — the brand's heartbeat
+export const M_PATH = "M7 35 H15 Q18 29 21 35 H25 L28 39 L32 13 L36 47 L39 32 L41 35 H44 Q48.5 27 53 35 H57";
 export const PULSE_PATH = "M2 30 H58 L66 34 L76 4 L88 52 L98 22 L104 30 H158";
 
 export function Logomark({ animated = true, className = "", id = "lm" }: { animated?: boolean; className?: string; id?: string }) {
@@ -46,7 +47,7 @@ export function Logomark({ animated = true, className = "", id = "lm" }: { anima
         d={M_PATH}
         fill="none"
         stroke={`url(#${id}-gold)`}
-        strokeWidth="4.6"
+        strokeWidth="3.8"
         strokeLinecap="round"
         strokeLinejoin="round"
         pathLength={1}
@@ -112,7 +113,7 @@ export function Logo({
     return (
       <span className="inline-flex items-center gap-2.5" dir="ltr">
         <Logomark animated={animated} className="h-10 w-10 drop-shadow-[0_6px_10px_rgba(28,42,63,.25)]" id="lm-sm" />
-        {text ? <span className="font-logo text-2xl font-semibold text-navy">{text}</span> : <Wordmark className="text-[1.6rem]" uid="wm-sm" />}
+        {text ? <span className="font-logo text-2xl font-semibold text-navy">{text}</span> : <Wordmark className="text-[1.6rem]" uid="wm-sm" simpleX />}
       </span>
     );
   }

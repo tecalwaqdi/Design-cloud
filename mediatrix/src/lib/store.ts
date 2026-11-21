@@ -307,10 +307,34 @@ export async function getContent(): Promise<Content> {
   return content;
 }
 
-export async function saveContent(content: Content): Promise<Content> {
+const HISTORY_MAX = 30;
+type HistoryEntry = { id: string; at: string; note: string };
+
+/** Saves content and keeps the previous version as a restorable backup. */
+export async function saveContent(content: Content, note = "حفظ من لوحة التحكم"): Promise<Content> {
+  const b = await backend();
+  const prev = await b.getKV("content");
+  if (prev) {
+    const id = new Date().toISOString().replace(/[:.]/g, "-");
+    await b.setKV(`content_backup:${id}`, prev);
+    const index: HistoryEntry[] = JSON.parse((await b.getKV("content_backups")) || "[]");
+    index.unshift({ id, at: new Date().toISOString(), note });
+    const keep = index.slice(0, HISTORY_MAX);
+    await b.setKV("content_backups", JSON.stringify(keep));
+  }
   const next = { ...content, updatedAt: new Date().toISOString() };
-  await (await backend()).setKV("content", JSON.stringify(next));
+  await b.setKV("content", JSON.stringify(next));
   return next;
+}
+
+export async function listBackups(): Promise<HistoryEntry[]> {
+  return JSON.parse((await (await backend()).getKV("content_backups")) || "[]");
+}
+
+export async function restoreBackup(id: string): Promise<Content | null> {
+  const raw = await (await backend()).getKV(`content_backup:${id}`);
+  if (!raw) return null;
+  return saveContent(JSON.parse(raw), `استرجاع نسخة ${id}`);
 }
 
 export async function getAuth(): Promise<{ passwordHash?: string }> {

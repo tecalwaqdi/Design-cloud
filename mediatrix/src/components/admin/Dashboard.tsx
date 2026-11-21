@@ -29,6 +29,7 @@ const TABS = [
   { k: "seo", label: "SEO والخصوصية", icon: "globe" },
   { k: "assistant", label: "المساعد الذكي", icon: "pulse" },
   { k: "messages", label: "الرسائل", icon: "heart" },
+  { k: "backups", label: "النسخ الاحتياطية", icon: "shield" },
   { k: "security", label: "الأمان", icon: "shield" },
 ] as const;
 type Tab = (typeof TABS)[number]["k"];
@@ -535,6 +536,7 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
           )}
 
           {tab === "messages" && <Messages />}
+          {tab === "backups" && <Backups onRestored={(next) => { setC(next); setSaved(JSON.stringify(next)); }} />}
           {tab === "security" && <Security />}
         </main>
       </div>
@@ -694,6 +696,51 @@ function Messages() {
                 حذف
               </Btn>
             </div>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function Backups({ onRestored }: { onRestored: (c: Content) => void }) {
+  const [list, setList] = useState<{ id: string; at: string; note: string }[] | null>(null);
+  const [msg, setMsg] = useState("");
+  const load = () =>
+    fetch("/api/admin/backups")
+      .then((r) => r.json())
+      .then(setList)
+      .catch(() => setList([]));
+  useEffect(() => {
+    load();
+  }, []);
+  async function restore(id: string) {
+    if (!confirm("استرجاع هذه النسخة؟ المحتوى الحالي يُحفظ كنسخة احتياطية قبل الاسترجاع.")) return;
+    const r = await fetch("/api/admin/backups", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id }) });
+    if (r.ok) {
+      onRestored(await r.json());
+      setMsg("تم الاسترجاع ونُشر على الموقع ✓");
+      load();
+    } else setMsg("تعذّر الاسترجاع");
+  }
+  return (
+    <Card title="النسخ الاحتياطية" desc="قبل كل حفظ تُحفظ نسخة من المحتوى السابق تلقائياً (آخر ٣٠ نسخة). تقدر ترجع لأي نسخة بضغطة.">
+      {msg && <p className="text-sm text-green-700">{msg}</p>}
+      {!list && <p className="text-sm text-mist">جارٍ التحميل…</p>}
+      {list?.length === 0 && <p className="text-sm text-mist">لا توجد نسخ بعد. أول نسخة تُنشأ مع أول حفظ.</p>}
+      <div className="space-y-2">
+        {list?.map((b, i) => (
+          <div key={b.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-ice-200 bg-white p-3">
+            <div>
+              <p className="text-sm font-semibold text-navy" dir="ltr">
+                {new Date(b.at).toLocaleString("en-GB")}
+              </p>
+              <p className="text-xs text-mist">
+                {i === 0 ? "آخر نسخة قبل الحفظ الأخير · " : ""}
+                {b.note}
+              </p>
+            </div>
+            <Btn onClick={() => restore(b.id)}>استرجاع</Btn>
           </div>
         ))}
       </div>
