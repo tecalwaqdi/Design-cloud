@@ -9,8 +9,8 @@ export const defaultContent: Content = {
       ar: "مستلزمات طبية موثوقة بمعايير عالمية",
       en: "Trusted medical supplies, global standards",
     },
-    gold: "#2A9DB8",
-    navy: "#0E2A47",
+    gold: "#A8875A",
+    navy: "#1C2A3F",
   },
   hero: {
     welcome: { ar: "مرحباً بكم في", en: "Welcome to" },

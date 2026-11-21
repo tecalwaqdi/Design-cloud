@@ -37,7 +37,7 @@ export function Sparkles({ count = 18, bubbles = 10, seed = 7 }: { count?: numbe
             opacity: 0,
           }}
         >
-          <path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0 Z" fill={i % 3 ? "#bfe9f4" : "#ffffff"} />
+          <path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0 Z" fill={i % 3 ? "#e8cf96" : "#ffffff"} />
         </svg>
       ))}
       {bub.map((b, i) => (

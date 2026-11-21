@@ -1,4 +1,4 @@
-// "Mediatrix" wordmark — Readex Pro, deep navy; the i-dots are ice drops and the x is aqua.
+// "Mediatrix" wordmark — Readex Pro, deep navy; the i-dots are ice drops and the x is gold.
 
 function Drop({ u, delay = 0 }: { u: string; delay?: number }) {
   return (
@@ -23,7 +23,7 @@ function Drop({ u, delay = 0 }: { u: string; delay?: number }) {
 
 export function Wordmark({ className = "", uid = "wm" }: { className?: string; uid?: string }) {
   return (
-    <span className={`font-logo inline-flex items-baseline font-semibold leading-none tracking-[-0.015em] text-navy ${className}`} dir="ltr" aria-label="Mediatrix" role="img">
+    <span className={`font-brand inline-flex items-baseline font-semibold leading-none tracking-[-0.015em] text-navy ${className}`} dir="ltr" aria-label="Mediatrix" role="img">
       <span aria-hidden="true">Med</span>
       <span className="relative" aria-hidden="true">
         ı<Drop u={`${uid}-a`} />
@@ -32,7 +32,7 @@ export function Wordmark({ className = "", uid = "wm" }: { className?: string; u
       <span className="relative" aria-hidden="true">
         ı<Drop u={`${uid}-b`} delay={1.4} />
       </span>
-      <span className="text-gold" aria-hidden="true">
+      <span className="text-gold-grad !p-0" aria-hidden="true">
         x
       </span>
     </span>

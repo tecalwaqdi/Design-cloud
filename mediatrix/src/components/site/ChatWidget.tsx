@@ -1,7 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { Logomark } from "../art/Logo";
+import { Pulse } from "../art/Logo";
 import { Social } from "./Icons";
 import type { Lang } from "@/lib/types";
 
@@ -197,7 +197,9 @@ export function ChatWidget({
           >
             {/* header */}
             <div className="relative flex items-center gap-3 bg-navy px-4 py-3.5 text-white">
-              <Logomark className="h-10 w-10" id="lm-chat" animated={false} />
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/40">
+                <Pulse className="h-auto w-7 invert" id="chat-pulse" animated={false} />
+              </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-bold">{name}</p>
                 <p className="flex items-center gap-1.5 text-[0.7rem] text-white/70">
@@ -304,17 +306,17 @@ function RobotPeek({ hover }: { hover: boolean }) {
               <stop offset="1" stopColor="#dfe8ec" />
             </linearGradient>
             <linearGradient id="rb-gold" x1="0" x2="1">
-              <stop offset="0" stopColor="#1d5d80" />
-              <stop offset="0.5" stopColor="#e6f6fa" />
-              <stop offset="1" stopColor="#2a9db8" />
+              <stop offset="0" stopColor="#9a7a4b" />
+              <stop offset="0.5" stopColor="#f1dfb3" />
+              <stop offset="1" stopColor="#a8875a" />
             </linearGradient>
             <radialGradient id="rb-glow">
               <stop offset="0" stopColor="#fff6d6" />
-              <stop offset="1" stopColor="#8fd3e2" stopOpacity="0" />
+              <stop offset="1" stopColor="#e6c98e" stopOpacity="0" />
             </radialGradient>
           </defs>
           {/* antenna */}
-          <line x1="30" y1="6" x2="30" y2="15" stroke="#2a9db8" strokeWidth="2" strokeLinecap="round" />
+          <line x1="30" y1="6" x2="30" y2="15" stroke="#a8875a" strokeWidth="2" strokeLinecap="round" />
           <circle cx="30" cy="5" r="7" fill="url(#rb-glow)">
             <animate attributeName="r" values="5;8;5" dur="1.4s" repeatCount="indefinite" />
           </circle>
@@ -326,7 +328,7 @@ function RobotPeek({ hover }: { hover: boolean }) {
           <rect x="5" y="14" width="50" height="44" rx="15" fill="url(#rb-head)" stroke="#c9d5db" strokeWidth="1" />
           <rect x="9" y="17" width="9" height="20" rx="4.5" fill="#fff" opacity="0.9" />
           {/* visor */}
-          <rect x="11" y="23" width="38" height="22" rx="11" fill="#0e2a47" />
+          <rect x="11" y="23" width="38" height="22" rx="11" fill="#1c2a3f" />
           <motion.g {...eyes}>
             <ellipse cx="22.5" cy="33" rx="4" ry="4.6" fill="#8fe3f0">
               <animate attributeName="ry" values="4.6;4.6;0.6;4.6;4.6" keyTimes="0;0.45;0.5;0.55;1" dur="3.4s" repeatCount="indefinite" />
@@ -342,11 +344,11 @@ function RobotPeek({ hover }: { hover: boolean }) {
           <circle cx="14" cy="49" r="2.6" fill="#f3b8b8" opacity="0.7" />
           <circle cx="46" cy="49" r="2.6" fill="#f3b8b8" opacity="0.7" />
           {/* heartbeat badge */}
-          <path d="M23 52 h4 l1.5 -3 l2 6 l1.5 -3 h5" stroke="#2a9db8" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M23 52 h4 l1.5 -3 l2 6 l1.5 -3 h5" stroke="#a8875a" strokeWidth="1.4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
         {/* waving hand */}
         <motion.svg viewBox="0 0 20 26" className="absolute -end-3.5 top-[10px] h-[22px] w-[17px] origin-bottom" initial={{ opacity: 0 }} {...wave}>
-          <rect x="6" y="18" width="8" height="6" rx="2" fill="#2a9db8" />
+          <rect x="6" y="18" width="8" height="6" rx="2" fill="#a8875a" />
           <path d="M4 18 V9 a2 2 0 0 1 4 0 V7 a2 2 0 0 1 4 0 V8 a2 2 0 0 1 4 0 V18 Z" fill="#fff" stroke="#c9d5db" strokeWidth="1" />
           <path d="M4 13 q-3 -2 -2.5 -4.5 q1.6 -0.6 2.5 1.5" fill="#fff" stroke="#c9d5db" strokeWidth="1" />
         </motion.svg>

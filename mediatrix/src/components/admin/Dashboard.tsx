@@ -149,7 +149,7 @@ export function Dashboard({ initial, stats }: { initial: Content; stats: StatsVi
                 </div>
                 <LField label="الشعار النصي (Tagline)" value={c.identity.tagline} onChange={(tagline) => set("identity", { ...c.identity, tagline })} />
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Field label="لون التمييز (الأكوا)">
+                  <Field label="اللون الذهبي">
                     <ColorInput value={c.identity.gold} onChange={(gold) => set("identity", { ...c.identity, gold })} />
                   </Field>
                   <Field label="اللون الكحلي">
