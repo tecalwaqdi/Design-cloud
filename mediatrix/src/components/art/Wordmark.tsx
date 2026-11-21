@@ -11,11 +11,11 @@ function BottleI({ u, delay = 0 }: { u: string; delay?: number }) {
     <svg viewBox="0 0 30 100" className="inline-block h-[0.73em] w-[0.27em] overflow-visible align-baseline" style={{ marginInline: "0.012em" }} aria-hidden="true">
       <defs>
         <linearGradient id={`${u}-gl`} x1="0" x2="1">
-          <stop offset="0" stopColor="#16233a" />
-          <stop offset="0.22" stopColor="#34507a" />
-          <stop offset="0.5" stopColor="#1c2a3f" />
-          <stop offset="0.85" stopColor="#121c2c" />
-          <stop offset="1" stopColor="#2a3d5a" />
+          <stop offset="0" stopColor="#c7dbe4" />
+          <stop offset="0.22" stopColor="#ffffff" />
+          <stop offset="0.55" stopColor="#e6f1f5" />
+          <stop offset="0.85" stopColor="#cfe1e9" />
+          <stop offset="1" stopColor="#b9ced8" />
         </linearGradient>
         <linearGradient id={`${u}-lq`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#a8ecf7" />
@@ -53,7 +53,7 @@ function BottleI({ u, delay = 0 }: { u: string; delay?: number }) {
         <rect x="7.1" y="44" width="2.3" height="50" rx="1.15" fill="#fff" opacity="0.55" />
         <rect x="21.2" y="46" width="0.9" height="46" rx="0.45" fill="#9fd0e3" opacity="0.5" />
       </g>
-      <path d={BOTTLE} fill="none" stroke="#0e1828" strokeOpacity="0.6" strokeWidth="0.7" />
+      <path d={BOTTLE} fill="none" stroke="#6f8ea3" strokeOpacity="0.9" strokeWidth="1.6" />
       <rect x="9.4" y="25" width="11.2" height="10.2" rx="1.6" fill={`url(#${u}-cap)`} />
       <path d="M11.4 26.4v7.4M13.4 26.4v7.4M15.4 26.4v7.4M17.4 26.4v7.4M19.2 26.4v7.4" stroke="#7d6238" strokeOpacity="0.55" strokeWidth="0.6" />
       <rect x="9" y="23.4" width="12" height="2.6" rx="1.3" fill="#f1dfb3" />
@@ -81,9 +81,9 @@ function RibbonX({ u, simple = false }: { u: string; simple?: boolean }) {
           <stop offset="1" stopColor="#7d6238" />
         </linearGradient>
         <linearGradient id={`${u}-n`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#3a5272" />
-          <stop offset="0.5" stopColor="#1c2a3f" />
-          <stop offset="1" stopColor="#2b3d57" />
+          <stop offset="0" stopColor="#dfe7ed" />
+          <stop offset="0.45" stopColor="#9fb2c1" />
+          <stop offset="1" stopColor="#6a8196" />
         </linearGradient>
         <radialGradient id={`${u}-p`} cx="0.35" cy="0.35">
           <stop offset="0" stopColor="#ffffff" />
@@ -102,7 +102,7 @@ function RibbonX({ u, simple = false }: { u: string; simple?: boolean }) {
         </clipPath>
       </defs>
       <path d={X_NAVY} fill={`url(#${u}-n)`} />
-      <path d={X_NAVY_HI} fill="none" stroke="#7f9bb8" strokeOpacity="0.55" strokeWidth="1.2" strokeLinecap="round" />
+      <path d={X_NAVY_HI} fill="none" stroke="#ffffff" strokeOpacity="0.8" strokeWidth="1.2" strokeLinecap="round" />
       <path d={X_GOLD_THIN} fill={`url(#${u}-g)`} />
       {!simple && <path d={X_GOLD_OUT} fill={`url(#${u}-g)`} />}
       <path d={X_GOLD} fill={`url(#${u}-g)`} />

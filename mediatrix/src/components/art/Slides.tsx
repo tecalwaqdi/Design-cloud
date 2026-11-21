@@ -137,7 +137,7 @@ export function ColdChainBanner() {
         <rect x="512" y="210" width="288" height="12" fill="url(#cc-navy)" />
         <rect x="530" y="196" width="10" height="100" rx="5" fill="#ffffff" opacity="0.85" />
         {/* digital display */}
-        <rect x="604" y="236" width="104" height="44" rx="8" fill="#0e1a2c" />
+        <rect x="604" y="236" width="104" height="44" rx="8" fill="#185a70" />
         <text x="656" y="266" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="700" fontSize="22" fill="#8fe3f0">
           4.0°C
           <animate attributeName="opacity" values="1;0.75;1" dur="2.4s" repeatCount="indefinite" />

@@ -167,9 +167,9 @@ export function ChatWidget({
                 setOpen(true);
               }}
               aria-label={t.open}
-              className="relative z-10 flex items-center gap-2 rounded-full bg-navy py-3 pe-5 ps-3 text-sm font-semibold text-white shadow-[0_14px_30px_-10px_rgba(28,42,63,.7)] ring-1 ring-gold/40 transition hover:scale-[1.03]"
+              className="relative z-10 flex items-center gap-2 bar-gold rounded-full py-3 pe-5 ps-3 text-sm font-semibold shadow-[0_14px_30px_-10px_rgba(125,98,56,.7)] ring-1 ring-gold/40 transition hover:scale-[1.03]"
             >
-              <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-b from-gold-light to-gold">
+              <span className="relative flex h-9 w-9 items-center justify-center rounded-full bg-white/25 ring-1 ring-white/50">
                 <span className="absolute inset-0 animate-ping rounded-full bg-gold/40" />
                 <svg viewBox="0 0 24 24" className="relative h-5 w-5" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M4 5h16v11H9l-5 4z" />
@@ -196,7 +196,7 @@ export function ChatWidget({
             className="fixed inset-x-2.5 bottom-2.5 z-50 flex h-[85dvh] max-h-[640px] flex-col overflow-hidden rounded-[24px] border border-white bg-[#f7fafb] shadow-[0_30px_80px_-20px_rgba(28,42,63,.55)] sm:inset-x-auto sm:start-5 sm:bottom-5 sm:w-[380px]"
           >
             {/* header */}
-            <div className="relative flex items-center gap-3 bg-navy px-4 py-3.5 text-white">
+            <div className="bar-gold relative flex items-center gap-3 px-4 py-3.5">
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 ring-1 ring-gold/40">
                 <Pulse className="h-auto w-7 invert" id="chat-pulse" animated={false} />
               </span>
@@ -328,7 +328,7 @@ function RobotPeek({ hover }: { hover: boolean }) {
           <rect x="5" y="14" width="50" height="44" rx="15" fill="url(#rb-head)" stroke="#c9d5db" strokeWidth="1" />
           <rect x="9" y="17" width="9" height="20" rx="4.5" fill="#fff" opacity="0.9" />
           {/* visor */}
-          <rect x="11" y="23" width="38" height="22" rx="11" fill="#1c2a3f" />
+          <rect x="11" y="23" width="38" height="22" rx="11" fill="#1f6f86" />
           <motion.g {...eyes}>
             <ellipse cx="22.5" cy="33" rx="4" ry="4.6" fill="#8fe3f0">
               <animate attributeName="ry" values="4.6;4.6;0.6;4.6;4.6" keyTimes="0;0.45;0.5;0.55;1" dur="3.4s" repeatCount="indefinite" />
@@ -364,7 +364,7 @@ function Bubble({ role, children }: { role: "user" | "assistant"; children: Reac
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       className={`max-w-[85%] whitespace-pre-line rounded-2xl px-4 py-2.5 text-[0.9rem] leading-6 ${
-        mine ? "ms-auto rounded-se-md bg-navy text-white" : "rounded-ss-md bg-white text-navy shadow-sm ring-1 ring-ice-200"
+        mine ? "bar-gold ms-auto rounded-se-md" : "rounded-ss-md bg-white text-navy shadow-sm ring-1 ring-ice-200"
       }`}
     >
       {children}
@@ -428,7 +428,7 @@ function Handoff({
         {email && (
           <a
             href={`mailto:${email}?subject=${encodeURIComponent(lang === "ar" ? "طلب من المساعد الذكي" : "Request from the website assistant")}&body=${encodeURIComponent(`${summary}\n\n${transcript}`)}`}
-            className="flex items-center gap-1.5 rounded-full bg-navy px-3.5 py-2 text-xs font-semibold text-white"
+            className="bar-gold flex items-center gap-1.5 rounded-full px-3.5 py-2 text-xs font-semibold"
           >
             ✉ {t.email}
           </a>

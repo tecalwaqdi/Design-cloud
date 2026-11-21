@@ -97,15 +97,15 @@ function Vision({ c, lang }: Ctx) {
             </Reveal>
           ))}
           <Reveal delay={0.24}>
-            <div className="h-full rounded-[24px] bg-navy p-8 text-white shadow-[0_30px_60px_-30px_rgba(28,42,63,.7)]">
-              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-gold-light ring-1 ring-gold/40">
+            <div className="panel-gold h-full rounded-[24px] p-8">
+              <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-gold-deep ring-1 ring-gold/40">
                 <Icon name="sparkle" />
               </span>
               <h3 className="font-heading text-2xl font-semibold">{t("goals", lang)}</h3>
               <ul className="mt-4 space-y-3">
                 {c.vision.goals.map((g, i) => (
-                  <li key={i} className="flex items-start gap-3 text-white/85">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-gold-light" />
+                  <li key={i} className="flex items-start gap-3 text-navy-soft">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-gold" />
                     {tr(g, lang)}
                   </li>
                 ))}
@@ -240,18 +240,18 @@ function Contact({ c, lang }: Ctx) {
         <SectionHeading title={t("contact_title", lang)} sub={t("contact_sub", lang)} />
         <div className="grid gap-6 lg:grid-cols-5">
           <Reveal className="lg:col-span-2">
-            <div className="relative h-full overflow-hidden rounded-[26px] bg-navy p-8 text-white">
-              <Pulse className="absolute -bottom-4 -end-8 w-64 opacity-10 invert" id="contact-pulse" />
+            <div className="panel-gold relative h-full overflow-hidden rounded-[26px] p-8">
+              <Pulse className="absolute -bottom-4 -end-8 w-64 opacity-15" id="contact-pulse" />
               <ul className="relative space-y-5">
                 {rows.map((r, i) => (
                   <li key={i}>
-                    <p className="text-xs uppercase tracking-widest text-gold-light/80">{r.label}</p>
+                    <p className="text-xs uppercase tracking-widest text-gold-deep">{r.label}</p>
                     {r.href ? (
-                      <a href={r.href} dir={r.ltr ? "ltr" : undefined} className="mt-1 block text-lg hover:text-gold-light">
+                      <a href={r.href} dir={r.ltr ? "ltr" : undefined} className="mt-1 block text-lg text-navy hover:text-gold-deep">
                         {r.value}
                       </a>
                     ) : (
-                      <p className="mt-1 text-white/85">{r.value}</p>
+                      <p className="mt-1 text-navy-soft">{r.value}</p>
                     )}
                   </li>
                 ))}
@@ -259,7 +259,7 @@ function Contact({ c, lang }: Ctx) {
               {socials.length > 0 && (
                 <div className="relative mt-8 flex flex-wrap gap-3">
                   {socials.map(([k, v]) => (
-                    <a key={k} href={v} target="_blank" rel="noopener" aria-label={k} className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-gold-light ring-1 ring-white/15 transition hover:bg-gold hover:text-white">
+                    <a key={k} href={v} target="_blank" rel="noopener" aria-label={k} className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-gold-deep ring-1 ring-gold/30 transition hover:bg-gold hover:text-white">
                       <Social name={k} />
                     </a>
                   ))}

@@ -98,8 +98,8 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <stop offset="1" stopColor="#e3eaee" />
         </linearGradient>
         <linearGradient id="pb-screen" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#21344f" />
-          <stop offset="1" stopColor="#0e1a2c" />
+          <stop offset="0" stopColor="#2a7f99" />
+          <stop offset="1" stopColor="#185a70" />
         </linearGradient>
         <linearGradient id="pb-teal" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#bfe6ec" stopOpacity="0.55" />
@@ -111,8 +111,8 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <stop offset="1" stopColor="#4f7fbf" />
         </linearGradient>
         <linearGradient id="pb-cuff" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#3a4d6b" />
-          <stop offset="1" stopColor="#1c2a3f" />
+          <stop offset="0" stopColor="#b9c8d2" />
+          <stop offset="1" stopColor="#7f93a3" />
         </linearGradient>
         <radialGradient id="pb-shadow">
           <stop offset="0" stopColor="#1c2a3f" stopOpacity="0.28" />
@@ -306,7 +306,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
             {Array.from({ length: 15 }, (_, k) => (
               <line key={k} x1={10 + k * 10} y1="-8" x2={10 + k * 10} y2={k % 2 ? -4 : -2} stroke="#1c2a3f" strokeOpacity="0.45" strokeWidth="0.7" />
             ))}
-            <rect x="120" y="-7" width="10" height="14" rx="2" fill="#1c2a3f" />
+            <rect x="120" y="-7" width="10" height="14" rx="2" fill="#7f93a3" />
             <rect x="130" y="-2.5" width="78" height="5" rx="1.5" fill="url(#pb-white)" />
             <rect x="170" y="-15" width="6" height="30" rx="2" fill="url(#pb-white)" />
             <rect x="206" y="-11" width="7" height="22" rx="2" fill="url(#pb-gold)" />

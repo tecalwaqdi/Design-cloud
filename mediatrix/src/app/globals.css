@@ -130,6 +130,18 @@ body[dir="rtl"] {
   display: none;
 }
 
+/* light gold panel (replaces dark navy blocks) */
+.panel-gold {
+  background: linear-gradient(145deg, #fffaf0 0%, #f6ead0 55%, #ecdcb8 100%);
+  border: 1px solid rgba(201, 169, 110, 0.45);
+  box-shadow: 0 1px 0 #fff inset, 0 24px 46px -30px rgba(125, 98, 56, 0.55);
+  color: #1c2a3f;
+}
+.bar-gold {
+  background: linear-gradient(120deg, #c9a96e 0%, #a8875a 55%, #8a6c40 100%);
+  color: #fff;
+}
+
 .glass {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(240, 246, 247, 0.62));
   backdrop-filter: blur(14px) saturate(1.2);
@@ -289,7 +301,19 @@ body[dir="rtl"] {
 }
 @media (max-width: 1023px) {
   /* backdrop blur on many moving cards is the main cause of scroll jank on phones */
-  .country-card.glass {
+  .country-card/* light gold panel (replaces dark navy blocks) */
+.panel-gold {
+  background: linear-gradient(145deg, #fffaf0 0%, #f6ead0 55%, #ecdcb8 100%);
+  border: 1px solid rgba(201, 169, 110, 0.45);
+  box-shadow: 0 1px 0 #fff inset, 0 24px 46px -30px rgba(125, 98, 56, 0.55);
+  color: #1c2a3f;
+}
+.bar-gold {
+  background: linear-gradient(120deg, #c9a96e 0%, #a8875a 55%, #8a6c40 100%);
+  color: #fff;
+}
+
+.glass {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     background: linear-gradient(180deg, #ffffff, #f2f7f8);

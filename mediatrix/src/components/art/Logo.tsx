@@ -17,18 +17,18 @@ export function Logomark({ animated = true, className = "", id = "lm" }: { anima
     <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
       <defs>
         <linearGradient id={`${id}-tile`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#2b3d57" />
-          <stop offset="0.55" stopColor="#1c2a3f" />
-          <stop offset="1" stopColor="#121c2c" />
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.6" stopColor="#f3f8fa" />
+          <stop offset="1" stopColor="#e3eef2" />
         </linearGradient>
         <linearGradient id={`${id}-shine`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#ffffff" stopOpacity="0.28" />
           <stop offset="0.5" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
         <linearGradient id={`${id}-gold`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f1dfb3" />
-          <stop offset="0.5" stopColor="#d9bd86" />
-          <stop offset="1" stopColor="#a8875a" />
+          <stop offset="0" stopColor="#c9a96e" />
+          <stop offset="0.5" stopColor="#a8875a" />
+          <stop offset="1" stopColor="#7d6238" />
         </linearGradient>
         <linearGradient id={`${id}-drop`} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="#e6f7fb" />
@@ -42,7 +42,7 @@ export function Logomark({ animated = true, className = "", id = "lm" }: { anima
       </defs>
       <rect x="2" y="2" width="60" height="60" rx="17" fill={`url(#${id}-tile)`} />
       <rect x="2" y="2" width="60" height="60" rx="17" fill={`url(#${id}-shine)`} />
-      <rect x="2.6" y="2.6" width="58.8" height="58.8" rx="16.4" fill="none" stroke="#d9bd86" strokeOpacity="0.55" strokeWidth="1.2" />
+      <rect x="2.6" y="2.6" width="58.8" height="58.8" rx="16.4" fill="none" stroke="#c9a96e" strokeOpacity="0.9" strokeWidth="1.6" />
       <path
         d={M_PATH}
         fill="none"
@@ -112,7 +112,7 @@ export function Logo({
   if (size === "sm") {
     return (
       <span className="inline-flex items-center gap-2.5" dir="ltr">
-        <Logomark animated={animated} className="h-10 w-10 drop-shadow-[0_6px_10px_rgba(28,42,63,.25)]" id="lm-sm" />
+        <Logomark animated={animated} className="h-10 w-10 drop-shadow-[0_6px_10px_rgba(125,98,56,.22)]" id="lm-sm" />
         {text ? <span className="font-logo text-2xl font-semibold text-navy">{text}</span> : <Wordmark className="text-[1.6rem]" uid="wm-sm" simpleX />}
       </span>
     );
@@ -120,7 +120,7 @@ export function Logo({
   const big = size === "lg";
   return (
     <span className="inline-flex flex-col items-center gap-3" dir="ltr">
-      <Logomark animated={animated} className={`${big ? "h-24 w-24" : "h-14 w-14"} drop-shadow-[0_10px_18px_rgba(28,42,63,.28)]`} id={`lm-${size}`} />
+      <Logomark animated={animated} className={`${big ? "h-24 w-24" : "h-14 w-14"} drop-shadow-[0_10px_18px_rgba(125,98,56,.25)]`} id={`lm-${size}`} />
       {text ? <span className={`font-logo font-semibold text-navy ${big ? "text-6xl" : "text-3xl"}`}>{text}</span> : <Wordmark className={big ? "text-6xl md:text-7xl" : "text-[2rem]"} uid={`wm-${size}`} />}
     </span>
   );
