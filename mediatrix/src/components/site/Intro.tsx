@@ -13,7 +13,7 @@ export function Intro({ name }: { name: string }) {
       />
       <div id="intro" className="bg-ice fixed inset-0 z-[100] flex items-center justify-center" aria-hidden="true">
         <div className="flex flex-col items-center" dir="ltr">
-          <Logomark className="h-24 w-24 drop-shadow-[0_14px_26px_rgba(14,42,71,.35)] md:h-28 md:w-28" id="lm-intro" />
+          <Logomark className="h-20 w-48 md:h-24 md:w-56" id="lm-intro" />
           <span className="intro-word mt-5">
             {name.toLowerCase() === "mediatrix" ? (
               <Wordmark uid="wm-intro" className="text-6xl md:text-7xl" />

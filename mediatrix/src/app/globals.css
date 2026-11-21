@@ -10,8 +10,8 @@
   --color-ice-100: #eef4f5;
   --color-ice-200: #e1ebed;
   --color-ice-300: #d0dcdf;
-  --color-navy-soft: #3a4759;
-  --color-mist: #5f686d;
+  --color-navy-soft: #4a7a96;
+  --color-mist: #6e8796;
   --color-gold-light: #d8bf8a;
   --color-gold-pale: #efe2c4;
   --color-gold-deep: #7d6238;
@@ -26,7 +26,7 @@
 
 :root {
   --gold: #a8875a;
-  --navy: #1c2a3f;
+  --navy: #1f5f86; /* deep sky blue (no navy/black in the brand) */
 }
 
 html {
@@ -341,4 +341,14 @@ body[dir="rtl"] {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* wordmark letters: silver → sky blue */
+.wm-sky {
+  background: linear-gradient(180deg, #7fb6d3 0%, #3b84ab 45%, #1f5f86 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-block: 0.08em;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.9));
 }

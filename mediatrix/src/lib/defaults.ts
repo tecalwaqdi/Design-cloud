@@ -10,7 +10,7 @@ export const defaultContent: Content = {
       en: "Trusted medical supplies, global standards",
     },
     gold: "#A8875A",
-    navy: "#1C2A3F",
+    navy: "#1F5F86",
   },
   hero: {
     welcome: { ar: "مرحباً بكم في", en: "Welcome to" },

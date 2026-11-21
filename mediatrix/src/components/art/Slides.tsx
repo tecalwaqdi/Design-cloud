@@ -46,9 +46,9 @@ export function ColdChainBanner() {
           <stop offset="1" stopColor="#d6e3e9" />
         </linearGradient>
         <linearGradient id="cc-navy" x1="0" x2="1">
-          <stop offset="0" stopColor="#1c2a3f" />
+          <stop offset="0" stopColor="#1f5f86" />
           <stop offset="0.5" stopColor="#2f4a6b" />
-          <stop offset="1" stopColor="#1c2a3f" />
+          <stop offset="1" stopColor="#1f5f86" />
         </linearGradient>
         <linearGradient id="cc-gold" x1="0" x2="1">
           <stop offset="0" stopColor="#7d6238" />
@@ -70,8 +70,8 @@ export function ColdChainBanner() {
           <stop offset="1" stopColor="#ffffff" stopOpacity="0" />
         </linearGradient>
         <radialGradient id="cc-shadow">
-          <stop offset="0" stopColor="#1c2a3f" stopOpacity="0.28" />
-          <stop offset="1" stopColor="#1c2a3f" stopOpacity="0" />
+          <stop offset="0" stopColor="#1f5f86" stopOpacity="0.28" />
+          <stop offset="1" stopColor="#1f5f86" stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -143,7 +143,7 @@ export function ColdChainBanner() {
           <animate attributeName="opacity" values="1;0.75;1" dur="2.4s" repeatCount="indefinite" />
         </text>
         <path d="M618 244 l4 0 M618 248 l4 0" stroke="#8fe3f0" strokeWidth="1" />
-        <text x="752" y="260" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="11" fill="#1c2a3f">MEDIATRIX</text>
+        <text x="752" y="260" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="11" fill="#1f5f86">MEDIATRIX</text>
         <text x="752" y="273" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" letterSpacing="1.5" fill="#2f6d92">COLD CHAIN</text>
         <path d="M640 302 v8 h32 v-8" fill="none" stroke="url(#cc-gold)" strokeWidth="4" strokeLinecap="round" />
       </g>
@@ -248,7 +248,7 @@ export function NetworkBanner() {
             <animate attributeName="opacity" values="0.9;0" dur="2.4s" begin={`${i * 0.4}s`} repeatCount="indefinite" />
           </circle>
           <circle r={i === 0 ? 8 : 5.5} fill="url(#nw-gold)" stroke="#fff" strokeWidth="1.5" />
-          <text y={i === 0 ? 26 : -12} textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="10.5" fill="#1c2a3f" opacity="0.85">
+          <text y={i === 0 ? 26 : -12} textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="10.5" fill="#1f5f86" opacity="0.85">
             {n.label}
           </text>
         </g>

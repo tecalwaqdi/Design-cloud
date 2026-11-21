@@ -53,7 +53,7 @@ function BottleI({ u, delay = 0 }: { u: string; delay?: number }) {
         <rect x="7.1" y="44" width="2.3" height="50" rx="1.15" fill="#fff" opacity="0.55" />
         <rect x="21.2" y="46" width="0.9" height="46" rx="0.45" fill="#9fd0e3" opacity="0.5" />
       </g>
-      <path d={BOTTLE} fill="none" stroke="#6f8ea3" strokeOpacity="0.9" strokeWidth="1.6" />
+      <path d={BOTTLE} fill="none" stroke="#3b84ab" strokeOpacity="0.95" strokeWidth="1.6" />
       <rect x="9.4" y="25" width="11.2" height="10.2" rx="1.6" fill={`url(#${u}-cap)`} />
       <path d="M11.4 26.4v7.4M13.4 26.4v7.4M15.4 26.4v7.4M17.4 26.4v7.4M19.2 26.4v7.4" stroke="#7d6238" strokeOpacity="0.55" strokeWidth="0.6" />
       <rect x="9" y="23.4" width="12" height="2.6" rx="1.3" fill="#f1dfb3" />
@@ -131,9 +131,9 @@ function RibbonX({ u, simple = false }: { u: string; simple?: boolean }) {
 export function Wordmark({ className = "", uid = "wm", simpleX = false }: { className?: string; uid?: string; simpleX?: boolean }) {
   return (
     <span className={`font-brand inline-flex items-baseline font-semibold leading-none tracking-[-0.015em] text-navy ${className}`} dir="ltr" aria-label="Mediatrix" role="img">
-      <span aria-hidden="true">Med</span>
+      <span className="wm-sky" aria-hidden="true">Med</span>
       <BottleI u={`${uid}-i1`} />
-      <span aria-hidden="true">atr</span>
+      <span className="wm-sky" aria-hidden="true">atr</span>
       <BottleI u={`${uid}-i2`} delay={1.5} />
       <RibbonX u={`${uid}-x`} simple={simpleX} />
     </span>

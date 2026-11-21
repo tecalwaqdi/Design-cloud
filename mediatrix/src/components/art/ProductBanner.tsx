@@ -3,7 +3,7 @@
 // glucose meter, blood-pressure monitor, pulse oximeter, vials, syringe).
 // viewBox crops to 0 40 1200 290.
 
-const brand = (x: number, y: number, size = 9, color = "#1c2a3f", sub?: string) => (
+const brand = (x: number, y: number, size = 9, color = "#1f5f86", sub?: string) => (
   <g textAnchor="middle" fontFamily="var(--font-logo), serif">
     <text x={x} y={y} fontSize={size} fontWeight="700" fill={color} letterSpacing="0.5">
       MEDIATRIX
@@ -115,8 +115,8 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <stop offset="1" stopColor="#7f93a3" />
         </linearGradient>
         <radialGradient id="pb-shadow">
-          <stop offset="0" stopColor="#1c2a3f" stopOpacity="0.28" />
-          <stop offset="1" stopColor="#1c2a3f" stopOpacity="0" />
+          <stop offset="0" stopColor="#1f5f86" stopOpacity="0.28" />
+          <stop offset="1" stopColor="#1f5f86" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="pb-shine" x1="0" x2="1">
           <stop offset="0" stopColor="#fff" stopOpacity="0" />
@@ -182,10 +182,10 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <path d="M282 300 V168 a29 29 0 0 1 58 0 V300 Z" fill="url(#pb-white)" />
           <rect x="282" y="196" width="58" height="14" fill="#6fbfcc" opacity="0.9" />
           <rect x="282" y="212" width="58" height="3" fill="url(#pb-gold)" />
-          <text x="311" y="258" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="26" fill="#1c2a3f">
+          <text x="311" y="258" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="26" fill="#1f5f86">
             O<tspan fontSize="14" dy="6">2</tspan>
           </text>
-          <text x="311" y="282" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" fill="#1c2a3f" opacity="0.7" letterSpacing="1.5">
+          <text x="311" y="282" textAnchor="middle" fontFamily="var(--font-sans), sans-serif" fontWeight="600" fontSize="6" fill="#1f5f86" opacity="0.7" letterSpacing="1.5">
             MEDICAL OXYGEN
           </text>
           <rect x="288" y="172" width="6" height="122" rx="3" fill="#fff" opacity="0.8" />
@@ -193,7 +193,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <ellipse cx="311" cy="122" rx="17" ry="5" fill="url(#pb-gold)" />
           <rect x="318" y="130" width="14" height="5" fill="url(#pb-gold)" />
           <circle cx="340" cy="132" r="10" fill="#fff" stroke="url(#pb-gold)" strokeWidth="2.5" />
-          <line x1="340" y1="132" x2="340" y2="125" stroke="#1c2a3f" strokeWidth="1.4" strokeLinecap="round">
+          <line x1="340" y1="132" x2="340" y2="125" stroke="#1f5f86" strokeWidth="1.4" strokeLinecap="round">
             <animateTransform attributeName="transform" type="rotate" values="-50 340 132;40 340 132;20 340 132;40 340 132;-50 340 132" dur="7s" repeatCount="indefinite" />
           </line>
 
@@ -206,7 +206,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           <rect x="410" y="130" width="28" height="5" rx="2.5" fill="url(#pb-gold)" />
           <rect x="370" y="232" width="54" height="44" rx="4" fill="#fff" opacity="0.8" />
           <path d="M397 238 v10 M392 243 h10" stroke="#6fbfcc" strokeWidth="2.4" strokeLinecap="round" />
-          {brand(397, 260, 8.5, "#1c2a3f", "ANTISEPTIC")}
+          {brand(397, 260, 8.5, "#1f5f86", "ANTISEPTIC")}
           <rect x="368" y="176" width="6" height="116" rx="3" fill="#fff" opacity="0.75" />
           {/* bubbles rising in the liquid */}
           {[376, 396, 414].map((cx, i) => (
@@ -228,7 +228,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
             <animateTransform attributeName="transform" type="translate" values="0 2;0 -2;0 2" dur="4s" repeatCount="indefinite" />
           </path>
           <rect x="452" y="232" width="140" height="5" fill="#6fbfcc" opacity="0.85" />
-          {brand(522, 258, 11, "#1c2a3f", "NITRILE EXAM GLOVES")}
+          {brand(522, 258, 11, "#1f5f86", "NITRILE EXAM GLOVES")}
           <rect x="452" y="284" width="140" height="3" fill="url(#pb-gold)" />
           <text x="580" y="279" textAnchor="end" fontFamily="var(--font-sans), sans-serif" fontWeight="700" fontSize="7" fill="#7d6238">
             100 PCS
@@ -248,7 +248,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           </text>
           <circle cx="646" cy="272" r="9" fill="url(#pb-gold)" />
           <circle cx="646" cy="272" r="5" fill="#fff" opacity="0.35" />
-          <text x="646" y="292" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6" fill="#1c2a3f">
+          <text x="646" y="292" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6" fill="#1f5f86">
             MEDIATRIX
           </text>
 
@@ -271,7 +271,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
           </path>
           <circle cx="799" cy="252" r="10" fill="url(#pb-gold)" />
           <circle cx="799" cy="252" r="5.5" fill="#fff" opacity="0.35" />
-          <text x="799" y="282" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6.5" fill="#1c2a3f">
+          <text x="799" y="282" textAnchor="middle" fontFamily="var(--font-logo), serif" fontWeight="700" fontSize="6.5" fill="#1f5f86">
             MEDIATRIX
           </text>
 
@@ -304,7 +304,7 @@ export function ProductBanner({ showProducts = true }: { showProducts?: boolean 
             <rect x="0" y="-8" width="172" height="16" rx="4" fill="url(#pb-glass)" stroke="#c9d8df" />
             <rect x="2" y="-5.5" width="118" height="11" rx="2" fill="url(#pb-teal)" />
             {Array.from({ length: 15 }, (_, k) => (
-              <line key={k} x1={10 + k * 10} y1="-8" x2={10 + k * 10} y2={k % 2 ? -4 : -2} stroke="#1c2a3f" strokeOpacity="0.45" strokeWidth="0.7" />
+              <line key={k} x1={10 + k * 10} y1="-8" x2={10 + k * 10} y2={k % 2 ? -4 : -2} stroke="#1f5f86" strokeOpacity="0.45" strokeWidth="0.7" />
             ))}
             <rect x="120" y="-7" width="10" height="14" rx="2" fill="#7f93a3" />
             <rect x="130" y="-2.5" width="78" height="5" rx="1.5" fill="url(#pb-white)" />
