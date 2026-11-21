@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="fonts.css"><style>
+body{background:radial-gradient(circle at 50% 45%,#1b1240 0%,#0a0a1a 55%,#05050c 100%);display:grid;place-items:center;position:relative}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(120,140,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(120,140,255,.07) 1px,transparent 1px);background-size:54px 54px;-webkit-mask:radial-gradient(circle at 50% 50%,#000 20%,transparent 62%)}
+.ring{position:absolute;width:900px;height:900px;border-radius:50%;border:3px solid transparent;background:conic-gradient(from 200deg,#00e5ff,#7c4dff,#ff2bd6,#00e5ff) border-box;-webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;filter:drop-shadow(0 0 18px #7c4dffaa)}
+.dash{position:absolute;width:830px;height:830px;border-radius:50%;border:2px dashed rgba(0,229,255,.25)}
+.row{position:relative;display:flex;align-items:center;direction:ltr;gap:6px}
+.br{font-family:'JetBrains Mono';font-weight:800;font-size:128px;background:linear-gradient(180deg,#00e5ff,#2979ff);-webkit-background-clip:text;color:transparent;filter:drop-shadow(0 0 22px rgba(0,229,255,.55));line-height:1}
+.br.r{background:linear-gradient(180deg,#ff2bd6,#7c4dff);-webkit-background-clip:text;filter:drop-shadow(0 0 22px rgba(255,43,214,.5))}
+.name{font-family:Grotesk;font-weight:700;font-size:150px;letter-spacing:-3px;color:#fff;line-height:1.25;text-shadow:0 0 30px rgba(170,140,255,.8),0 0 70px rgba(124,77,255,.6);padding:0 18px}
+.sub{position:absolute;top:735px;font-family:'JetBrains Mono';font-weight:700;font-size:40px;letter-spacing:10px;color:#9fb3ff}
+.sub b{color:#00e5ff}.cur{display:inline-block;width:22px;height:40px;background:#ff2bd6;vertical-align:-6px;margin-left:6px;box-shadow:0 0 14px #ff2bd6}
+.top{position:absolute;top:255px;font-family:'JetBrains Mono';font-size:30px;color:#5c6bc0;letter-spacing:4px}
+</style></head><body>
+<div class="grid"></div><div class="ring"></div><div class="dash"></div>
+<div class="top">// hello, world</div>
+<div class="row"><span class="br">&lt;</span><span class="name">Osama</span><span class="br r">/&gt;</span></div>
+<div class="sub"><b>SOFTWARE</b> DEV<span class="cur"></span></div>
+</body></html>

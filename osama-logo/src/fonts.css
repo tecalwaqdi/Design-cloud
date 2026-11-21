@@ -7,3 +7,5 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1080px;overflow:hidden}
 .mono{font-family:'JetBrains Mono',monospace}
+@font-face{font-family:Grotesk;src:url(../fonts/space-grotesk-latin-700-normal.woff2);font-weight:700}
+@font-face{font-family:Orbitron;src:url(../fonts/orbitron-latin-700-normal.woff2);font-weight:700}
