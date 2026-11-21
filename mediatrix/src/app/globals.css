@@ -345,7 +345,12 @@ body[dir="rtl"] {
 
 /* wordmark letters: silver → sky blue */
 .wm-sky {
-  background: linear-gradient(180deg, #7fb6d3 0%, #3b84ab 45%, #1f5f86 100%);
+  /* chosen wordmark: Cormorant Garamond (the first version's title face), deep sky-blue */
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.12em;
+  letter-spacing: 0;
+  background: linear-gradient(180deg, #3a6f92 0%, #2b6185 55%, #1f4f70 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
