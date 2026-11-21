@@ -1,3 +1,4 @@
+import { RibbonDefs, RibbonFront, RibbonsBack } from "./Ribbons";
 // Extra hero slides, drawn in the same visual language as ProductBanner
 // (viewBox 0 40 1200 290 so all slides scale identically).
 
@@ -23,6 +24,36 @@ function Snow({ count = 26, seed = 5 }: { count?: number; seed?: number }) {
           </g>
         );
       })}
+    </g>
+  );
+}
+
+/** A six-armed ice crystal. */
+function Crystal({ x, y, r, dur, delay = 0, drift = 0 }: { x: number; y: number; r: number; dur: number; delay?: number; drift?: number }) {
+  const arm = (
+    <g>
+      <line x1="0" y1="0" x2="0" y2={-r} />
+      <line x1="0" y1={-r * 0.55} x2={-r * 0.22} y2={-r * 0.75} />
+      <line x1="0" y1={-r * 0.55} x2={r * 0.22} y2={-r * 0.75} />
+      <line x1="0" y1={-r * 0.3} x2={-r * 0.15} y2={-r * 0.45} />
+      <line x1="0" y1={-r * 0.3} x2={r * 0.15} y2={-r * 0.45} />
+    </g>
+  );
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <g>
+        <animateTransform attributeName="transform" type="translate" values={`0 0;${drift} 14;0 0`} dur={`${dur * 1.6}s`} begin={`${delay}s`} repeatCount="indefinite" />
+        <g stroke="url(#cc-crystal)" strokeWidth={Math.max(1.2, r / 9)} strokeLinecap="round" fill="none">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur={`${dur}s`} begin={`${delay}s`} repeatCount="indefinite" />
+          {[0, 60, 120, 180, 240, 300].map((a) => (
+            <g key={a} transform={`rotate(${a})`}>
+              {arm}
+            </g>
+          ))}
+          <circle r={r * 0.12} fill="#ffffff" stroke="none" />
+        </g>
+        <animate attributeName="opacity" values="0.55;1;0.55" dur="3.2s" begin={`${delay}s`} repeatCount="indefinite" />
+      </g>
     </g>
   );
 }
@@ -75,18 +106,41 @@ export function ColdChainBanner() {
         </radialGradient>
       </defs>
 
+      <RibbonDefs u="ccr" icy />
+      <defs>
+        <linearGradient id="cc-crystal" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#ffffff" />
+          <stop offset="0.5" stopColor="#bfe9f4" />
+          <stop offset="1" stopColor="#6fbfd6" />
+        </linearGradient>
+        <radialGradient id="cc-wave">
+          <stop offset="0.7" stopColor="#8fd3e2" stopOpacity="0" />
+          <stop offset="0.92" stopColor="#8fd3e2" stopOpacity="0.55" />
+          <stop offset="1" stopColor="#8fd3e2" stopOpacity="0" />
+        </radialGradient>
+      </defs>
       <ellipse cx="600" cy="200" rx="520" ry="150" fill="url(#cc-glow)" />
+      <RibbonsBack u="ccr" leaves={false} />
+      {/* cold waves pulsing out of the cooler */}
+      {[0, 1, 2].map((i) => (
+        <ellipse key={i} cx="656" cy="240" rx="40" ry="16" fill="url(#cc-wave)" opacity="0">
+          <animate attributeName="rx" values="60;420" dur="4.5s" begin={`${i * 1.5}s`} repeatCount="indefinite" />
+          <animate attributeName="ry" values="22;120" dur="4.5s" begin={`${i * 1.5}s`} repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0;0.9;0" dur="4.5s" begin={`${i * 1.5}s`} repeatCount="indefinite" />
+        </ellipse>
+      ))}
       {/* frost branches in the corners */}
       {[
         [170, 300, 1],
         [1030, 300, -1],
       ].map(([x, y, f], k) => (
-        <g key={k} transform={`translate(${x} ${y}) scale(${f} 1)`} stroke="#9fd0e3" strokeWidth="1.4" fill="none" strokeLinecap="round" opacity="0.8">
-          <path d="M0 0 L60 -110" />
+        <g key={k} transform={`translate(${x} ${y}) scale(${f} 1)`} stroke="#9fd0e3" strokeWidth="1.6" fill="none" strokeLinecap="round" opacity="0.85" pathLength={1} strokeDasharray="1" strokeDashoffset="1">
+          <animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;0.35;0.85;1" dur="7s" begin={`${k * 0.6}s`} repeatCount="indefinite" />
+          <path d="M0 0 L60 -110" pathLength={1} />
           {[20, 40, 60, 80].map((t, i) => (
             <g key={i}>
-              <path d={`M${t * 0.55} ${-t} l${-18 + i * 2} ${-14}`} />
-              <path d={`M${t * 0.55} ${-t} l${18 - i * 2} ${-6}`} />
+              <path d={`M${t * 0.55} ${-t} l${-18 + i * 2} ${-14}`} pathLength={1} />
+              <path d={`M${t * 0.55} ${-t} l${18 - i * 2} ${-6}`} pathLength={1} />
             </g>
           ))}
         </g>
@@ -168,7 +222,25 @@ export function ColdChainBanner() {
         </ellipse>
       ))}
 
-      <Snow />
+      {/* big rotating ice crystals */}
+      <Crystal x={250} y={120} r={26} dur={18} drift={10} />
+      <Crystal x={960} y={110} r={22} dur={15} delay={1.2} drift={-8} />
+      <Crystal x={480} y={86} r={13} dur={11} delay={0.6} drift={6} />
+      <Crystal x={1040} y={230} r={15} dur={13} delay={2} drift={-6} />
+      <Crystal x={150} y={250} r={12} dur={10} delay={1.6} drift={6} />
+      {/* ice glints */}
+      {[
+        [560, 150],
+        [770, 170],
+        [880, 250],
+        [430, 230],
+      ].map(([x, y], i) => (
+        <path key={i} d={`M${x} ${y - 8} L${x + 2} ${y - 2} L${x + 8} ${y} L${x + 2} ${y + 2} L${x} ${y + 8} L${x - 2} ${y + 2} L${x - 8} ${y} L${x - 2} ${y - 2} Z`} fill="#ffffff" opacity="0">
+          <animate attributeName="opacity" values="0;1;0" dur="2.4s" begin={`${i * 0.7}s`} repeatCount="indefinite" />
+        </path>
+      ))}
+      <Snow count={40} />
+      <RibbonFront u="ccr" />
     </svg>
   );
 }
