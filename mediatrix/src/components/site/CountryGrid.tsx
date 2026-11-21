@@ -213,7 +213,7 @@ export function CountryGrid({
               }}
               variants={item}
               aria-label={c.name}
-              className={`country-card glass group relative w-[78%] shrink-0 snap-center snap-always rounded-[22px] p-2.5 transition-[transform,box-shadow] duration-500 active:scale-[0.985] sm:w-[46%] md:w-[31%] lg:w-[calc((100%-4rem)/5)] lg:snap-start lg:hover:-translate-y-2 lg:active:scale-100 ${
+              className={`country-card glass group relative w-[60%] shrink-0 snap-center snap-always rounded-[22px] p-2.5 transition-[transform,box-shadow] duration-500 active:scale-[0.985] sm:w-[40%] md:w-[30%] lg:w-[calc((100%-4rem)/5)] lg:snap-start lg:hover:-translate-y-2 lg:active:scale-100 ${
                 mine ? "ring-2 ring-gold/60" : ""
               }`}
             >
@@ -246,15 +246,15 @@ export function CountryGrid({
                 <span className="pointer-events-none absolute inset-0 rounded-[16px] ring-1 ring-inset ring-white/50" />
               </div>
 
-              <div className="px-1.5 pb-1 pt-3 text-center">
-                <h3 className="font-heading text-xl font-semibold text-navy">{c.name}</h3>
+              <div className="px-1.5 pb-1 pt-2 text-center sm:pt-3">
+                <h3 className="font-heading text-lg font-semibold sm:text-xl text-navy">{c.name}</h3>
                 <p className="mt-0.5 min-h-[2.4em] text-xs leading-snug text-mist">{c.landmark}</p>
                 {c.hasStore ? (
                   <a
                     href={`/go/${c.id}`}
                     target="_blank"
                     rel="noopener"
-                    className="btn-gold mt-3 flex items-center justify-center gap-1.5 rounded-xl py-3 text-sm font-semibold lg:py-2.5"
+                    className="btn-gold mt-2 flex items-center justify-center gap-1.5 rounded-xl py-2.5 sm:mt-3 sm:py-3 text-sm font-semibold lg:py-2.5"
                   >
                     {goLabel}
                     <svg viewBox="0 0 12 12" className="h-3 w-3 rtl:-scale-x-100" aria-hidden="true">
@@ -262,7 +262,7 @@ export function CountryGrid({
                     </svg>
                   </a>
                 ) : (
-                  <span aria-disabled="true" className="btn-gold mt-3 flex items-center justify-center rounded-xl py-3 text-sm font-semibold lg:py-2.5">
+                  <span aria-disabled="true" className="btn-gold mt-2 flex items-center justify-center rounded-xl py-2.5 sm:mt-3 sm:py-3 text-sm font-semibold lg:py-2.5">
                     {soonLabel}
                   </span>
                 )}

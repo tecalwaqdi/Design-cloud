@@ -61,7 +61,7 @@ export function Hero({
 
   return (
     <section
-      className="relative overflow-hidden pt-[72px] md:pt-20 lg:pt-[68px]"
+      className="relative overflow-hidden pt-[60px] md:pt-[68px]"
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect();
         mx.set((e.clientX - r.left) / r.width - 0.5);
@@ -90,7 +90,7 @@ export function Hero({
         onMouseLeave={() => setPaused(false)}
         aria-roledescription="carousel"
       >
-        <div className="relative h-[150px] overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)] sm:h-[190px] md:h-[200px] lg:h-[150px] xl:h-[170px] 2xl:h-[200px]">
+        <div className="relative h-[100px] overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)] sm:h-[130px] md:h-[150px] lg:h-[150px] xl:h-[170px] 2xl:h-[200px]">
           <AnimatePresence initial={false} custom={dir} mode="popLayout">
             <motion.div
               key={index}
@@ -134,7 +134,7 @@ export function Hero({
         </div>
 
         {/* caption + progress dots */}
-        <div className="relative mt-1 flex flex-col items-center gap-2 lg:mt-0 lg:gap-1">
+        <div className="relative mt-0 flex flex-col items-center gap-1">
           <AnimatePresence mode="wait">
             <motion.p
               key={index}
@@ -169,23 +169,23 @@ export function Hero({
       </motion.div>
 
       {/* ── title ── */}
-      <div className="relative mx-auto mt-3 max-w-5xl px-5 text-center lg:mt-0">
+      <div className="relative mx-auto mt-1 max-w-5xl px-5 text-center lg:mt-0">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease, delay: 0.45 }}
-          className="font-heading flex flex-col items-center justify-center gap-x-4 leading-none sm:flex-row sm:flex-wrap"
+          className="font-heading flex flex-row flex-wrap items-center justify-center gap-x-2 leading-none sm:gap-x-4"
         >
-          <span className="text-gold-grad py-[0.18em] leading-[1.25] text-xl font-medium uppercase tracking-[0.16em] rtl:text-2xl rtl:font-semibold rtl:tracking-normal sm:text-[1.7rem] lg:text-[1.8rem] rtl:lg:text-[2.1rem]">{welcome}</span>
-          <Wordmark uid="wm-hero" className="mt-1 text-[3.3rem] sm:mt-0 sm:text-[3.6rem] lg:text-[3.2rem] xl:text-[3.6rem]" />
+          <span className="text-gold-grad py-[0.18em] leading-[1.25] text-base font-medium uppercase tracking-[0.12em] rtl:text-xl rtl:font-semibold rtl:tracking-normal sm:text-[1.7rem] lg:text-[1.8rem] rtl:lg:text-[2.1rem]">{welcome}</span>
+          <Wordmark uid="wm-hero" className="text-[2.3rem] sm:text-[3rem] md:text-[3.2rem] lg:text-[3.2rem] xl:text-[3.6rem]" />
         </motion.h1>
-        <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.2, ease, delay: 0.9 }} className="gold-hairline mx-auto mt-3 w-40 lg:mt-1.5" />
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.1 }} className="mt-2 text-sm text-mist md:text-[0.95rem] lg:mt-1 lg:text-sm">
+        <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.2, ease, delay: 0.9 }} className="gold-hairline mx-auto mt-1.5 w-32 md:w-40" />
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.1 }} className="mt-1 text-xs text-mist sm:text-sm md:text-[0.95rem] lg:text-sm">
           {tagline}
-          <span className="hidden text-mist/80 lg:inline"> · {subtitle}</span>
+          <span className="hidden text-mist/80 md:inline"> · {subtitle}</span>
         </motion.p>
-        <p className="mt-1 text-xs text-mist/80 lg:hidden">{subtitle}</p>
-        <a href="#countries" className="mt-3 inline-flex flex-col items-center gap-1 text-[0.7rem] uppercase tracking-[0.3em] text-gold-deep rtl:tracking-normal rtl:text-xs lg:hidden" aria-label={scrollLabel}>
+        <p className="mt-0.5 text-[0.7rem] leading-snug text-mist/80 md:hidden">{subtitle}</p>
+        <a href="#countries" className="mt-3 hidden" aria-label={scrollLabel}>
           {scrollLabel}
           <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity }} className="block h-5 w-px bg-gradient-to-b from-gold to-transparent" />
         </a>
