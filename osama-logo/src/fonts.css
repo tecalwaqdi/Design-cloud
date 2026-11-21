@@ -1,0 +1,9 @@
+@font-face{font-family:Kufi;src:url(../fonts/reem-kufi-arabic-700-normal.woff2);font-weight:700}
+@font-face{font-family:Cairo;src:url(../fonts/cairo-arabic-900-normal.woff2);font-weight:900}
+@font-face{font-family:Cairo;src:url(../fonts/cairo-latin-900-normal.woff2);font-weight:900}
+@font-face{font-family:Cairo;src:url(../fonts/cairo-arabic-700-normal.woff2);font-weight:700}
+@font-face{font-family:Ruqaa;src:url(../fonts/aref-ruqaa-arabic-700-normal.woff2);font-weight:700}
+@font-face{font-family:Lalezar;src:url(../fonts/lalezar-arabic-400-normal.woff2)}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1080px;overflow:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
