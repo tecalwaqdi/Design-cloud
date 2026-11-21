@@ -1,0 +1,142 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 3,
+	"settings": {
+		"appearanceTools": true,
+		"useRootPaddingAwareAlignments": true,
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1200px"
+		},
+		"color": {
+			"defaultPalette": false,
+			"defaultGradients": false,
+			"palette": [
+				{ "slug": "primary", "name": "كحلي", "color": "#0E2A47" },
+				{ "slug": "primary-dark", "name": "كحلي داكن", "color": "#081A2E" },
+				{ "slug": "accent", "name": "برتقالي", "color": "#F28C28" },
+				{ "slug": "accent-dark", "name": "برتقالي داكن", "color": "#D9741A" },
+				{ "slug": "base", "name": "أبيض", "color": "#FFFFFF" },
+				{ "slug": "surface", "name": "رمادي فاتح", "color": "#F4F6F9" },
+				{ "slug": "line", "name": "حدود", "color": "#E2E7EE" },
+				{ "slug": "muted", "name": "نص ثانوي", "color": "#5B6B7F" },
+				{ "slug": "contrast", "name": "نص", "color": "#14202E" }
+			],
+			"gradients": [
+				{
+					"slug": "hero",
+					"name": "تدرج الواجهة",
+					"gradient": "linear-gradient(135deg, #081A2E 0%, #0E2A47 55%, #17406B 100%)"
+				}
+			]
+		},
+		"typography": {
+			"defaultFontSizes": false,
+			"fluid": true,
+			"fontFamilies": [
+				{
+					"slug": "tajawal",
+					"name": "Tajawal",
+					"fontFamily": "Tajawal, system-ui, sans-serif",
+					"fontFace": [
+						{ "fontFamily": "Tajawal", "fontWeight": "400", "fontStyle": "normal", "fontDisplay": "swap", "src": [ "file:./assets/fonts/tajawal-400.ttf" ] },
+						{ "fontFamily": "Tajawal", "fontWeight": "500", "fontStyle": "normal", "fontDisplay": "swap", "src": [ "file:./assets/fonts/tajawal-500.ttf" ] },
+						{ "fontFamily": "Tajawal", "fontWeight": "700", "fontStyle": "normal", "fontDisplay": "swap", "src": [ "file:./assets/fonts/tajawal-700.ttf" ] },
+						{ "fontFamily": "Tajawal", "fontWeight": "800", "fontStyle": "normal", "fontDisplay": "swap", "src": [ "file:./assets/fonts/tajawal-800.ttf" ] }
+					]
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "name": "صغير", "size": "0.9rem", "fluid": false },
+				{ "slug": "medium", "name": "متوسط", "size": "1.075rem", "fluid": false },
+				{ "slug": "large", "name": "كبير", "size": "1.35rem", "fluid": { "min": "1.2rem", "max": "1.35rem" } },
+				{ "slug": "x-large", "name": "كبير جداً", "size": "2rem", "fluid": { "min": "1.6rem", "max": "2rem" } },
+				{ "slug": "xx-large", "name": "عملاق", "size": "2.75rem", "fluid": { "min": "2rem", "max": "2.75rem" } },
+				{ "slug": "display", "name": "عنوان رئيسي", "size": "3.6rem", "fluid": { "min": "2.3rem", "max": "3.6rem" } }
+			]
+		},
+		"spacing": {
+			"defaultSpacingSizes": false,
+			"units": [ "px", "rem", "%", "vh", "vw" ],
+			"spacingSizes": [
+				{ "slug": "20", "name": "1", "size": "0.5rem" },
+				{ "slug": "30", "name": "2", "size": "1rem" },
+				{ "slug": "40", "name": "3", "size": "1.5rem" },
+				{ "slug": "50", "name": "4", "size": "clamp(1.75rem, 3vw, 2.5rem)" },
+				{ "slug": "60", "name": "5", "size": "clamp(2.5rem, 5vw, 4rem)" },
+				{ "slug": "70", "name": "6", "size": "clamp(3.5rem, 8vw, 6.5rem)" }
+			]
+		},
+		"shadow": {
+			"defaultPresets": false,
+			"presets": [
+				{ "slug": "card", "name": "بطاقة", "shadow": "0 10px 30px rgba(14, 42, 71, 0.08)" }
+			]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--base)",
+			"text": "var(--wp--preset--color--contrast)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--tajawal)",
+			"fontSize": "var(--wp--preset--font-size--medium)",
+			"lineHeight": "1.8"
+		},
+		"spacing": {
+			"blockGap": "1.25rem",
+			"padding": {
+				"left": "clamp(1.25rem, 4vw, 2.5rem)",
+				"right": "clamp(1.25rem, 4vw, 2.5rem)"
+			}
+		},
+		"elements": {
+			"heading": {
+				"color": { "text": "var(--wp--preset--color--primary)" },
+				"typography": { "fontWeight": "800", "lineHeight": "1.35" }
+			},
+			"h1": { "typography": { "fontSize": "var(--wp--preset--font-size--xx-large)" } },
+			"h2": { "typography": { "fontSize": "var(--wp--preset--font-size--x-large)" } },
+			"h3": { "typography": { "fontSize": "var(--wp--preset--font-size--large)" } },
+			"link": {
+				"color": { "text": "var(--wp--preset--color--accent-dark)" },
+				"typography": { "textDecoration": "none" },
+				":hover": { "color": { "text": "var(--wp--preset--color--primary)" } }
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--accent)",
+					"text": "var(--wp--preset--color--base)"
+				},
+				"border": { "radius": "8px" },
+				"typography": { "fontWeight": "700", "fontSize": "1rem" },
+				"spacing": { "padding": { "top": "0.85rem", "bottom": "0.85rem", "left": "1.75rem", "right": "1.75rem" } },
+				":hover": {
+					"color": {
+						"background": "var(--wp--preset--color--accent-dark)",
+						"text": "var(--wp--preset--color--base)"
+					}
+				}
+			}
+		},
+		"blocks": {
+			"core/navigation": {
+				"typography": { "fontSize": "1rem", "fontWeight": "500" }
+			},
+			"core/site-title": {
+				"typography": { "fontSize": "1.4rem", "fontWeight": "800" }
+			},
+			"core/separator": {
+				"color": { "text": "var(--wp--preset--color--line)" }
+			}
+		}
+	},
+	"templateParts": [
+		{ "name": "header", "title": "الهيدر", "area": "header" },
+		{ "name": "footer", "title": "الفوتر", "area": "footer" }
+	],
+	"customTemplates": [
+		{ "name": "page-no-title", "title": "صفحة بدون عنوان", "postTypes": [ "page" ] }
+	]
+}
