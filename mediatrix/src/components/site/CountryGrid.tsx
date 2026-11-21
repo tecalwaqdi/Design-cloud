@@ -1,6 +1,6 @@
 "use client";
 import { motion, type Variants } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { LandmarkScene } from "../art/Landmarks";
 import type { LandmarkArt } from "@/lib/types";
 
@@ -26,8 +26,25 @@ const item: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
 };
 
+const TZ: Record<string, string> = {
+  "Asia/Riyadh": "SA",
+  "Asia/Dubai": "AE",
+  "Asia/Kuwait": "KW",
+  "Asia/Qatar": "QA",
+  "Asia/Bahrain": "BH",
+  "Asia/Muscat": "OM",
+  "Europe/London": "GB",
+  "Europe/Berlin": "DE",
+  "Europe/Busingen": "DE",
+};
+function tzToCountry(tz: string): string | undefined {
+  if (TZ[tz]) return TZ[tz];
+  if (/^America\/(New_York|Chicago|Denver|Los_Angeles|Phoenix|Anchorage|Detroit|Indiana|Kentucky|Boise|Juneau|Sitka|Nome|Adak|Menominee|North_Dakota)/.test(tz) || tz === "Pacific/Honolulu") return "US";
+  return undefined;
+}
+
 export function CountryGrid({
-  cards,
+  cards: initialCards,
   goLabel,
   soonLabel,
   yourCountryLabel,
@@ -39,6 +56,24 @@ export function CountryGrid({
   yourCountryLabel: string;
   visitorCountry?: string;
 }) {
+  // Visitor's country goes first, the rest keep the dashboard order.
+  // Server render uses the network (IP) country; the device time zone then refines it,
+  // which stays correct behind VPNs / iCloud Private Relay.
+  const [tzCountry, setTzCountry] = useState<string | undefined>();
+  useEffect(() => {
+    try {
+      const cc = tzToCountry(Intl.DateTimeFormat().resolvedOptions().timeZone);
+      if (cc && initialCards.some((c) => c.flag.toUpperCase() === cc)) setTzCountry(cc);
+    } catch {}
+  }, [initialCards]);
+  const homeCountry = (tzCountry || visitorCountry || "").toUpperCase() || undefined;
+  const cards = useMemo(() => {
+    const list = [...initialCards];
+    const i = list.findIndex((c) => c.flag.toUpperCase() === homeCountry);
+    if (i > 0) list.unshift(...list.splice(i, 1));
+    return list;
+  }, [initialCards, homeCountry]);
+
   const scroller = useRef<HTMLDivElement>(null);
   const cardEls = useRef<(HTMLElement | null)[]>([]);
   const [current, setCurrent] = useState(0); // card centred in the carousel
@@ -134,7 +169,7 @@ export function CountryGrid({
         aria-roledescription="carousel"
       >
         {cards.map((c, i) => {
-          const mine = visitorCountry && c.flag.toUpperCase() === visitorCountry.toUpperCase();
+          const mine = homeCountry && c.flag.toUpperCase() === homeCountry.toUpperCase();
           const lit = isGrid ? orbit === i : current === i;
           return (
             <motion.article

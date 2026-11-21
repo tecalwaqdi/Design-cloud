@@ -27,11 +27,8 @@ const wrap = "relative mx-auto max-w-7xl px-5 md:px-8";
 type Ctx = { c: Content; lang: Lang; visitorCountry?: string };
 
 function Countries({ c, lang, visitorCountry }: Ctx) {
-  // Visitor's own country first, then the rest in the order set in the dashboard.
-  const mine = (visitorCountry || "").toUpperCase();
+  // Dashboard order; CountryGrid moves the visitor's country to the front.
   const ordered = c.countries.filter((x) => x.enabled);
-  const idx = ordered.findIndex((x) => x.flag.toUpperCase() === mine);
-  if (idx > 0) ordered.unshift(...ordered.splice(idx, 1));
   const cards = ordered.map((x) => ({
       id: x.id,
       flag: x.flag,
